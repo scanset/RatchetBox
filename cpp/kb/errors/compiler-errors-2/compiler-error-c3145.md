@@ -1,0 +1,52 @@
+# Compiler Error C3145
+
+> 'object' : global or static variable may not have managed or WinRT type 'type'
+
+## Remarks
+
+You can only define CLR or WinRT objects within function scope.
+
+## Examples
+
+The following example generates C3145 and shows how to fix it:
+
+```cpp
+// C3145.cpp
+// compile with: /clr
+using namespace System;
+ref class G {};
+
+G ^ ptr;   // C3145
+G ^ ptr2 = gcnew G;   // C3145
+
+ref class GlobalObjects {
+public:
+   static G ^ ptr;   // OK
+   static G ^ ptr2 = gcnew G;   // OK
+};
+
+int main() {
+   G ^ ptr;   // OK
+   G ^ ptr2 = gcnew G;   // OK
+}
+```
+
+The following example generates C3145:
+
+```cpp
+// C3145b.cpp
+// compile with: /clr
+ref class MyClass {
+public:
+   static int data;
+};
+
+interior_ptr<int> p = &(MyClass::data);   // C3145
+
+void Test(interior_ptr<int> x) {}
+
+int main() {
+   MyClass ^ h_MyClass = gcnew MyClass;
+   interior_ptr<int> p = &(h_MyClass->data);
+}
+```

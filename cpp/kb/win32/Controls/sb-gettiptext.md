@@ -1,0 +1,42 @@
+# SB\_GETTIPTEXT message
+
+Retrieves the tooltip text for a part in a status bar. The status bar must be created with the [**SBT\_TOOLTIPS**](status-bar-styles.md) style to enable tooltips.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+The [**LOWORD**](../winmsg/loword.md) specifies the zero-based index of the part that receives the tooltip text. The [**HIWORD**](../winmsg/hiword.md) specifies the size of the buffer at *lParam*, in characters.
+
+</dd> <dt>
+
+*lParam* 
+</dt> <dd>
+
+Pointer to a character buffer that receives the tooltip text.
+
+</dd> </dl>
+
+## Return value
+
+The return value is not used.
+
+## Remarks
+
+**Security Warning:** Using this message incorrectly can cause problems for your application. For example, if the text is too large for the *lParam* buffer, it could cause a buffer overflow. You should review the [Security Considerations: Microsoft Windows Controls](sec-comctls.md) before continuing.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+| Unicode and ANSI names<br/>   | **SB\_GETTIPTEXTW** (Unicode) and **SB\_GETTIPTEXTA** (ANSI)<br/>               |
+
+**Header:** Commctrl.h

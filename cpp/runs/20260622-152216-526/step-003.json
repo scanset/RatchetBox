@@ -1,0 +1,6 @@
+{
+  "node": "cpp.compile",
+  "kind": "action",
+  "ok": true,
+  "output": "OK"
+}

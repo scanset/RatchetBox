@@ -1,0 +1,3 @@
+### Usage
+
+- typeid operator

@@ -1,0 +1,58 @@
+# `conj`, `conjf`, `conjl`
+
+Retrieves the complex conjugate of a complex number.
+
+## Syntax
+
+```C
+_Dcomplex conj(
+   _Dcomplex z
+);
+_Fcomplex conj(
+   _Fcomplex z
+);  // C++ only
+_Lcomplex conj(
+   _Lcomplex z
+);  // C++ only
+_Fcomplex conjf(
+   _Fcomplex z
+);
+_Lcomplex conjl(
+   _Lcomplex z
+);
+#define conj(X) // Requires C11 or later
+```
+
+### Parameters
+
+*`z`*\
+A complex number.
+
+## Return value
+
+The complex conjugate  of *`z`*.  The result has the same real and imaginary part as *`z`*, but with the opposite sign.
+
+## Remarks
+
+Because C++ allows overloading, you can call overloads of **`conj`** that take and return `_Fcomplex` and `_Lcomplex` values. In a C program, unless you're using the \<tgmath.h> macro to call this function, **`conj`** always takes and returns a `_Dcomplex` value.
+
+If you use the \<tgmath.h> `conj()` macro, the type of the argument determines which version of the function is selected. See [Type-generic math](../tgmath.md) for details.
+
+## Requirements
+
+| Routine | C header | C++ header |
+|---|---|---|
+| **`conj`**, **`conjf`**, **`conjl`** | \<complex.h> | \<ccomplex> |
+| **`conj`** macro | \<tgmath.h> |  |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Alphabetical function reference](crt-alphabetical-function-reference.md)\
+[`norm`, `normf`, `norml`](norm-normf-norml1.md)\
+[`creal`, `crealf`, `creall`](creal-crealf-creall.md)\
+[`cproj`, `cprojf`, `cprojl`](cproj-cprojf-cprojl.md)\
+[`cimag`, `cimagf`, `cimagl`](cimag-cimagf-cimagl.md)\
+[`carg`, `cargf`, `cargl`](carg-cargf-cargl.md)\
+[`cabs`, `cabsf`, `cabsl`](cabs-cabsf-cabsl.md)

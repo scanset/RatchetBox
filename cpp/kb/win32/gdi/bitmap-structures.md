@@ -1,0 +1,25 @@
+# Bitmap Structures
+
+The following structures are used with bitmaps:
+
+-   [**BITMAP**](/windows/win32/api/wingdi/ns-wingdi-bitmap)
+-   [**BITMAPCOREHEADER**](/windows/win32/api/wingdi/ns-wingdi-bitmapcoreheader)
+-   [**BITMAPCOREINFO**](/windows/win32/api/wingdi/ns-wingdi-bitmapcoreinfo)
+-   [**BITMAPFILEHEADER**](/windows/win32/api/wingdi/ns-wingdi-bitmapfileheader)
+-   [**BITMAPINFO**](/windows/win32/api/wingdi/ns-wingdi-bitmapinfo)
+-   [**BITMAPINFOHEADER**](/windows/win32/api/wingdi/ns-wingdi-bitmapinfoheader)
+-   [**BITMAPV4HEADER**](/windows/desktop/api/Wingdi/ns-wingdi-bitmapv4header)
+-   [**BITMAPV5HEADER**](/windows/desktop/api/Wingdi/ns-wingdi-bitmapv5header)
+-   [**BLENDFUNCTION**](/windows/desktop/api/Wingdi/ns-wingdi-blendfunction)
+-   [**COLORADJUSTMENT**](/windows/win32/api/wingdi/ns-wingdi-coloradjustment)
+-   [**DIBSECTION**](/windows/win32/api/wingdi/ns-wingdi-dibsection)
+-   [**GRADIENT\_RECT**](/windows/desktop/api/Wingdi/ns-wingdi-gradient_rect)
+-   [**GRADIENT\_TRIANGLE**](/windows/desktop/api/Wingdi/ns-wingdi-gradient_triangle)
+-   [**RGBQUAD**](/windows/win32/api/wingdi/ns-wingdi-rgbquad)
+-   [**RGBTRIPLE**](/windows/win32/api/wingdi/ns-wingdi-rgbtriple)
+-   [**SIZE**](/windows/win32/api/windef/ns-windef-size)
+-   [**TRIVERTEX**](/windows/desktop/api/Wingdi/ns-wingdi-trivertex)
+
+ 
+
+ 

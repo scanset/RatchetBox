@@ -1,0 +1,33 @@
+{
+  "$comment": "The C++ Ratchet instance. Knowledge bases: cppref (cppreference - what the API is) + guidelines (C++ Core Guidelines - how to use it well). Curated, example-bearing sources only; API-dictionary dumps were dropped as low-signal. Oracle/flows for C++ generation (cl.exe via vcvars32) are the native phase - not wired yet. Launch with `ratchet <this-dir>`; (re)index a kb with `ratchet index <kb-dir>`.",
+  "name": "cpp",
+  "domain": "C++ (MSVC cl.exe / vcvars32; STL + Win32) - generate, compile, repair",
+  "models": { "generate": "qwen3-coder:latest", "dispatch": "qwen3-coder:latest", "embed": "nomic-embed-text" },
+  "ollama_url": "http://localhost:11434",
+  "router": { "autorun": "confirm" },
+  "knowledgeBases": [
+    { "name": "cppref",     "path": "kb/cppref", "default": true },
+    { "name": "guidelines", "path": "kb/guidelines" },
+    { "name": "patterns",   "path": "kb/patterns" },
+    { "name": "errors",     "path": "kb/errors" },
+    { "name": "cppdocs",    "path": "kb/cppdocs" },
+    { "name": "win32",      "path": "kb/win32" },
+    { "name": "howto",      "path": "kb/howto" }
+  ],
+  "requirements": [
+    { "name": "MSVC cl",      "tool": "doctor_cl", "hint": "install VS2022 BuildTools (C++ workload)" },
+    { "name": "Windows SDK",  "file": "C:\\Program Files (x86)\\Windows Kits\\10\\Lib", "hint": "install the Windows 10/11 SDK" },
+    { "name": "Ollama",       "http": "http://localhost:11434/api/tags", "hint": "start Ollama (ollama serve)" },
+    { "name": "model generate", "model": "qwen3-coder:latest", "hint": "ollama pull qwen3-coder" },
+    { "name": "model embed",  "model": "nomic-embed-text", "hint": "ollama pull nomic-embed-text" },
+    { "name": "git",          "exe": "git", "required": false, "hint": "needed only to bootstrap vcpkg" },
+    { "name": "vcpkg",        "file": "C:\\vcpkg\\vcpkg.exe", "required": false, "hint": "/do bootstrap_vcpkg (only for third-party libs)" },
+    { "name": "KB cppref",     "kb": "cppref" },
+    { "name": "KB guidelines", "kb": "guidelines" },
+    { "name": "KB patterns",   "kb": "patterns" },
+    { "name": "KB errors",     "kb": "errors" },
+    { "name": "KB cppdocs",    "kb": "cppdocs" },
+    { "name": "KB win32",      "kb": "win32" },
+    { "name": "KB howto",      "kb": "howto" }
+  ]
+}

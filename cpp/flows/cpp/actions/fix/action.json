@@ -1,0 +1,14 @@
+{
+  "$comment": "The repair: regenerate given cl's diagnostics + the previous attempt, grounded in the MSVC error docs (errors kb) keyed on the diagnostics. Bounded - one fix, then recompile.",
+  "id": "cpp.fix",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "cpp.generate", "path": ".", "as": "prev", "max_chars": 5000 },
+    { "from": "cpp.compile", "path": ".", "as": "errors", "max_chars": 2000 },
+    { "search": "errors", "query": "{{ errors }}", "k": 2, "as": "errhelp", "max_chars": 2000 }
+  ],
+  "on_success": "cpp.recompile",
+  "on_failure": "cpp.fail"
+}

@@ -1,0 +1,109 @@
+# `_memicmp`, `_memicmp_l`
+
+Compares characters in two buffers (case-insensitive).
+
+## Syntax
+
+```C
+int _memicmp(
+   const void *buffer1,
+   const void *buffer2,
+   size_t count
+);
+int _memicmp_l(
+   const void *buffer1,
+   const void *buffer2,
+   size_t count,
+   _locale_t locale
+);
+```
+
+### Parameters
+
+*`buffer1`*\
+First buffer.
+
+*`buffer2`*\
+Second buffer.
+
+*`count`*\
+Number of characters.
+
+*`locale`*\
+Locale to use.
+
+## Return value
+
+The return value indicates the relationship between the buffers.
+
+| Return value | Relationship of first count bytes of buf1 and buf2 |
+|---|---|
+| < 0 | *`buffer1`* less than *`buffer2`*. |
+| 0 | *`buffer1`* identical to *`buffer2`*. |
+| > 0 | *`buffer1`* greater than *`buffer2`*. |
+| `_NLSCMPERROR` | An error occurred. |
+
+## Remarks
+
+The **`_memicmp`** function compares the first *`count`* characters of the two buffers *`buffer1`* and *`buffer2`* byte by byte. The comparison isn't case-sensitive.
+
+If either *`buffer1`* or *`buffer2`* is a null pointer, this function invokes an invalid parameter handler, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, the function returns `_NLSCMPERROR` and sets `errno` to `EINVAL`.
+
+**`_memicmp`** uses the current locale for locale-dependent behavior; **`_memicmp_l`** is identical except that it uses the locale passed in instead. For more information, see [Locale](../locale.md).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_memicmp`** | \<memory.h> or \<string.h> |
+| **`_memicmp_l`** | \<memory.h> or \<string.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Example
+
+```C
+// crt_memicmp.c
+// This program uses _memicmp to compare
+// the first 29 letters of the strings named first and
+// second without regard to the case of the letters.
+
+#include <memory.h>
+#include <stdio.h>
+#include <string.h>
+
+int main( void )
+{
+   int result;
+   char first[] = "Those Who Will Not Learn from History";
+   char second[] = "THOSE WHO WILL NOT LEARN FROM their mistakes";
+   // Note that the 29th character is right here ^
+
+   printf( "Compare '%.29s' to '%.29s'\n", first, second );
+   result = _memicmp( first, second, 29 );
+   if( result < 0 )
+      printf( "First is less than second.\n" );
+   else if( result == 0 )
+      printf( "First is equal to second.\n" );
+   else if( result > 0 )
+      printf( "First is greater than second.\n" );
+}
+```
+
+```Output
+Compare 'Those Who Will Not Learn from' to 'THOSE WHO WILL NOT LEARN FROM'
+First is equal to second.
+```
+
+## See also
+
+[Buffer manipulation](../buffer-manipulation.md)\
+[`_memccpy`](memccpy.md)\
+[`memchr`, `wmemchr`](memchr-wmemchr.md)\
+[`memcmp`, `wmemcmp`](memcmp-wmemcmp.md)\
+[`memcpy`, `wmemcpy`](memcpy-wmemcpy.md)\
+[`memset`, `wmemset`](memset-wmemset.md)\
+[`_stricmp`, `_wcsicmp`, `_mbsicmp`, `_stricmp_l`, `_wcsicmp_l`, `_mbsicmp_l`](stricmp-wcsicmp-mbsicmp-stricmp-l-wcsicmp-l-mbsicmp-l.md)\
+[`_strnicmp`, `_wcsnicmp`, `_mbsnicmp`, `_strnicmp_l`, `_wcsnicmp_l`, `_mbsnicmp_l`](strnicmp-wcsnicmp-mbsnicmp-strnicmp-l-wcsnicmp-l-mbsnicmp-l.md)

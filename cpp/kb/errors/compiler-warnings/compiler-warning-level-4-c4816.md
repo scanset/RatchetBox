@@ -1,0 +1,45 @@
+# Compiler Warning (level 4) C4816
+
+> 'param' : parameter has a zero-sized array which will be truncated (unless the object is passed by reference)
+
+## Remarks
+
+A parameter to an object with a zero-size array was not passed by reference. The array will not get copied when the object is passed.
+
+## Example
+
+The following example generates C4816:
+
+```cpp
+// C4816.cpp
+// compile with: /W4
+#include <stdio.h>
+
+extern "C" int printf_s(const char *, ...);
+
+#pragma warning(disable : 4200)
+
+struct S1
+{
+    int i;
+    char cArr[];
+};
+
+void TestErr(S1 s1)   // C4816 param with zero-array
+                      // not passed by reference
+{
+    printf_s("%d %c %c\n", s1.i, s1.cArr[0], s1.cArr[1]);
+}
+
+void TestOk(S1 &s1)
+{
+    printf_s("%d %c %c\n", s1.i, s1.cArr[0], s1.cArr[1]);
+}
+
+int main()
+{
+    S1 myS_1 = { 6, 'a', 'b', 'c' };
+    TestErr(myS_1);
+    TestOk(myS_1);
+}
+```

@@ -1,0 +1,71 @@
+# CBN\_EDITUPDATE notification code
+
+Sent when the edit control portion of a combo box is about to display altered text. This notification code is sent after the control has formatted the text, but before it displays the text. The parent window of the combo box receives this notification code through the [**WM\_COMMAND**](/windows/desktop/menurc/wm-command) message.
+
+
+```C++
+CBN_EDITUPDATE
+
+    WPARAM wParam;
+    LPARAM lParam; 
+```
+
+
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+The [**LOWORD**](../winmsg/loword.md) contains the control identifier of the combo box. The [**HIWORD**](../winmsg/hiword.md) specifies the notification code.
+
+</dd> <dt>
+
+*lParam* 
+</dt> <dd>
+
+Handle to the combo box.
+
+</dd> </dl>
+
+## Remarks
+
+If the combo box has the [**CBS\_DROPDOWNLIST**](combo-box-styles.md) style, this notification code is not sent.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                                           |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                                     |
+| Header<br/>                   | <dl> <dt>Winuser.h (include Windows.h)</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+**Reference**
+</dt> <dt>
+
+[CBN\_EDITCHANGE](cbn-editchange.md)
+</dt> <dt>
+
+**Other Resources**
+</dt> <dt>
+
+[**HIWORD**](../winmsg/hiword.md)
+</dt> <dt>
+
+[**LOWORD**](../winmsg/loword.md)
+</dt> <dt>
+
+[**WM\_COMMAND**](/windows/desktop/menurc/wm-command)
+</dt> </dl>
+
+**Header:** Winuser.h

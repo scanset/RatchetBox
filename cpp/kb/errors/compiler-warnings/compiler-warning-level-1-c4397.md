@@ -1,0 +1,35 @@
+# Compiler Warning (level 1) C4397
+
+> DefaultCharSetAttribute is ignored
+
+## Remarks
+
+<xref:System.Runtime.InteropServices.DefaultCharSetAttribute> is ignored by the Microsoft C++ compiler. To specify a character set for the DLL, use the CharSet option of DllImport. For more information, see [Using C++ Interop (Implicit PInvoke)](../../dotnet/using-cpp-interop-implicit-pinvoke.md).
+
+## Example
+
+The following example generates C4397.
+
+```cpp
+// C4397.cpp
+// compile with: /W1 /c /clr
+using namespace System;
+using namespace System::Runtime::InteropServices;
+
+[module:DefaultCharSetAttribute(CharSet::Unicode)];   // C4397
+
+[DllImport("kernel32", EntryPoint="CloseHandle", CharSet=CharSet::Unicode)]   // OK
+extern "C" bool ImportDefault(IntPtr hObject);
+
+public ref class MySettingVC {
+public:
+   void method() {
+      ImportDefault(IntPtr::Zero);
+   }
+};
+
+[StructLayout(LayoutKind::Explicit)]
+public ref struct StructDefault1{};
+
+public ref class ClassDefault1{};
+```

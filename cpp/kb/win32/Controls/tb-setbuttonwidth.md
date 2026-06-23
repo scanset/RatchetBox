@@ -1,0 +1,43 @@
+# TB\_SETBUTTONWIDTH message
+
+Sets the minimum and maximum button widths in the toolbar control.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+Must be zero.
+
+</dd> <dt>
+
+*lParam* 
+</dt> <dd>
+
+The [**LOWORD**](../winmsg/loword.md) specifies the minimum button width, in pixels. Toolbar buttons will never be narrower than this value.
+
+The [**HIWORD**](../winmsg/hiword.md) specifies the maximum button width, in pixels. If button text is too wide, the control displays it with ellipsis points.
+
+</dd> </dl>
+
+## Return value
+
+Returns nonzero if successful, or zero otherwise.
+
+## Remarks
+
+Use **TB\_SETBUTTONWIDTH** to set the maximum and minimum allowed widths for buttons before they are added. Use [**TB\_SETBUTTONSIZE**](tb-setbuttonsize.md) to set the actual size of buttons.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+
+**Header:** Commctrl.h

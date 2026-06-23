@@ -1,0 +1,22 @@
+# Compiler Warning (level 1) C4628
+
+> digraphs not supported with -Ze. Character sequence 'digraph' not interpreted as alternate token for 'char'
+
+## Remarks
+
+Digraphs are not supported under [/Ze](../../build/reference/za-ze-disable-language-extensions.md). This warning will be followed by an error.
+
+This warning is off by default. See [Compiler Warnings That Are Off by Default](../../preprocessor/compiler-warnings-that-are-off-by-default.md) for more information.
+
+## Example
+
+The following example generates C4628:
+
+```cpp
+// C4628.cpp
+// compile with: /WX
+#pragma warning(default : 4628)
+int main()
+<%   // C4628 <% digraph for {
+}
+```

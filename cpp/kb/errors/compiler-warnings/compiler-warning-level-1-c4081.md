@@ -1,0 +1,17 @@
+# Compiler Warning (level 1) C4081
+
+> expected 'token1'; found 'token2'
+
+## Remarks
+
+The compiler expected a different token in this context.
+
+## Example
+
+The following example generates C4081:
+
+```cpp
+// C4081.cpp
+// compile with: /W1 /LD
+#pragma optimize) "l", on )   // C4081
+```

@@ -1,0 +1,6 @@
+{
+  "node": "edit_file.build",
+  "kind": "action",
+  "ok": true,
+  "output": "staged src\\core\\stats.cpp\r\nOK: built C:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\Calc\\dist\\Calc.exe"
+}

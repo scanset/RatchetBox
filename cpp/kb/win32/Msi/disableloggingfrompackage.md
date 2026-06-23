@@ -1,0 +1,26 @@
+# DisableLoggingFromPackage
+
+The value of this per-machine [system policy](system-policy.md) is set to "1" to disable the logging that is specified for the package by the [**MsiLogging**](msilogging.md) property for all users of the computer.
+
+The [**MsiLogging**](msilogging.md) property and the DisableLoggingFromPackage policy require Windows Installer 4.0.
+
+## Registry Key
+
+**HKEY\_LOCAL\_MACHINE**\\**Software**\\**Policies**\\**Microsoft**\\**Windows**\\**Installer**
+
+## Data Type
+
+**REG\_DWORD**
+
+## Related topics
+
+<dl> <dt>
+
+[Not Supported in Windows Installer 3.1 and earlier versions](not-supported-in-windows-installer-version-3-1.md)
+</dt> </dl>
+
+ 
+
+ 
+
+

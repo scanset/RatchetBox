@@ -1,0 +1,18 @@
+# D3D12\_GPU\_VIRTUAL\_ADDRESS
+
+A D3D12_GPU_VIRTUAL_ADDRESS represents a virtual address in GPU memory. The data type is defined in d3d12.h as follows:
+
+
+```
+typedef UINT64 D3D12_GPU_VIRTUAL_ADDRESS;
+```
+
+
+
+
+ 
+
+ 
+
+
+

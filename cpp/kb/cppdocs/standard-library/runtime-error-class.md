@@ -1,0 +1,59 @@
+# `runtime_error` class
+
+The class serves as the base class for all exceptions thrown to report errors presumably detectable only when the program executes.
+
+## Syntax
+
+```cpp
+class runtime_error : public exception {
+public:
+    explicit runtime_error(const string& message);
+
+    explicit runtime_error(const char *message);
+};
+```
+
+## Remarks
+
+The value returned by `what()` is a copy of `message.data()`. For more information, see [`what`](exception-class.md) and [`data`](basic-string-class.md#data).
+
+## Example
+
+```cpp
+// runtime_error.cpp
+// compile with: /EHsc
+#include <exception>
+#include <iostream>
+#include <locale>
+#include <typeinfo>
+using namespace std;
+
+int main()
+{
+   try
+   {
+      locale loc("test");
+   }
+   catch (const exception& e)
+   {
+      cerr << "Caught: " << e.what() << endl;
+      cerr << "Type: " << typeid(e).name() << endl;
+   }
+}
+```
+
+```Output
+Caught: bad locale name
+Type: class std::runtime_error
+```
+
+## Requirements
+
+**Header:** `<stdexcept>`
+
+**Namespace:** `std`
+
+## See also
+
+[`exception` class](exception-class.md)\
+[Thread Safety in the C++ Standard Library](thread-safety-in-the-cpp-standard-library.md)

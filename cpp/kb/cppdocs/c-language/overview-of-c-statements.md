@@ -1,0 +1,25 @@
+# Overview of C Statements
+
+C statements consist of tokens, expressions, and other statements. A statement that forms a component of another statement is called the "body" of the enclosing statement. Each statement type given by the following syntax is discussed in this section.
+
+## Syntax
+
+*`statement`*:\
+&emsp;[`labeled-statement`](../c-language/goto-and-labeled-statements-c.md)\
+&emsp;[`compound-statement`](../c-language/compound-statement-c.md)\
+&emsp;[`expression-statement`](../c-language/expression-statement-c.md)\
+&emsp;[`selection-statement`](../c-language/if-statement-c.md)\
+&emsp;[`iteration-statement`](../c-language/do-while-statement-c.md)\
+&emsp;[`jump-statement`](../c-language/break-statement-c.md)\
+&emsp;[`try-except-statement`](../c-language/try-except-statement-c.md) /\* Microsoft-specific \*/\
+&emsp;[`try-finally-statement`](../c-language/try-finally-statement-c.md) /\* Microsoft-specific \*/
+
+Frequently the statement body is a "compound statement." A compound statement consists of other statements that can include keywords. The compound statement is delimited by braces (**`{ }`**). All other C statements end with a semicolon (**`;`**). The semicolon is a statement terminator.
+
+The expression statement contains a C expression that can contain the arithmetic or logical operators introduced in [Expressions and Assignments](../c-language/expressions-and-assignments.md). The null statement is an empty statement.
+
+Any C statement can begin with an identifying label consisting of a name and a colon. Since only the **`goto`** statement recognizes statement labels, statement labels are discussed with **`goto`**. For more information, see [The goto and Labeled Statements](../c-language/goto-and-labeled-statements-c.md).
+
+## See also
+
+[Statements](../c-language/statements-c.md)

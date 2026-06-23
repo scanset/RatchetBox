@@ -1,0 +1,19 @@
+{
+  "$comment": "Reference lookup, step 1 (structured): the model decides WHICH knowledge bases this task needs and writes one focused query per KB. An empty field means skip that KB - the host short-circuits an empty search query, so there is no retrieval and no context bloat. cpp.generate routes each field into its KB via the binding `path`.",
+  "id": "cpp.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [ { "from": "$input", "path": ".", "as": "task" } ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "cppref_q":   { "type": "string" },
+      "patterns_q": { "type": "string" },
+      "win32_q":    { "type": "string" },
+      "cppdocs_q":  { "type": "string" }
+    },
+    "required": ["cppref_q", "patterns_q", "win32_q", "cppdocs_q"]
+  },
+  "on_success": "cpp.generate",
+  "on_failure": "cpp.generate"
+}

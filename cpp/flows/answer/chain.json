@@ -1,0 +1,10 @@
+{
+  "$comment": "answer: grounded Q&A over the KBs. The plan node decides which KBs to consult (one focused query per KB, empty = skip; the host short-circuits empty queries); respond retrieves from each chosen KB and answers in prose. No build - pure retrieval + explanation. question = the whole $input.",
+  "id": "answer",
+  "version": "1.0.0",
+  "summary": "Answer a C++ / Win32 / MSVC question grounded in the knowledge bases (cppref, cppdocs, win32, patterns, guidelines, errors); cite the APIs involved, say plainly when something is not covered.",
+  "entry": "answer.plan",
+  "inputs": ["question"],
+  "budgets": { "max_steps": 6, "max_total_tokens": 18000, "max_wallclock_seconds": 600 },
+  "nodes": ["answer.plan", "answer.respond", "answer.done"]
+}

@@ -1,0 +1,67 @@
+# EM\_GETAUTOURLDETECT message
+
+Indicates whether the auto URL detection is turned on in the rich edit control.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+Not used; must be zero.
+
+</dd> <dt>
+
+*lParam* 
+</dt> <dd>
+
+Not used; must be zero.
+
+</dd> </dl>
+
+## Return value
+
+If auto-URL detection is active, the return value is 1.
+
+If auto-URL detection is inactive, the return value is 0.
+
+## Remarks
+
+When auto URL detection is on, Microsoft Rich Edit is constantly checking typed text for a valid URL. Rich Edit recognizes URLs that start with these prefixes:
+
+-   http:
+-   file:
+-   mailto:
+-   ftp:
+-   https:
+-   gopher:
+-   nntp:
+-   prospero:
+-   telnet:
+-   news:
+-   wais:
+-   outlook:
+
+Rich Edit also recognizes standard path names that start with \\\\. When Rich Edit locates a URL, it changes the URL text color, underlines the text, and notifies the client using [EN\_LINK](en-link.md).
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Richedit.h</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+[EN\_LINK](en-link.md)
+</dt> </dl>
+
+**Header:** Richedit.h

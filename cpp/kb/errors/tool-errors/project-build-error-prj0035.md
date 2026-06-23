@@ -1,0 +1,13 @@
+# Project Build Error PRJ0035
+
+> XML file '*file*' contains Unicode contents that could not be translated to user's ANSI code page.
+>
+> *UNICODE contents of file*
+
+## Remarks
+
+*file* is the XML file created as the command line to the Web Deployment tool.
+
+The project system found Unicode characters in some property on the Web Deployment property page that can't properly be translated to ANSI.
+
+The resolution for this error is to update the contents of the property to use ANSI or to install the code page on your computer and set it as the system default.

@@ -1,0 +1,6 @@
+{
+  "node": "edit_file.log",
+  "kind": "action",
+  "ok": true,
+  "output": "OK: logged edit of src/core/stats.cpp"
+}

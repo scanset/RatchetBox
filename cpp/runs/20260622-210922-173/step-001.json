@@ -1,0 +1,5 @@
+{
+  "node": "answer.plan",
+  "kind": "generate",
+  "output": "{\"cppref_q\":\"std::vector::reserve vs std::vector::resize iterator invalidation\",\"cppdocs_q\":\"\",\"win32_q\":\"\",\"patterns_q\":\"\",\"guidelines_q\":\"\",\"errors_q\":\"\"}"
+}

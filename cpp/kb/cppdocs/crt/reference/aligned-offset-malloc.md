@@ -1,0 +1,54 @@
+# `_aligned_offset_malloc`
+
+Allocates memory on a specified alignment boundary.
+
+## Syntax
+
+```C
+void * _aligned_offset_malloc(
+   size_t size,
+   size_t alignment,
+   size_t offset
+);
+```
+
+### Parameters
+
+*`size`*\
+The size of the requested memory allocation.
+
+*`alignment`*\
+The alignment value, which must be an integer power of 2.
+
+*`offset`*\
+The offset into the memory allocation to force the alignment.
+
+## Return value
+
+A pointer to the memory block that was allocated or `NULL` if the operation failed.
+
+## Remarks
+
+**`_aligned_offset_malloc`** is useful in situations where alignment is needed on a nested element; for example, if alignment was needed on a nested class.
+
+**`_aligned_offset_malloc`** is based on `malloc`; for more information, see [`malloc`](malloc.md).
+
+**`_aligned_offset_malloc`** is marked `__declspec(noalias)` and `__declspec(restrict)`, meaning that the function is guaranteed not to modify global variables and that the pointer returned isn't aliased. For more information, see [`noalias`](../../cpp/noalias.md) and [`restrict`](../../cpp/restrict.md).
+
+This function sets `errno` to `ENOMEM` if the memory allocation failed or if the requested size was greater than `_HEAP_MAXREQ`. For more information about `errno`, see [`errno`, `_doserrno`, `_sys_errlist`, and `_sys_nerr`](../errno-doserrno-sys-errlist-and-sys-nerr.md). Also, **`_aligned_offset_malloc`** validates its parameters. If *`alignment`* isn't a power of 2, or if *`offset`* is non-zero and greater than or equal to *`size`*, this function invokes the invalid parameter handler, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, this function returns `NULL` and sets `errno` to `EINVAL`.
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_aligned_offset_malloc`** | \<malloc.h> |
+
+## Example
+
+For more information, see [`_aligned_malloc`](aligned-malloc.md).
+
+## See also
+
+[Data alignment](../data-alignment.md)

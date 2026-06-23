@@ -1,0 +1,5 @@
+{
+  "chain": "cpp",
+  "input": "Implement a factory that creates Shape objects (Circle or Square) chosen by a string name and returns std::unique_ptr<Shape>; Shape has a virtual area() method. Portable C++17, no platform code.",
+  "started": "2026-06-22T20:15:42"
+}

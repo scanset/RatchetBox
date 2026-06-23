@@ -1,0 +1,28 @@
+# Component.Context property
+
+The context that was determined to be applicable to the component in question. This property calls the [**MsiEnumComponentsEx**](/windows/desktop/api/Msi/nf-msi-msienumcomponentsexa) function.
+
+**[Windows Installer 4.5 or earlier](not-supported-in-windows-installer-4-5.md):** Not supported. This property is available beginning with Windows Installer 5.0.
+
+## Syntax
+
+## Property value
+
+## Requirements
+
+
+
+| Requirement | Value |
+|--------------------|------------------------------------------------------------------------------------|
+| Version<br/> | Windows Installer 5.0 or later.<br/>                                         |
+| DLL<br/>     | <dl> <dt>Msi.dll</dt> </dl> |
+| IID<br/>     | IID\_IComponent is defined as 000C1097-0000-0000-C000-000000000046<br/>      |
+
+
+
+ 
+
+ 
+
+
+

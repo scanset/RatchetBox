@@ -1,0 +1,23 @@
+{
+  "$comment": "Structured plan: given the change request and the file's current contents, decide which knowledge bases the edit needs and write one focused query per KB (empty = skip; the host short-circuits an empty query). edit_file.generate routes each field into its KB via the binding `path`.",
+  "id": "edit_file.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "request", "path": ".", "as": "request" },
+    { "from": "edit_file.read", "path": ".", "as": "current", "max_chars": 4000 }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "cppref_q":   { "type": "string" },
+      "patterns_q": { "type": "string" },
+      "win32_q":    { "type": "string" },
+      "cppdocs_q":  { "type": "string" }
+    },
+    "required": ["cppref_q", "patterns_q", "win32_q", "cppdocs_q"]
+  },
+  "on_success": "edit_file.generate",
+  "on_failure": "edit_file.generate"
+}

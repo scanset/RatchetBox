@@ -1,0 +1,43 @@
+# NM\_RCLICK (list view) notification code
+
+Sent by a list-view control when the user clicks an item with the right mouse button. This notification code is sent in the form of a [**WM\_NOTIFY**](wm-notify.md) message.
+
+
+```C++
+NM_RCLICK
+
+    lpnmitem = (LPNMITEMACTIVATE) lParam;
+```
+
+
+
+## Parameters
+
+<dl> <dt>
+
+*lParam* 
+</dt> <dd>
+
+[Version 4.71](common-control-versions.md). Pointer to an [**NMITEMACTIVATE**](/windows/win32/api/commctrl/ns-commctrl-nmitemactivate) structure that contains additional information about this notification. The **iItem**, **iSubItem**, and **ptAction** members of this structure contain information about the item.
+
+</dd> </dl>
+
+## Return value
+
+Return nonzero to not allow the default processing, or zero to allow the default processing.
+
+## Remarks
+
+The **iItem** member of *lParam* is only valid if the icon or first-column label has been clicked. To determine which item is selected when a click takes place elsewhere in a row, send an [**LVM\_SUBITEMHITTEST**](lvm-subitemhittest.md) message.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+
+**Header:** Commctrl.h

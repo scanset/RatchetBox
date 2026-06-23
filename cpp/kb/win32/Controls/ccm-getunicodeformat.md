@@ -1,0 +1,38 @@
+# CCM\_GETUNICODEFORMAT message
+
+Gets the Unicode character format flag for the control.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>Must be zero.</dd> <dt>
+
+*lParam* 
+</dt> <dd>Must be zero.</dd> </dl>
+
+## Return value
+
+Returns the Unicode format flag for the control. If this value is nonzero, the control is using Unicode characters. If this value is zero, the control is using ANSI characters.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+[**CCM\_SETUNICODEFORMAT**](ccm-setunicodeformat.md)
+</dt> </dl>
+
+**Header:** Commctrl.h

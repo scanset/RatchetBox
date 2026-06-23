@@ -1,0 +1,26 @@
+# Compiler Error C3463
+
+> 'type': type not allowed in attribute 'implements'
+
+## Remarks
+
+An invalid type was passed to the [implements](../../windows/attributes/implements-cpp.md) attribute. For example, you can pass an interface to `implements`, but you cannot pass a pointer to an interface.
+
+## Example
+
+The following example generates C3463.
+
+```cpp
+// C3463.cpp
+// compile with: /c
+#include <windows.h>
+[object, uuid("00000000-0000-0000-0000-000000000001")]
+__interface X {};
+
+typedef X* PX;
+
+[ coclass, uuid("00000000-0000-0000-0000-000000000002"), implements(interfaces=PX) ]   // C3463
+// try the following line instead
+// [ coclass, uuid("00000000-0000-0000-0000-000000000002"), implements(interfaces=X) ]
+class CMyClass : public X {};
+```

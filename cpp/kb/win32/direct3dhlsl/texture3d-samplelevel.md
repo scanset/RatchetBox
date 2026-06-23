@@ -1,0 +1,32 @@
+# Texture3D::SampleLevel methods
+
+Samples a texture on the specified mipmap level.
+
+### Overload list
+
+
+
+| Method                                                                                 | Description                                                                                        |
+|:---------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+| [**SampleLevel(S,float,float,int)**](dx-graphics-hlsl-to-samplelevel.md)              | Samples a texture on the specified mipmap level.<br/>                                        |
+| [**SampleLevel(S,float,float,int,uint)**](t3d-samplelevel-s-float-float-int-uint-.md) | Samples a texture on the specified mipmap level and returns status about the operation.<br/> |
+
+
+
+## See also
+
+<dl> <dt>
+
+[**Texture3D**](sm5-object-texture3d.md)
+</dt> <dt>
+
+[Texture-Object](dx-graphics-hlsl-to-type.md)
+</dt> </dl>
+
+ 
+
+ 
+
+
+
+

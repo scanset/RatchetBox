@@ -1,0 +1,22 @@
+{
+  "$comment": "Structured plan: the model decides which knowledge bases the new file needs and writes one focused query per KB (empty = skip that KB; the host short-circuits an empty query, so no retrieval and no bloat). add_file.generate routes each field into its KB via the binding `path`.",
+  "id": "add_file.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "request", "path": ".", "as": "request" }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "cppref_q":   { "type": "string" },
+      "patterns_q": { "type": "string" },
+      "win32_q":    { "type": "string" },
+      "cppdocs_q":  { "type": "string" }
+    },
+    "required": ["cppref_q", "patterns_q", "win32_q", "cppdocs_q"]
+  },
+  "on_success": "add_file.generate",
+  "on_failure": "add_file.generate"
+}

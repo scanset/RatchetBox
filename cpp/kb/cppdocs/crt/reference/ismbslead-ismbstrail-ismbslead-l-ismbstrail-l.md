@@ -1,0 +1,72 @@
+# `_ismbslead`, `_ismbstrail`, `_ismbslead_l`, `_ismbstrail_l`
+
+Performs context-sensitive tests for multibyte-character-string lead bytes and trail bytes and determines whether a given substring pointer points to a lead byte or a trail byte.
+
+> [!IMPORTANT]
+> This API cannot be used in applications that execute in the Windows Runtime. For more information, see [CRT functions not supported in Universal Windows Platform apps](../../cppcx/crt-functions-not-supported-in-universal-windows-platform-apps.md).
+
+## Syntax
+
+```C
+int _ismbslead(
+   const unsigned char *str,
+   const unsigned char *current
+);
+int _ismbstrail(
+   const unsigned char *str,
+   const unsigned char *current
+);
+int _ismbslead_l(
+   const unsigned char *str,
+   const unsigned char *current,
+   _locale_t locale
+);
+int _ismbstrail_l(
+   const unsigned char *str,
+   const unsigned char *current,
+   _locale_t locale
+);
+```
+
+### Parameters
+
+*`str`*\
+Pointer to the start of the string or the previous known lead byte.
+
+*`current`*\
+Pointer to the position in the string to be tested.
+
+*`locale`*\
+The locale to use.
+
+## Return value
+
+**`_ismbslead`** returns -1 if the character is a lead byte and **`_ismbstrail`** returns -1 if the character is a trail byte. If the input strings are valid but aren't a lead byte or trail byte, these functions return zero. If either argument is `NULL`, the invalid parameter handler is invoked, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, these functions return `NULL` and set `errno` to `EINVAL`.
+
+## Remarks
+
+**`_ismbslead`** and **`_ismbstrail`** are slower than the **`_ismbblead`** and **`_ismbbtrail`** versions because they take the string context into account.
+
+The versions of these functions that have the `_l` suffix are identical except that for their locale-dependent behavior they use the locale that's passed in instead of the current locale. For more information, see [Locale](../locale.md).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Routine | Required header | Optional header |
+|---|---|---|
+| **`_ismbslead`** | \<mbctype.h> or \<mbstring.h> | \<ctype.h>,* \<limits.h>, \<stdlib.h> |
+| **`_ismbstrail`** | \<mbctype.h> or \<mbstring.h> | \<ctype.h>,* \<limits.h>, \<stdlib.h> |
+| **`_ismbslead_l`** | \<mbctype.h> or \<mbstring.h> | \<ctype.h>,* \<limits.h>, \<stdlib.h> |
+| **`_ismbstrail_l`** | \<mbctype.h> or \<mbstring.h> | \<ctype.h>,* \<limits.h>, \<stdlib.h> |
+
+\* For manifest constants for the test conditions.
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Character classification](../character-classification.md)\
+[`_ismbc` routines](../ismbc-routines.md)\
+[`is`, `isw` routines](../is-isw-routines.md)\
+[`_ismbb` routines](../ismbb-routines.md)

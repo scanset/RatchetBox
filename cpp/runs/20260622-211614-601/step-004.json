@@ -1,0 +1,6 @@
+{
+  "node": "edit_file.build",
+  "kind": "action",
+  "ok": false,
+  "output": "staged src\\main.cpp\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\Calc1\\src\\main.cpp(14): error C2079: 'iss' uses undefined class 'std::basic_istringstream<char,std::char_traits<char>,std::allocator<char>>'\n[exit code 1]"
+}

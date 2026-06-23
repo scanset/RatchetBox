@@ -1,0 +1,32 @@
+# /FIXED (Fixed Base Address)
+
+```
+/FIXED[:NO]
+```
+
+## Remarks
+
+Tells the operating system to load the program only at its preferred base address. If the preferred base address is unavailable, the operating system does not load the file. For more information, see [/BASE (Base Address)](base-base-address.md).
+
+/FIXED:NO is the default setting for a DLL, and /FIXED is the default setting for any other project type.
+
+When /FIXED is specified, LINK does not generate a relocation section in the program. At run time, if the operating system is unable to load the program at the specified address, it issues an error message and does not load the program.
+
+Specify /FIXED:NO to generate a relocation section in the program.
+
+### To set this linker option in the Visual Studio development environment
+
+1. Open the project's **Property Pages** dialog box. For details, see [Set C++ compiler and build properties in Visual Studio](../working-with-project-properties.md).
+
+1. Select the **Configuration Properties** > **Linker** > **Command Line** property page.
+
+1. Enter the option name and setting in the **Additional Options** box.
+
+### To set this linker option programmatically
+
+- See <xref:Microsoft.VisualStudio.VCProjectEngine.VCLinkerTool.AdditionalOptions%2A>.
+
+## See also
+
+[MSVC linker reference](linking.md)<br/>
+[MSVC Linker Options](linker-options.md)

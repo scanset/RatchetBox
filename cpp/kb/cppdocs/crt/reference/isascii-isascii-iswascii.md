@@ -1,0 +1,54 @@
+# `isascii`, `__isascii`, `iswascii`
+
+Determines whether a particular character is an ASCII character.
+
+## Syntax
+
+```C
+int __isascii(
+   int c
+);
+int iswascii(
+   wint_t c
+);
+
+#define isascii __isascii
+```
+
+### Parameters
+
+*`c`*\
+Integer to test.
+
+## Return value
+
+Each of these routines returns nonzero if *`c`* is a particular representation of an ASCII character. **`__isascii`** returns a nonzero value if *`c`* is an ASCII character (in the range 0x00 - 0x7F). **`iswascii`** returns a nonzero value if *`c`* is a wide-character representation of an ASCII character. Each of these routines returns 0 if *`c`* doesn't satisfy the test condition.
+
+## Remarks
+
+Both **`__isascii`** and **`iswascii`** are implemented as macros unless the preprocessor macro `_CTYPE_DISABLE_MACROS` is defined.
+
+For backward compatibility, **`isascii`** is implemented as a macro only if [`__STDC__`](../../preprocessor/predefined-macros.md) isn't defined or is defined as 0; otherwise it's undefined.
+
+By default, this function's global state is scoped to the application. To change this scope, see [Global state in the CRT](../global-state.md).
+
+### Generic-text routine mappings
+
+| Tchar.h routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| **`_istascii`** | **`__isascii`** | **`__isascii`** | **`iswascii`** |
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`isascii`**, **`__isascii`** | C: \<ctype.h><br /><br /> C++: \<cctype> or \<ctype.h> |
+| **`iswascii`** | C: \<wctype.h>, \<ctype.h>, or \<wchar.h><br /><br /> C++: \<cwctype>, \<cctype>, \<wctype.h>, \<ctype.h>, or \<wchar.h> |
+
+The **`isascii`**, **`__isascii`**, and **`iswascii`** functions are Microsoft-specific. For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Character classification](../character-classification.md)\
+[Locale](../locale.md)\
+[`is`, `isw` routines](../is-isw-routines.md)

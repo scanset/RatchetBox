@@ -1,0 +1,21 @@
+# Compiler Warning (level 1) C4674
+
+> 'method' should be declared 'static' and have exactly one parameter
+
+## Remarks
+
+The signature of a conversion operator was not correct. The method is not considered a user-defined conversion. For more information on defining operators, see [User-Defined Operators (C++/CLI)](../../dotnet/user-defined-operators-cpp-cli.md) and [User-Defined Conversions (C++/CLI)](../../dotnet/user-defined-conversions-cpp-cli.md).
+
+## Example
+
+The following example generates C4674.
+
+```cpp
+// C4674.cpp
+// compile with: /clr /WX /W1 /LD
+ref class G {
+   int op_Implicit(int i) {   // C4674
+      return 0;
+   }
+};
+```

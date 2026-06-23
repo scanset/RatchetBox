@@ -1,0 +1,10 @@
+{
+  "$comment": "The oracle: cl_check reads the C++ on stdin (the tool declares stdin:code) and exits 0 iff it passes the cl front-end. Success -> done; failure -> the one repair.",
+  "id": "cpp.compile",
+  "kind": "action",
+  "tool": "cl_check",
+  "inputs": [ { "from": "cpp.generate", "path": ".", "as": "code" } ],
+  "body": { "code": "{{ code }}" },
+  "on_success": "cpp.done",
+  "on_failure": "cpp.fix"
+}

@@ -1,0 +1,31 @@
+# /Qimprecise_fwaits (Remove fwaits Inside Try Blocks)
+
+Removes the `fwait` commands internal to **`try`** blocks when you use the [/fp:except](fp-specify-floating-point-behavior.md) compiler option.
+
+## Syntax
+
+```
+/Qimprecise_fwaits
+```
+
+## Remarks
+
+This option has no effect if **`/fp:except`** isn't also specified. If you specify the **`/fp:except`** option, the compiler will insert a `fwait` instruction around each line of code in a **`try`** block. In this way, the compiler can identify the specific line of code that produces an exception. **`/Qimprecise_fwaits`** removes internal `fwait` instructions, leaving only the waits around the **`try`** block. It improves performance, but the compiler can only show which **`try`** block causes an exception, not which line.
+
+### To set this compiler option in the Visual Studio development environment
+
+1. Open the project's **Property Pages** dialog box. For details, see [Set C++ compiler and build properties in Visual Studio](../working-with-project-properties.md).
+
+1. Select the **Configuration Properties** > **C/C++** > **Command Line** property page.
+
+1. Enter the compiler option in the **Additional Options** box.
+
+### To set this compiler option programmatically
+
+- See <xref:Microsoft.VisualStudio.VCProjectEngine.VCCLCompilerTool.AdditionalOptions%2A>.
+
+## See also
+
+[/Q Options (Low-Level Operations)](q-options-low-level-operations.md)<br/>
+[MSVC Compiler Options](compiler-options.md)<br/>
+[MSVC Compiler Command-Line Syntax](compiler-command-line-syntax.md)

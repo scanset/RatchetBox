@@ -1,0 +1,20 @@
+# Compiler Warning (level 1) C4377
+
+> native types are private by default; -d1PrivateNativeTypes is deprecated
+
+## Remarks
+
+In previous releases, native types in assemblies were public by default, and an internal, undocumented compiler option (**/d1PrivateNativeTypes**) was used to make them private.
+
+All types, native and CLR, are now private by default in an assembly, so **/d1PrivateNativeTypes** is no longer needed.
+
+## Example
+
+The following example generates C4377.
+
+```cpp
+// C4377.cpp
+// compile with: /clr /d1PrivateNativeTypes /W1
+// C4377 warning expected
+int main() {}
+```

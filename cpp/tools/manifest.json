@@ -1,0 +1,97 @@
+{
+  "$comment": "Tool declarations for the cpp instance. cl_check is the single-file oracle; new_project/build_project/stage_and_build are the project lifecycle (cl); read_file/read_project/register_file/log_edit are language-agnostic project memory; make_launcher writes a SAC-safe .cmd. ingest-* are bare convention tools.",
+  "tools": [
+    {
+      "name": "cl_check",
+      "description": "Syntax/semantic-check a complete C++ compilation unit with MSVC cl (/Zs, no codegen) under vcvars32. Source on stdin; OK + exit 0, or diagnostics + exit 1. Override standard with CL_STD (default c++17).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/cl_check.ps1"],
+      "inputSchema": { "type": "object", "properties": { "code": { "type": "string" } }, "required": ["code"] },
+      "stdin": "code", "timeout": 90
+    },
+    {
+      "name": "new_project",
+      "description": "Scaffold a C++ project under workspaces/<name> (src/main.cpp + src/core, dist/, project.json, PROJECT.md). Arg: spec = \"<name> [console|win32]\" - win32 scaffolds a WinMain window app (subsystem windows, links user32/gdi32). Then /ws switch <name>.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/new_project.ps1", "{spec}"],
+      "inputSchema": { "type": "object", "properties": { "spec": { "type": "string" } }, "required": ["spec"] },
+      "timeout": 30
+    },
+    {
+      "name": "build_project",
+      "description": "Compile + link a whole C++ project with cl to a persistent dist/<name>.exe. Arg: proj = name (under workspaces/) or path. OK/diagnostics + exit 0/1.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/build_project.ps1", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 120
+    },
+    {
+      "name": "stage_and_build",
+      "description": "Write a candidate C++ file into a project's src tree and build the WHOLE project with cl; report OK or diagnostics. Code on stdin.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/stage_and_build.ps1", "-Proj", "{proj}", "-Path", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "code": { "type": "string" } }, "required": ["proj", "path", "code"] },
+      "stdin": "code", "timeout": 120
+    },
+    {
+      "name": "read_file",
+      "description": "Print one project source file verbatim, to ground a surgical edit on its exact current contents.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_file.ps1", "-Proj", "{proj}", "-Path", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" } }, "required": ["proj", "path"] },
+      "timeout": 30
+    },
+    {
+      "name": "read_project",
+      "description": "Show a project's state and grounding: PROJECT.md, project.json, the src tree, manifest drift. Arg: proj.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_project.ps1", "{proj}", "{include}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "include": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "register_file",
+      "description": "Record a newly added file in a project's on-disk memory (project.json.files + PROJECT.md). Idempotent.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/register_file.ps1", "-Proj", "{proj}", "-Path", "{path}", "-Role", "{role}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "role": { "type": "string" } }, "required": ["proj", "path", "role"] },
+      "timeout": 30
+    },
+    {
+      "name": "log_edit",
+      "description": "Append an 'edited' line to a project's PROJECT.md changelog.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/log_edit.ps1", "-Proj", "{proj}", "-Path", "{path}", "-Summary", "{summary}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "summary": { "type": "string" } }, "required": ["proj", "path", "summary"] },
+      "timeout": 30
+    },
+    {
+      "name": "link_libs",
+      "description": "Declare extra import libraries for a project so build_project links them (e.g. ws2_32.lib for Winsock, d3d12.lib + dxgi.lib for Direct3D). Merges into project.json libs.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/link_libs.ps1", "-Proj", "{proj}", "-Libs", "{libs}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "libs": { "type": "string" } }, "required": ["proj", "libs"] },
+      "timeout": 30
+    },
+    {
+      "name": "doctor_cl",
+      "description": "Domain probe for `ratchet doctor`: exit 0 if MSVC cl is reachable through vcvars32, else 1. Referenced from ratchet.json requirements (tool check).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/doctor_cl.ps1"],
+      "inputSchema": { "type": "object", "properties": {} },
+      "timeout": 60
+    },
+    {
+      "name": "bootstrap_vcpkg",
+      "description": "One-time setup of vcpkg (the package getter add_package uses): git clone microsoft/vcpkg + bootstrap-vcpkg.bat, then records VCPKG_ROOT. Downloads from the official MS repo. Idempotent. Run via /do.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/bootstrap_vcpkg.ps1"],
+      "inputSchema": { "type": "object", "properties": { "dir": { "type": "string" } } },
+      "timeout": 600
+    },
+    {
+      "name": "add_package",
+      "description": "Provision a third-party C++ library with vcpkg and wire it into project.json (includes/libdirs/libs) so build_project can compile+link against it. Header-only ports need no libs. Run via /do. If vcpkg is absent it prints bootstrap steps. Triplet defaults to x86-windows.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/add_package.ps1", "-Proj", "{proj}", "-Name", "{name}", "-Libs", "{libs}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "name": { "type": "string" }, "libs": { "type": "string" } }, "required": ["proj", "name"] },
+      "timeout": 600
+    },
+    {
+      "name": "run_app",
+      "description": "Run a built project's exe, feeding test input on stdin and capturing stdout/stderr/exit with a timeout. For observing runtime behavior; native exes are SAC-gated so launch may be blocked (reported, not hung). The build remains the deterministic oracle.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/run_app.ps1", "-Proj", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "input": { "type": "string" } }, "required": ["proj"] },
+      "stdin": "input", "timeout": 30
+    }
+  ]
+}
+

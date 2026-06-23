@@ -1,0 +1,48 @@
+# `_Cbuild`, `_FCbuild`, `_LCbuild`
+
+Constructs a complex number from real and imaginary parts.
+
+## Syntax
+
+```C
+_Dcomplex _Cbuild( double real, double imaginary );
+_Fcomplex _FCbuild( float real, float imaginary );
+_Lcomplex _LCbuild( long double real, long double imaginary );
+```
+
+### Parameters
+
+*`real`*\
+The real part of the complex number to construct.
+
+*`imaginary`*\
+The imaginary part of the complex number to construct.
+
+## Return value
+
+A `_Dcomplex`, `_Fcomplex`, or `_Lcomplex` structure that represents the complex number (*`real`*, *`imaginary`* \* i) for values of the specified floating-point type.
+
+## Remarks
+
+The **`_Cbuild`**, **`_FCbuild`**, and **`_LCbuild`** functions simplify creation of complex types. Use the [`creal`, `crealf`, `creall`](creal-crealf-creall.md) and [`cimag`, `cimagf`, `cimagl`](cimag-cimagf-cimagl.md) functions to retrieve the real and imaginary portions of the represented complex numbers.
+
+## Requirements
+
+| Routine | C header | C++ header |
+|---|---|---|
+| **`_Cbuild`**, **`_FCbuild`**, **`_LCbuild`** | \<complex.h> | \<ccomplex> |
+
+These functions are Microsoft-specific. The types `_Dcomplex`, `_Fcomplex`, and `_Lcomplex` are Microsoft-specific equivalents to the unimplemented C99 native types **`double _Complex`**, **`float _Complex`**, and **`long double _Complex`**, respectively. For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Alphabetical function reference](crt-alphabetical-function-reference.md)\
+[`_Cmulcc`, `_FCmulcc`, `_LCmulcc`](cmulcc-fcmulcc-lcmulcc.md)\
+[`_Cmulcr`, `_FCmulcr`, `_LCmulcr`](cmulcr-fcmulcr-lcmulcr.md)\
+[`norm`, `normf`, `norml`](norm-normf-norml1.md)\
+[`cproj`, `cprojf`, `cprojl`](cproj-cprojf-cprojl.md)\
+[`conj`, `conjf`, `conjl`](conj-conjf-conjl.md)\
+[`creal`, `crealf`, `creall`](creal-crealf-creall.md)\
+[`cimag`, `cimagf`, `cimagl`](cimag-cimagf-cimagl.md)\
+[`carg`, `cargf`, `cargl`](carg-cargf-cargl.md)\
+[`cabs`, `cabsf`, `cabsl`](cabs-cabsf-cabsl.md)

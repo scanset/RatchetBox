@@ -1,0 +1,89 @@
+# _BitScanForward, _BitScanForward64
+
+**Microsoft Specific**
+
+Search the mask data from least significant bit (LSB) to the most significant bit (MSB) for a set bit (1).
+
+## Syntax
+
+```C
+unsigned char _BitScanForward(
+   unsigned long * Index,
+   unsigned long Mask
+);
+unsigned char _BitScanForward64(
+   unsigned long * Index,
+   unsigned __int64 Mask
+);
+```
+
+### Parameters
+
+*Index*\
+[out] Loaded with the bit position of the first set bit (1) found.
+
+*Mask*\
+[in] The 32-bit or 64-bit value to search.
+
+## Return value
+
+0 if the mask is zero; nonzero otherwise.
+
+## Remarks
+
+If a set bit is found, the bit position of the first set bit is written to the address specified in the first parameter and the function returns 1. If no bit is found, the function returns 0 and the value written to the address in the first parameter is undefined.
+
+## Requirements
+
+|Intrinsic|Architecture|
+|---------------|------------------|
+|`_BitScanForward`|x86, ARM, x64, ARM64|
+|`_BitScanForward64`|ARM64, x64|
+
+**Header file** \<intrin.h>
+
+## Example
+
+```cpp
+// BitScanForward.cpp
+// compile with: /EHsc
+#include <iostream>
+#include <intrin.h>
+using namespace std;
+
+#pragma intrinsic(_BitScanForward)
+
+int main()
+{
+   unsigned long mask = 0x1000;
+   unsigned long index;
+   unsigned char isNonzero;
+
+   cout << "Enter a positive integer as the mask: " << flush;
+   cin >> mask;
+   isNonzero = _BitScanForward(&index, mask);
+   if (isNonzero)
+   {
+      cout << "Mask: " << mask << " Index: " << index << endl;
+   }
+   else
+   {
+      cout << "No set bits found.  Mask is zero." << endl;
+   }
+}
+```
+
+```Input
+12
+```
+
+```Output
+Enter a positive integer as the mask:
+Mask: 12 Index: 2
+```
+
+**END Microsoft Specific**
+
+## See also
+
+[Compiler intrinsics](../intrinsics/compiler-intrinsics.md)

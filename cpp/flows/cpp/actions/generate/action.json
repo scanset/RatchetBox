@@ -1,0 +1,20 @@
+{
+  "$comment": "Reference lookup, step 2: pull each KB query out of the structured PLAN (via the binding `path`, a JSON pointer into cpp.plan's output) and search that KB. An empty plan field -> empty query -> no retrieval (host short-circuit), so only the KBs the model chose are consulted. guidelines is always searched on the task. The from-path slots are declared before the searches so the search queries can reference them.",
+  "id": "cpp.generate",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "cpp.plan", "path": "cppref_q",   "as": "cppref_q" },
+    { "from": "cpp.plan", "path": "patterns_q", "as": "patterns_q" },
+    { "from": "cpp.plan", "path": "win32_q",    "as": "win32_q" },
+    { "from": "cpp.plan", "path": "cppdocs_q",  "as": "cppdocs_q" },
+    { "search": "cppref",    "query": "{{ cppref_q }}",   "k": 3, "as": "refs",    "max_chars": 3000 },
+    { "search": "patterns",  "query": "{{ patterns_q }}", "k": 1, "as": "pattern", "max_chars": 2000 },
+    { "search": "win32",     "query": "{{ win32_q }}",    "k": 2, "as": "winapi",  "max_chars": 2500 },
+    { "search": "cppdocs",   "query": "{{ cppdocs_q }}",  "k": 1, "as": "tooling", "max_chars": 1500 },
+    { "search": "guidelines","query": "{{ task }}",       "k": 2, "as": "idioms",  "max_chars": 1500 }
+  ],
+  "on_success": "cpp.compile",
+  "on_failure": "cpp.fail"
+}

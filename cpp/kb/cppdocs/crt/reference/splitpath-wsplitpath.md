@@ -1,0 +1,94 @@
+# `_splitpath`, `_wsplitpath`
+
+Break a path into components. For more secure versions of these functions are available, see [`_splitpath_s`, `_wsplitpath_s`](splitpath-s-wsplitpath-s.md).
+
+## Syntax
+
+```C
+void _splitpath(
+   const char *path,
+   char *drive,
+   char *dir,
+   char *fname,
+   char *ext
+);
+void _wsplitpath(
+   const wchar_t *path,
+   wchar_t *drive,
+   wchar_t *dir,
+   wchar_t *fname,
+   wchar_t *ext
+);
+```
+
+### Parameters
+
+*`path`*\
+Full path.
+
+*`drive`*\
+Drive letter, followed by a colon (**:**). You can pass `NULL` for this parameter if you don't need the drive letter.
+
+*`dir`*\
+Directory path, including trailing slash. Forward slashes (`/`), backslashes (`\`), or both may be used. Pass `NULL` for this parameter if you don't need the directory path.
+
+*`fname`*\
+Base filename (no extension). Pass `NULL` for this parameter if you don't need the filename.
+
+*`ext`*\
+Filename extension, including leading period (`.`). Pass `NULL` for this parameter if you don't need the filename extension.
+
+## Remarks
+
+The **`_splitpath`** function breaks a path into its four components. **`_splitpath`** automatically handles multibyte-character string arguments as appropriate, recognizing multibyte-character sequences according to the multibyte code page currently in use. **`_wsplitpath`** is a wide-character version of **`_splitpath`**; the arguments to **`_wsplitpath`** are wide-character strings. These functions behave identically otherwise.
+
+**Security Note** These functions are subject to buffer overrun. Buffer overrun problems are a frequent method of system attack, resulting in an unwarranted elevation of privilege. For more information, see [Avoiding buffer overruns](/windows/win32/SecBP/avoiding-buffer-overruns). More secure versions of these functions are available; see [`_splitpath_s`, `_wsplitpath_s`](splitpath-s-wsplitpath-s.md).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+### Generic-text routine mappings
+
+| `TCHAR.H` routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| `_tsplitpath` | **`_splitpath`** | **`_splitpath`** | **`_wsplitpath`** |
+
+Each component of the full path is stored in a separate buffer; the manifest constants `_MAX_DRIVE`, `_MAX_DIR`, `_MAX_FNAME`, and `_MAX_EXT` (defined in `STDLIB.H`) specify the maximum size for each file component. File components that are larger than the corresponding manifest constants cause heap corruption.
+
+Each buffer must be as large as its corresponding manifest constant to avoid potential buffer overrun.
+
+The following table lists the values of the manifest constants.
+
+| Name | Value |
+|---|---|
+| `_MAX_DRIVE` | 3 |
+| `_MAX_DIR` | 256 |
+| `_MAX_FNAME` | 256 |
+| `_MAX_EXT` | 256 |
+
+If the full path doesn't contain a component (for example, a filename), **`_splitpath`** assigns empty strings to the corresponding buffers.
+
+You can pass `NULL` to **`_splitpath`** for any parameter other than *`path`* that you don't need.
+
+If *`path`* is `NULL`, the invalid parameter handler is invoked, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, `errno` is set to `EINVAL`.
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_splitpath`** | `<stdlib.h>` |
+| **`_wsplitpath`** | `<stdlib.h>` or `<wchar.h>` |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Example
+
+See the example for [`_makepath`](makepath-wmakepath.md).
+
+## See also
+
+[File handling](../file-handling.md)\
+[`_fullpath`, `_wfullpath`](fullpath-wfullpath.md)\
+[`_getmbcp`](getmbcp.md)\
+[`_makepath`, `_wmakepath`](makepath-wmakepath.md)\
+[`_setmbcp`](setmbcp.md)\
+[`_splitpath_s`, `_wsplitpath_s`](splitpath-s-wsplitpath-s.md)

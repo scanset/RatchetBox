@@ -1,0 +1,5 @@
+{
+  "node": "cpp.generate",
+  "kind": "generate",
+  "output": "#include <iostream>\n#include <vector>\n\ntemplate<typename T>\nclass Stack {\nprivate:\n    std::vector<T> data_;\n\npublic:\n    void push(const T& value) {\n        data_.push_back(value);\n    }\n\n    void push(T&& value) {\n        data_.push_back(std::move(value));\n    }\n\n    void pop() {\n        data_.pop_back();\n    }\n\n    T& top() {\n        return data_.back();\n    }\n\n    const T& top() const {\n        return data_.back();\n    }\n\n    bool empty() const {\n        return data_.empty();\n    }\n};\n\nint main() {\n    Stack<int> s;\n    s.push(1);\n    s.push(2);\n    s.push(3);\n\n    while (!s.empty()) {\n        std::cout << s.top() << ' ';\n        s.pop();\n    }\n    std::cout << '\\n';\n    return 0;\n}"
+}

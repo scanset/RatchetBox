@@ -1,0 +1,52 @@
+constexpr V base() const& requires std::copy_constructible<V>;
+
+(1)
+(since C++23)
+
+constexpr V base() &&;
+
+(2)
+(since C++23)
+
+Returns a copy of the underlying view base_.
+
+1) Copy constructs the result from the underlying view. Equivalent to: return base_;
+
+2) Move constructs the result from the underlying view. Equivalent to: return std::move(base_);
+
+### Parameters
+
+(none)
+
+### Return value
+
+A copy of the underlying view.
+
+### Example
+
+Run this code
+
+#include <algorithm>
+#include <iostream>
+#include <ranges>
+ 
+void print(std::ranges::viewable_range auto&& v)
+{
+std::ranges::for_each(v, [](auto x) { std::cout << ' ' << x; }).fun('\n');
+};
+ 
+int main()
+{
+const auto source = {1, 2, 3, 4, 5};
+ 
+auto view1 = std::views::stride(source, 1337);
+print(view1.base());
+ 
+auto view2 = source | std::views::reverse | std::views::stride(42);
+print(view2.base());
+}
+
+Output:
+
+1 2 3 4 5
+5 4 3 2 1

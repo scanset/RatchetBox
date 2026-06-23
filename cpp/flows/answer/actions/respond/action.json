@@ -1,0 +1,25 @@
+{
+  "$comment": "Retrieve from each KB the plan chose (empty query -> no retrieval via host short-circuit) and answer in prose, grounded only in what was retrieved. from-path slots are declared before the searches that reference them.",
+  "id": "answer.respond",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "question" },
+    { "from": "answer.plan", "path": "cppref_q",     "as": "cppref_q" },
+    { "from": "answer.plan", "path": "cppdocs_q",    "as": "cppdocs_q" },
+    { "from": "answer.plan", "path": "win32_q",      "as": "win32_q" },
+    { "from": "answer.plan", "path": "patterns_q",   "as": "patterns_q" },
+    { "from": "answer.plan", "path": "guidelines_q", "as": "guidelines_q" },
+    { "from": "answer.plan", "path": "errors_q",     "as": "errors_q" },
+    { "from": "answer.plan", "path": "howto_q",      "as": "howto_q" },
+    { "search": "cppref",     "query": "{{ cppref_q }}",     "k": 3, "as": "cpprefdocs",  "max_chars": 3000 },
+    { "search": "cppdocs",    "query": "{{ cppdocs_q }}",    "k": 2, "as": "cppdocsdocs", "max_chars": 2500 },
+    { "search": "win32",      "query": "{{ win32_q }}",      "k": 2, "as": "win32docs",   "max_chars": 2500 },
+    { "search": "patterns",   "query": "{{ patterns_q }}",   "k": 1, "as": "patterndocs", "max_chars": 2000 },
+    { "search": "guidelines", "query": "{{ guidelines_q }}", "k": 2, "as": "guidedocs",   "max_chars": 1800 },
+    { "search": "errors",     "query": "{{ errors_q }}",     "k": 2, "as": "errordocs",   "max_chars": 1800 },
+    { "search": "howto",      "query": "{{ howto_q }}",      "k": 2, "as": "howtodocs",   "max_chars": 2500 }
+  ],
+  "on_success": "answer.done",
+  "on_failure": "answer.done"
+}

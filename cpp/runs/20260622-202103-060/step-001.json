@@ -1,0 +1,6 @@
+{
+  "node": "edit_file.read",
+  "kind": "action",
+  "ok": true,
+  "output": "#include <memory>\n#include <string>\n#include <unordered_map>\n#include <stdexcept>\n\nclass Shape\n{\npublic:\n    virtual ~Shape() = default;\n    virtual double area() const = 0;\n};\n\nclass Circle : public Shape\n{\nprivate:\n    double radius_;\npublic:\n    explicit Circle(double radius) : radius_(radius) {}\n    double area() const override\n    {\n        return 3.14159265358979323846 * radius_ * radius_;\n    }\n};\n\nclass Square : public Shape\n{\nprivate:\n    double side_;\npublic:\n    explicit Square(double side) : side_(side) {}\n    double area() const override\n    {\n        return side_ * side_;\n    }\n};\n\nstd::unique_ptr<Shape> make_shape(const std::string& name, double param)\n{\n    static const std::unordered_map<std::string, std::unique_ptr<Shape>(*)(double)> creators = {\n        {\"circle\", [](double r) { return std::unique_ptr<Shape>(new Circle(r)); }},\n        {\"square\", [](double s) { return std::unique_ptr<Shape>(new Square(s)); }}\n    };\n\n    auto it = creators.find(name);\n    if (it != creators.end())\n    {\n        return it->second(param);\n    }\n    throw std::invalid_argument(\"Unknown shape type\");\n}"
+}

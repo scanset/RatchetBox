@@ -1,0 +1,23 @@
+# Compiler warning (level 4, error) C4400
+
+> '*type*': `const`/`volatile` qualifiers on this type are not supported
+
+## Remarks
+
+The [`const`](../../cpp/const-cpp.md) and [`volatile`](../../cpp/volatile-cpp.md) qualifiers don't work with common language runtime typed variables.
+
+## Example
+
+The following example generates C4400.
+
+```cpp
+// C4400.cpp
+// compile with: /clr /W4
+// C4401 expected
+using namespace System;
+#pragma warning (disable : 4101)
+int main() {
+   const String^ str;   // C4400
+   volatile String^ str2;   // C4400
+}
+```

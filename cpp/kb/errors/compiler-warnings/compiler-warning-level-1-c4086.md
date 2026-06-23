@@ -1,0 +1,17 @@
+# Compiler Warning (level 1) C4086
+
+> expected pragma parameter to be '1', '2', '4', '8', or '16'
+
+## Remarks
+
+The pragma parameter does not have the required value (1, 2, 4, 8, or 16).
+
+## Example
+
+The following example generates C4086:
+
+```cpp
+// C4086.cpp
+// compile with: /W1 /LD
+#pragma pack( 3 ) // C4086
+```

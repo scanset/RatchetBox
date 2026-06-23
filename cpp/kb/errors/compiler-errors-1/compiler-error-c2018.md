@@ -1,0 +1,19 @@
+# Compiler Error C2018
+
+> character 'U+*value*' is not permitted here
+
+## Remarks
+
+The source file contains an unexpected ASCII character, which is identified by its hex number. To resolve the error, remove the character.
+
+## Example
+
+The following example generates C2018:
+
+```cpp
+// C2018.cpp
+int main()
+{
+    @   // C2018
+}
+```

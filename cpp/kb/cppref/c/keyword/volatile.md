@@ -1,0 +1,3 @@
+### Usage
+
+- volatile type qualifier

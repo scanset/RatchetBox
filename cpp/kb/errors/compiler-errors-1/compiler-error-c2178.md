@@ -1,0 +1,44 @@
+# Compiler Error C2178
+
+> '*identifier*' cannot be declared with '*specifier*' specifier
+
+## Remarks
+
+A **`mutable`** specifier was used in a declaration, but the specifier is not allowed in this context. It can only be applied to non-static, non-const, and non-reference data members. For more information, see [Mutable Data Members](../../cpp/mutable-data-members-cpp.md).
+
+A **`consteval`** specifier was used on a [destructor](../../cpp/destructors-cpp.md), allocation function, or deallocation function.
+
+## Example: `mutable`
+
+The following example shows how C2178 may occur with the **`mutable`** specifier, and how to resolve it:
+
+```cpp
+// C2178_mutable.cpp
+// compile with: /c
+
+struct S
+{
+    mutable const int i;   // C2178, remove mutable or const to resolve
+};
+
+mutable int x = 4;   // C2178, remove mutable to resolve
+```
+
+## Example: `consteval`
+
+The following example shows how C2178 may occur with the **`consteval`** specifier. To resolve this error, remove all **`consteval`** specifiers:
+
+```cpp
+// C2178_consteval.cpp
+// compile with: /c /std:c++20
+
+#include <cstddef>
+
+struct S
+{
+    consteval ~S() {}   // C2178
+
+    consteval static void* operator new(std::size_t size);   // C2178
+    consteval static void operator delete(void* ptr);        // C2178
+};
+```

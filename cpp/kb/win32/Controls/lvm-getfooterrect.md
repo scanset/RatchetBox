@@ -1,0 +1,37 @@
+# LVM\_GETFOOTERRECT message
+
+Retrieves the coordinates of the footer for a list-view control. Send this message explicitly or by using the [**ListView\_GetFooterRect**](/windows/desktop/api/Commctrl/nf-commctrl-listview_getfooterrect) macro.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+Not used. Must be 0.
+
+</dd> <dt>
+
+*lParam* \[in, out\]
+</dt> <dd>
+
+A pointer to a [**RECT**](/windows/win32/api/windef/ns-windef-rect) structure to receive the coordinates. The calling process is responsible for allocating this structure. The coordinates received are expressed as client coordinates.
+
+</dd> </dl>
+
+## Return value
+
+Returns **TRUE** if successful, or **FALSE** otherwise.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2008 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+
+**Header:** Commctrl.h

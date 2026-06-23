@@ -1,0 +1,86 @@
+# `terminate` (CRT)
+
+Calls [`abort`](abort.md) or a function you specify using `set_terminate`.
+
+## Syntax
+
+```C
+void terminate( void );
+```
+
+## Remarks
+
+The **`terminate`** function is used with C++ exception handling and is called in the following cases:
+
+- A matching catch handler can't be found for a thrown C++ exception.
+
+- An exception is thrown by a destructor function during stack unwind.
+
+- The stack is corrupted after throwing an exception.
+
+**`terminate`** calls [`abort`](abort.md) by default. You can change this default by writing your own termination function and calling `set_terminate` with the name of your function as its argument. **`terminate`** calls the last function given as an argument to `set_terminate`. For more information, see [Unhandled C++ Exceptions](../../cpp/unhandled-cpp-exceptions.md).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`terminate`** | \<eh.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Example
+
+```cpp
+// crt_terminate.cpp
+// compile with: /EHsc
+#include <eh.h>
+#include <process.h>
+#include <iostream>
+using namespace std;
+
+void term_func();
+
+int main()
+{
+    int i = 10, j = 0, result;
+    set_terminate( term_func );
+    try
+    {
+        if( j == 0 )
+            throw "Divide by zero!";
+        else
+            result = i/j;
+    }
+    catch( int )
+    {
+        cout << "Caught some integer exception.\n";
+    }
+    cout << "This should never print.\n";
+}
+
+void term_func()
+{
+    cout << "term_func() was called by terminate().\n";
+
+    // ... cleanup tasks performed here
+
+    // If this function does not exit, abort is called.
+
+    exit(-1);
+}
+```
+
+```Output
+term_func() was called by terminate().
+```
+
+## See also
+
+[Exception handling routines](../exception-handling-routines.md)\
+[`abort`](abort.md)\
+[`_set_se_translator`](set-se-translator.md)\
+[`set_terminate`](set-terminate-crt.md)\
+[`set_unexpected`](set-unexpected-crt.md)\
+[`unexpected`](unexpected-crt.md)

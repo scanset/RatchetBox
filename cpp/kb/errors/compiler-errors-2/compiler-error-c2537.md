@@ -1,0 +1,19 @@
+# Compiler Error C2537
+
+> 'specifier' : illegal linkage specification
+
+## Remarks
+
+The linkage specifier is not supported. Only the "C" and "C++" linkage specifiers are supported.
+
+## Example
+
+The following example generates C2537:
+
+```cpp
+// C2537.cpp
+// compile with: /c
+extern "c" void func1();   // C2537
+extern "C" void func2();   // OK
+extern "C++" void func3();   // OK
+```

@@ -1,0 +1,10 @@
+{
+  "$comment": "add_file: create a NEW C++ file in the active workspace project. Plan which KBs the file needs, generate it (grounded in the chosen KBs), stage+build the WHOLE project (cl, the oracle), repair up to twice (grounded in the MSVC error docs), then register it. proj = $workspace; path + request from $input (head/tail).",
+  "id": "add_file",
+  "version": "1.1.0",
+  "summary": "Add a new C++ file/class/feature to the active workspace project; rebuild the whole project to verify, repair up to twice, and record it.",
+  "entry": "add_file.plan",
+  "inputs": ["path", "request"],
+  "budgets": { "max_steps": 16, "max_total_tokens": 24000, "max_wallclock_seconds": 1200 },
+  "nodes": ["add_file.plan", "add_file.generate", "add_file.build", "add_file.fix", "add_file.rebuild", "add_file.fix2", "add_file.rebuild2", "add_file.register", "add_file.done", "add_file.fail"]
+}

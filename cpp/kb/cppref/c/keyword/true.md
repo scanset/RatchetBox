@@ -1,0 +1,3 @@
+### Usage
+
+- predefined boolean constant

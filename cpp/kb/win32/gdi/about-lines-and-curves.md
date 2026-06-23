@@ -1,0 +1,14 @@
+# About Lines and Curves
+
+Many types of applications use lines and curves to draw graphics output on raster devices. Computer-aided design (CAD) and drawing applications use lines and curves to outline objects, specify the centers of objects, the dimensions of objects, and so on. Spreadsheet applications use lines and curves to draw grids, charts, and graphs. Word processing applications use lines to create rules and borders on a page of text.
+
+-   [Lines](lines.md)
+-   [Curves](curves.md)
+-   [Combined Lines and Curves](combined-lines-and-curves.md)
+-   [Line and Curve Attributes](line-and-curve-attributes.md)
+
+ 
+
+ 
+
+

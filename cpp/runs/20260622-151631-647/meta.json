@@ -1,0 +1,5 @@
+{
+  "chain": "cpp",
+  "input": "a generic Stack<T> class backed by std::vector with push, pop, top, empty; a main that pushes 1 2 3 and prints them while popping",
+  "started": "2026-06-22T15:16:31"
+}

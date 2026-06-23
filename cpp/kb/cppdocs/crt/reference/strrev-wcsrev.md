@@ -1,0 +1,5 @@
+# `strrev`, `wcsrev`
+
+The Microsoft-specific function names `strrev` and `wcsrev` are deprecated aliases for the [`_strrev` and `_wcsrev`](strrev-wcsrev-mbsrev-mbsrev-l.md) functions. By default, they generate [Compiler warning (level 3) C4996](../../error-messages/compiler-warnings/compiler-warning-level-3-c4996.md). The names are deprecated because they don't follow the Standard C rules for implementation-specific names. However, the functions are still supported.
+
+We recommend you use [`_strrev` and `_wcsrev`](strrev-wcsrev-mbsrev-mbsrev-l.md) instead. Or, you can continue to use these function names, and disable the warning. For more information, see [Turn off the warning](../../error-messages/compiler-warnings/compiler-warning-level-3-c4996.md#turn-off-the-warning) and [POSIX function names](../../error-messages/compiler-warnings/compiler-warning-level-3-c4996.md#posix-function-names).

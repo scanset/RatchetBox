@@ -1,0 +1,19 @@
+{
+    "name":  "RpnCalc",
+    "kind":  "console",
+    "std":  "c++17",
+    "created":  "2026-06-22",
+    "entry":  "src/main.cpp",
+    "out":  "dist/RpnCalc.exe",
+    "src":  "src",
+    "subsystem":  "console",
+    "libs":  [
+
+             ],
+    "files":  [
+                  {
+                      "path":  "src/main.cpp",
+                      "role":  "entry point (int main)"
+                  }
+              ]
+}

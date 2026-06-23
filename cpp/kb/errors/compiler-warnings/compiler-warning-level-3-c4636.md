@@ -1,0 +1,27 @@
+# Compiler Warning (level 3) C4636
+
+> XML document comment applied to 'construct': tag requires non-empty '' attribute.
+
+## Remarks
+
+A tag, such as `cref`, did not have a value.
+
+## Example
+
+The following example generates C4636.
+
+```cpp
+// C4636.cpp
+// compile with: /clr /doc /W3 /c
+/// <see cref=''/>
+// /// <see cref='System::Exception'/>
+ref struct A {   // C4636
+   void f(int);
+};
+
+// OK
+/// <see cref='System::Exception'/>
+ref struct B {
+   void f(int);
+};
+```

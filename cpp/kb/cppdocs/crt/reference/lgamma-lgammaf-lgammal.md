@@ -1,0 +1,59 @@
+# `lgamma`, `lgammaf`, `lgammal`
+
+Determines the natural logarithm of the absolute value of the gamma function of the specified value.
+
+## Syntax
+
+```C
+double lgamma( double x );
+float lgammaf( float x );
+long double lgammal( long double x );
+#define lgammal(X) // Requires C11 or later
+
+float lgamma( float x ); //C++ only
+long double lgamma( long double x ); //C++ only
+```
+
+### Parameters
+
+*`x`*\
+The value to compute.
+
+## Return value
+
+If successful, return the natural logarithm of the absolute value of the gamma function of *`x`*.
+
+| Issue | Return |
+|---|---|
+| *`x`* = NaN | NaN |
+| *`x`* = ±0 | +INFINITY |
+| *`x`*= negative integer | +INFINITY |
+| ±INFINITY | +INFINITY |
+| pole error | +`HUGE_VAL`, +`HUGE_VALF`, or +`HUGE_VALL` |
+| overflow range error | ±`HUGE_VAL`, ±`HUGE_VALF`, or ±`HUGE_VALL` |
+
+Errors are reported as specified in [`_matherr`](matherr.md).
+
+## Remarks
+
+Because C++ allows overloading, you can call overloads of **`lgamma`** that take and return **`float`** and **`long double`** types. In a C program, unless you're using the \<tgmath.h> macro to call this function, **`lgamma`** always takes and returns a **`double`**.
+
+If you use the \<tgmath.h> `lgamma()` macro, the type of the argument determines which version of the function is selected. See [Type-generic math](../tgmath.md) for details.
+
+If x is a rational number, this function returns the logarithm of the factorial of (x - 1).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Function | C header | C++ header |
+|---|---|---|
+| **`lgamma`**, **`lgammaf`**, **`lgammal`** | \<math.h> | \<cmath> |
+| **`lgamma`** macro | \<tgmath.h> |  |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Alphabetical function reference](crt-alphabetical-function-reference.md)\
+[`tgamma`, `tgammaf`, `tgammal`](tgamma-tgammaf-tgammal.md)

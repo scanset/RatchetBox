@@ -1,0 +1,46 @@
+# `_ftell_nolock`, `_ftelli64_nolock`
+
+Gets the current position of a file pointer without locking.
+
+## Syntax
+
+```C
+long _ftell_nolock(
+   FILE *stream
+);
+__int64 _ftelli64_nolock(
+   FILE *stream
+);
+```
+
+### Parameters
+
+*`stream`*\
+Target the `FILE` structure.
+
+## Return value
+
+Same as `ftell` and `_ftelli64`. For more information, see [`ftell`, `_ftelli64`](ftell-ftelli64.md).
+
+## Remarks
+
+These functions are non-locking versions of `ftell` and `_ftelli64`, respectively. They're identical to `ftell` and `_ftelli64` except that they aren't protected from interference by other threads. These functions might be faster because they don't incur the overhead of locking out other threads. Use these functions only in thread-safe contexts such as single-threaded applications or where the calling scope already handles thread isolation.
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+## Requirements
+
+| Function | Required header | Optional header |
+|---|---|---|
+| **`ftell_nolock`** | \<stdio.h> | \<errno.h> |
+| **`_ftelli64_nolock`** | \<stdio.h> | \<errno.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[Stream I/O](../stream-i-o.md)\
+[`fgetpos`](fgetpos.md)\
+[`fseek`, `_fseeki64`](fseek-fseeki64.md)\
+[`_lseek`, `_lseeki64`](lseek-lseeki64.md)\
+[`ftell`, `_ftelli64`](ftell-ftelli64.md)

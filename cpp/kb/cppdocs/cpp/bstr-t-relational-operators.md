@@ -1,0 +1,26 @@
+# `_bstr_t` relational operators
+
+**Microsoft Specific**
+
+Compares two `_bstr_t` objects.
+
+## Syntax
+
+```cpp
+bool operator==(const _bstr_t& str) const throw( );
+bool operator!=(const _bstr_t& str) const throw( );
+bool operator<(const _bstr_t& str) const throw( );
+bool operator>(const _bstr_t& str) const throw( );
+bool operator<=(const _bstr_t& str) const throw( );
+bool operator>=(const _bstr_t& str) const throw( );
+```
+
+## Remarks
+
+These operators compare two `_bstr_t` objects lexicographically. The operators return **`true`** if the comparisons hold, otherwise return **`false`**.
+
+**END Microsoft Specific**
+
+## See also
+
+[`_bstr_t` class](../cpp/bstr-t-class.md)

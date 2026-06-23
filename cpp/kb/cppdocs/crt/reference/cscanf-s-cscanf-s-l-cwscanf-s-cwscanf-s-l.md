@@ -1,0 +1,119 @@
+# `_cscanf_s`, `_cscanf_s_l`, `_cwscanf_s`, `_cwscanf_s_l`
+
+Reads formatted data from the console. These more secure versions of [`_cscanf`, `_cscanf_l`, `_cwscanf`, `_cwscanf_l`](cscanf-cscanf-l-cwscanf-cwscanf-l.md) have security enhancements, as described in [Security features in the CRT](../security-features-in-the-crt.md).
+
+> [!IMPORTANT]
+> This API cannot be used in applications that execute in the Windows Runtime. For more information, see [CRT functions not supported in Universal Windows Platform apps](../../cppcx/crt-functions-not-supported-in-universal-windows-platform-apps.md).
+
+## Syntax
+
+```C
+int _cscanf_s(
+   const char *format [,
+   argument] ...
+);
+int _cscanf_s_l(
+   const char *format,
+   _locale_t locale [,
+   argument] ...
+);
+int _cwscanf_s(
+   const wchar_t *format [,
+   argument] ...
+);
+int _cwscanf_s_l(
+   const wchar_t *format,
+   _locale_t locale [,
+   argument] ...
+);
+```
+
+### Parameters
+
+*`format`*\
+Format-control string.
+
+*`argument`*\
+Optional parameters.
+
+*`locale`*\
+The locale to use.
+
+## Return value
+
+The number of fields that were successfully converted and assigned. The return value doesn't include fields that were read but not assigned. The return value is `EOF` for an attempt to read at end of file. An `EOF` can also be returned when keyboard input is redirected at the operating-system command-line level. A return value of zero means that no fields were assigned.
+
+These functions validate their parameters. If *`format`* is a null pointer, these functions invoke the invalid parameter handler, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, these functions return `EOF`, and `errno` is set to `EINVAL`.
+
+## Remarks
+
+The **`_cscanf_s`** function reads data directly from the console into the locations given by *`argument`*. The [`_getche`](getch-getwch.md) function is used to read characters. Each optional parameter must be a pointer to a variable with a type that corresponds to a type specifier in *`format`*. The format controls the interpretation of the input fields and has the same form and function as the *`format`* parameter for the [`scanf_s`](scanf-scanf-l-wscanf-wscanf-l.md) function. While **`_cscanf_s`** normally echoes the input character, it doesn't do so if the last call was to `_ungetch`.
+
+Like other secure versions of functions in the `scanf` family, **`_cscanf_s`** and **`_cwscanf_s`** require size arguments for the type field characters **c**, **C**, **s**, **S**, and **[**. For more information, see [scanf Width Specification](../scanf-width-specification.md).
+
+> [!NOTE]
+> The size parameter is of type **`unsigned`**, not `size_t`.
+
+The versions of these functions with the `_l` suffix are identical except that they use the locale parameter passed in instead of the current thread locale.
+
+### Generic-text routine mappings
+
+| TCHAR.H routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| `_tcscanf_s` | **`_cscanf_s`** | **`_cscanf_s`** | **`_cwscanf_s`** |
+| `_tcscanf_s_l` | **`_cscanf_s_l`** | **`_cscanf_s_l`** | **`_cwscanf_s_l`** |
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_cscanf_s`**, **`_cscanf_s_l`** | \<conio.h> |
+| **`_cwscanf_s`**, **`_cwscanf_s_l`** | \<conio.h> or \<wchar.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Libraries
+
+All versions of the [C run-time libraries](../crt-library-features.md).
+
+## Example
+
+```C
+// crt_cscanf_s.c
+/* This program prompts for a string
+* and uses _cscanf_s to read in the response.
+* Then _cscanf_s returns the number of items
+* matched, and the program displays that number.
+*/
+
+#include <stdio.h>
+#include <conio.h>
+
+int main( void )
+{
+   int result, n[3];
+   int i;
+
+   result = _cscanf_s( "%i %i %i", &n[0], &n[1], &n[2] );
+   _cprintf_s( "\r\nYou entered " );
+   for( i=0; i<result; i++ )
+      _cprintf_s( "%i ", n[i] );
+   _cprintf_s( "\r\n" );
+}
+```
+
+```Input
+1 2 3
+```
+
+```Output
+You entered 1 2 3
+```
+
+## See also
+
+[Console and port I/O](../console-and-port-i-o.md)\
+[`_cprintf`, `_cprintf_l`, `_cwprintf`, `_cwprintf_l`](cprintf-cprintf-l-cwprintf-cwprintf-l.md)\
+[`fscanf_s`, `_fscanf_s_l`, `fwscanf_s`, `_fwscanf_s_l`](fscanf-s-fscanf-s-l-fwscanf-s-fwscanf-s-l.md)\
+[`scanf_s`, `_scanf_s_l`, `wscanf_s`, `_wscanf_s_l`](scanf-s-scanf-s-l-wscanf-s-wscanf-s-l.md)\
+[`sscanf_s`, `_sscanf_s_l`, `swscanf_s`, `_swscanf_s_l`](sscanf-s-sscanf-s-l-swscanf-s-swscanf-s-l.md)

@@ -1,0 +1,25 @@
+# Compiler Error C2254
+
+> 'function' : pure specifier or abstract override specifier not allowed on friend function
+
+## Remarks
+
+A **`friend`** function is specified as pure **`virtual`**.
+
+## Example
+
+The following example generates C2254:
+
+```cpp
+// C2254.cpp
+// compile with: /c
+class A {
+public:
+   friend void func1() = 0;   // C2254, func1 is friend
+   void virtual func2() = 0;   // OK, pure virtual
+   friend void func3();   // OK, friend not virtual nor pure
+};
+
+void func1() {}
+void func3() {}
+```

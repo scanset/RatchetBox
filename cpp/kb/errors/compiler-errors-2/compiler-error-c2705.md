@@ -1,0 +1,25 @@
+# Compiler Error C2705
+
+> '*label*' : illegal jump into 'exception handler block' scope
+
+## Remarks
+
+Execution jumps to a label within a **`try`**/**`catch`**, **`__try`**/**`__except`**, or **`__try`**/**`__finally`** block. The compiler doesn't allow this behavior. For more information, see [Exception handling](../../cpp/exception-handling-in-visual-cpp.md).
+
+## Example
+
+The following example generates C2705:
+
+```cpp
+// C2705.cpp
+int main() {
+goto trouble;
+   __try {
+      trouble: ;   // C2705
+   }
+   __finally {}
+
+   // try the following line instead
+   // trouble: ;
+}
+```

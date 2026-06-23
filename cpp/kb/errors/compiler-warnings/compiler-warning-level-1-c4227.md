@@ -1,0 +1,18 @@
+# Compiler Warning (level 1) C4227
+
+> anachronism used : qualifiers on reference are ignored
+
+## Remarks
+
+Using qualifiers like **`const`** or **`volatile`** with C++ references is an outdated practice.
+
+## Example
+
+The following example generates C4227:
+
+```cpp
+// C4227.cpp
+// compile with: /W1 /c
+int j = 0;
+int &const i = j;   // C4227
+```

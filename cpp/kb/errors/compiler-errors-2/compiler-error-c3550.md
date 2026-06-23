@@ -1,0 +1,27 @@
+# Compiler Error C3550
+
+> only plain 'decltype(auto)' is allowed in this context
+
+## Remarks
+
+If [`decltype(auto)`](../../cpp/decltype-cpp.md#decltype-and-auto) is used as a placeholder for the return type of a function, it must be used by itself. It cannot be used as part of a pointer declaration (`decltype(auto)*`), a reference declaration (`decltype(auto)&`), or any other such qualification.
+
+## Example
+
+The following example generates C3550:
+
+```cpp
+// C3550.cpp
+// compile with: /c
+decltype(auto)* func1();   // C3550
+decltype(auto)& func2();   // C3550
+decltype(auto)&& func3();   // C3550
+
+auto* func4();   // OK
+```
+
+To resolve the error remove all illegal qualification on `decltype(auto)`. For instance, `decltype(auto)* func1()` can be turned into `auto* func1()`.
+
+## See also
+
+[auto](../../cpp/auto-cpp.md)

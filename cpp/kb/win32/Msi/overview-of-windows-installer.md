@@ -1,0 +1,20 @@
+# Overview of Windows Installer
+
+The Windows Installer reduces the total cost of ownership (TCO) for your customers by enabling them to efficiently install and configure your products and applications. The installer can also provide your product with new capabilities to advertise features without installing them, to install products on demand, and to add user customizations.
+
+The following sections provide a high-level overview of the installer:
+
+-   [Installation Package](installation-package.md)
+-   [Components and Features](components-and-features.md)
+-   [Installation Mechanism](installation-mechanism.md)
+-   [Component Management](component-management.md)
+-   [Advertisement](advertisement.md)
+-   [Installation-On-Demand](installation-on-demand.md)
+-   [Resiliency](resiliency.md)
+-   [Customization](customization.md)
+
+ 
+
+ 
+
+

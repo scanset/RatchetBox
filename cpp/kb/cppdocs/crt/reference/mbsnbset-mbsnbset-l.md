@@ -1,0 +1,103 @@
+# `_mbsnbset`, `_mbsnbset_l`
+
+Sets the first **n** bytes of a multibyte-character string to a specified character. More secure versions of these functions are available; see [`_mbsnbset_s`, `_mbsnbset_s_l`](mbsnbset-s-mbsnbset-s-l.md).
+
+> [!IMPORTANT]
+> This API cannot be used in applications that execute in the Windows Runtime. For more information, see [CRT functions not supported in Universal Windows Platform apps](../../cppcx/crt-functions-not-supported-in-universal-windows-platform-apps.md).
+
+## Syntax
+
+```C
+unsigned char *_mbsnbset(
+   unsigned char *str,
+   unsigned int c,
+   size_t count
+);
+unsigned char *_mbsnbset_l(
+   unsigned char *str,
+   unsigned int c,
+   size_t count,
+   _locale_t locale
+);
+```
+
+### Parameters
+
+*`str`*\
+String to be altered.
+
+*`c`*\
+Single-byte or multibyte-character setting.
+
+*`count`*\
+Number of bytes to be set.
+
+*`locale`*\
+Locale to use.
+
+## Return value
+
+**`_mbsnbset`** returns a pointer to the altered string.
+
+## Remarks
+
+The **`_mbsnbset`** and **`_mbsnbset_l`** functions set, at most, the first *`count`* bytes of *`str`* to *`c`*. If *`count`* is greater than the length of *`str`*, the length of *`str`* is used instead of *`count`*. If *`c`* is a multibyte character and can't be set entirely into the last byte specified by *`count`*, the last byte is padded with a blank character. **`_mbsnbset`** and **`_mbsnbset_l`** doesn't place a terminating null at the end of *`str`*.
+
+**`_mbsnbset`** and **`_mbsnbset_l`** is similar to **`_mbsnset`**, except that it sets *`count`* bytes rather than *`count`* characters of *`c`*.
+
+If *`str`* is `NULL` or *`count`* is zero, this function generates an invalid parameter exception as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, `errno` is set to `EINVAL` and the function returns `NULL`. Also, if *`c`* isn't a valid multibyte character, `errno` is set to `EINVAL` and a space is used instead.
+
+The output value is affected by the setting of the `LC_CTYPE` category setting of the locale. For more information, see [`setlocale`](setlocale-wsetlocale.md). The **`_mbsnbset`** version of this function uses the current locale for this locale-dependent behavior; the **`_mbsnbset_l`** version is identical except that it uses the locale parameter passed in instead. For more information, see [Locale](../locale.md).
+
+**Security Note** This API incurs a potential threat brought about by a buffer overrun problem. Buffer overrun problems are a frequent method of system attack, resulting in an unwarranted elevation of privilege. For more information, see [Avoiding buffer overruns](/windows/win32/SecBP/avoiding-buffer-overruns).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+### Generic-text routine mappings
+
+| Tchar.h routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| `_tcsnset` | `_strnset` | **`_mbsnbset`** | `_wcsnset` |
+| `_tcsnset_l` | `_strnset_l` | **`_mbsnbset_l`** | `_wcsnset_l` |
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_mbsnbset`** | \<mbstring.h> |
+| **`_mbsnbset_l`** | \<mbstring.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Example
+
+```C
+// crt_mbsnbset.c
+// compile with: /W3
+#include <mbstring.h>
+#include <stdio.h>
+
+int main( void )
+{
+   char string[15] = "This is a test";
+   /* Set not more than 4 bytes of string to be *'s */
+   printf( "Before: %s\n", string );
+   _mbsnbset( string, '*', 4 ); // C4996
+   // Note; _mbsnbset is deprecated; consider _mbsnbset_s
+   printf( "After:  %s\n", string );
+}
+```
+
+### Output
+
+```Output
+Before: This is a test
+After:  **** is a test
+```
+
+## See also
+
+[String manipulation](../string-manipulation-crt.md)\
+[`_mbsnbcat`, `_mbsnbcat_l`](mbsnbcat-mbsnbcat-l.md)\
+[`_strnset`, `_strnset_l`, `_wcsnset`, `_wcsnset_l`, `_mbsnset`, `_mbsnset_l`](strnset-strnset-l-wcsnset-wcsnset-l-mbsnset-mbsnset-l.md)\
+[`_strset`, `_strset_l`, `_wcsset`, `_wcsset_l`, `_mbsset`, `_mbsset_l`](strset-strset-l-wcsset-wcsset-l-mbsset-mbsset-l.md)

@@ -1,0 +1,14 @@
+Defined in header <ranges>
+
+template< class R >
+
+enumerate_view( R&& ) -> enumerate_view<views::all_t<R>>;
+
+(since C++23)
+
+The deduction guide is provided for std::ranges::enumerate_view to allow deduction from range.
+
+### Example
+
+This section is incomplete
+Reason: no example

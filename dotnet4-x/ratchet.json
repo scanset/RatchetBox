@@ -1,0 +1,16 @@
+{
+  "$comment": "The C# reference ratchet: one config that references dirs (all default under this workdir). Tools are offloaded to tools/manifest.json; flows/ are action chains. Copy the template ratchet to start your own.",
+  "name": "dotnet",
+  "domain": "Windows automation and tooling with C# (in-box csc, C# 5) and PowerShell 5.1",
+  "models": { "generate": "qwen3-coder:latest", "dispatch": "qwen3-coder:latest", "embed": "nomic-embed-text" },
+  "ollama_url": "http://localhost:11434",
+  "router": { "autorun": "confirm" },
+  "knowledgeBases": [ { "name": "kb", "path": "kb", "default": true } ],
+  "requirements": [
+    { "name": "csc (.NET Framework)", "file": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe", "hint": "install or repair .NET Framework 4.x" },
+    { "name": "Ollama",       "http": "http://localhost:11434/api/tags", "hint": "start Ollama (ollama serve)" },
+    { "name": "model generate", "model": "qwen3-coder:latest", "hint": "ollama pull qwen3-coder" },
+    { "name": "model embed",  "model": "nomic-embed-text", "hint": "ollama pull nomic-embed-text" },
+    { "name": "KB kb",        "kb": "kb" }
+  ]
+}

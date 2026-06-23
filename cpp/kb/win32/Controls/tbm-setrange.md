@@ -1,0 +1,58 @@
+# TBM\_SETRANGE message
+
+Sets the range of minimum and maximum logical positions for the slider in a trackbar.
+
+## Parameters
+
+<dl> <dt>
+
+*wParam* 
+</dt> <dd>
+
+Redraw flag. If this parameter is **TRUE**, the trackbar is redrawn after the range is set. If this parameter is **FALSE**, the message sets the range but does not redraw the trackbar.
+
+</dd> <dt>
+
+*lParam* 
+</dt> <dd>
+
+The [**LOWORD**](../winmsg/loword.md) specifies the minimum position for the slider, and the [**HIWORD**](../winmsg/hiword.md) specifies the maximum position.
+
+</dd> </dl>
+
+## Return value
+
+No return value.
+
+## Remarks
+
+If the current slider position is outside the new range, the **TBM\_SETRANGE** message sets the slider position to the new maximum or minimum value.
+
+Because this message takes two 16-bit unsigned integer values, the maximum range that this message can specify is from 0 to 65,535. To specify larger range values, use the [**TBM\_SETRANGEMIN**](tbm-setrangemin.md) and [**TBM\_SETRANGEMAX**](tbm-setrangemax.md) messages.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|---------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows Vista \[desktop apps only\]<br/>                                        |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                  |
+| Header<br/>                   | <dl> <dt>Commctrl.h</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+**Reference**
+</dt> <dt>
+
+[**TBM\_SETRANGEMAX**](tbm-setrangemax.md)
+</dt> <dt>
+
+[**TBM\_SETRANGEMIN**](tbm-setrangemin.md)
+</dt> </dl>
+
+**Header:** Commctrl.h

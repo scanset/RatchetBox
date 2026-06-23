@@ -1,0 +1,5 @@
+{
+  "chain": "cpp",
+  "input": "list every .txt file in a given directory with std::filesystem and print each path and its size in bytes",
+  "started": "2026-06-22T15:22:16"
+}

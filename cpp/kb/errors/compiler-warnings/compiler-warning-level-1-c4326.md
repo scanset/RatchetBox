@@ -1,0 +1,20 @@
+# Compiler Warning (level 1) C4326
+
+> return type of '*function*' should be '*type1*' instead of '*type2*'
+
+## Remarks
+
+A function returned a type other than *type1*. For example, using [/Za](../../build/reference/za-ze-disable-language-extensions.md), **main** did not return an **`int`**.
+
+## Example
+
+The following example generates C4326 and shows how to fix it:
+
+```cpp
+// C4326.cpp
+// compile with: /Za /W1
+char main()
+{
+    // C4326, instead use int main()
+}
+```

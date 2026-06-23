@@ -1,0 +1,5 @@
+{
+  "node": "edit_file.plan",
+  "kind": "generate",
+  "output": "{\"cppref_q\":\"std::unordered_map std::unique_ptr std::string\",\"patterns_q\":\"factory method\",\"win32_q\":\"\",\"cppdocs_q\":\"\"}"
+}

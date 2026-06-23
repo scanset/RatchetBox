@@ -1,0 +1,3 @@
+### Usage
+
+- constinit declaration specifier

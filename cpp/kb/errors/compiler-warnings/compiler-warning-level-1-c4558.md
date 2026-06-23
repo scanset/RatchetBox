@@ -1,0 +1,23 @@
+# Compiler Warning (level 1) C4558
+
+> value of operand 'value' is out of range 'lowerbound - upperbound'
+
+## Remarks
+
+The value passed to an assembly language instruction is out of the range specified for the parameter. The value will be truncated.
+
+## Example
+
+The following example generates C4558:
+
+```cpp
+// C4558.cpp
+// compile with: /W1
+// processor: x86
+void asm_test() {
+   __asm pinsrw   mm1, eax, 8;   // C4558
+}
+
+int main() {
+}
+```

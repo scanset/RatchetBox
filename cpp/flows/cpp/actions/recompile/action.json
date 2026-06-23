@@ -1,0 +1,9 @@
+{
+  "id": "cpp.recompile",
+  "kind": "action",
+  "tool": "cl_check",
+  "inputs": [ { "from": "cpp.fix", "path": ".", "as": "code" } ],
+  "body": { "code": "{{ code }}" },
+  "on_success": "cpp.done",
+  "on_failure": "cpp.fix2"
+}

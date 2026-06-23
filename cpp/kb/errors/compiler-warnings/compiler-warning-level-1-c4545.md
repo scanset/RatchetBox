@@ -1,0 +1,28 @@
+# Compiler Warning (level 1) C4545
+
+> expression before comma evaluates to a function which is missing an argument list
+
+## Remarks
+
+The compiler detected an ill-formed comma expression.
+
+This warning is off by default. For more information, see [Compiler Warnings That Are Off by Default](../../preprocessor/compiler-warnings-that-are-off-by-default.md).
+
+## Example
+
+The following example generates C4545:
+
+```cpp
+// C4545.cpp
+// compile with: /W1
+#pragma warning (default : 4545)
+
+void f() { }
+
+int main()
+{
+   *(&f), 10;   // C4545
+   // try the following line instead
+   // (*(&f))(), 10;
+}
+```

@@ -1,0 +1,11 @@
+# Pen Hatch
+
+The hatch attribute specifies the hatch type of a geometric pen with the hatch pattern attribute. There are six patterns available. The following illustration shows lines drawn using different hatch patterns.
+
+![illustration showing six horizontal lines, each filled with a different pattern](images/penhatch.png)
+
+ 
+
+ 
+
+

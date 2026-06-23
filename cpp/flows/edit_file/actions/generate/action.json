@@ -1,0 +1,22 @@
+{
+  "$comment": "Pull each KB query out of the structured PLAN (binding `path` = JSON pointer into edit_file.plan) and search that KB; an empty plan field -> empty query -> no retrieval (host short-circuit). The current file comes from edit_file.read; guidelines is always searched on the request. from-path slots are declared before the searches that reference them.",
+  "id": "edit_file.generate",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "request", "path": ".", "as": "request" },
+    { "from": "edit_file.read", "path": ".", "as": "current", "max_chars": 6000 },
+    { "from": "edit_file.plan", "path": "cppref_q",   "as": "cppref_q" },
+    { "from": "edit_file.plan", "path": "patterns_q", "as": "patterns_q" },
+    { "from": "edit_file.plan", "path": "win32_q",    "as": "win32_q" },
+    { "from": "edit_file.plan", "path": "cppdocs_q",  "as": "cppdocs_q" },
+    { "search": "cppref",    "query": "{{ cppref_q }}",   "k": 2, "as": "refs",    "max_chars": 1800 },
+    { "search": "patterns",  "query": "{{ patterns_q }}", "k": 1, "as": "pattern", "max_chars": 1800 },
+    { "search": "win32",     "query": "{{ win32_q }}",    "k": 2, "as": "winapi",  "max_chars": 2200 },
+    { "search": "cppdocs",   "query": "{{ cppdocs_q }}",  "k": 1, "as": "tooling", "max_chars": 1500 },
+    { "search": "guidelines","query": "{{ request }}",    "k": 1, "as": "idioms",  "max_chars": 1000 }
+  ],
+  "on_success": "edit_file.build",
+  "on_failure": "edit_file.fail"
+}

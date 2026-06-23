@@ -1,0 +1,5 @@
+{
+  "node": "add_file.fail",
+  "kind": "exit",
+  "outcome": "aborted: did not build after two repairs"
+}

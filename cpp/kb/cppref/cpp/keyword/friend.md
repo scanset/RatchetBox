@@ -1,0 +1,3 @@
+### Usage
+
+- friend specifier

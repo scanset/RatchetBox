@@ -1,0 +1,22 @@
+# C Postfix Increment and Decrement Operators
+
+Operands of the postfix increment and decrement operators are scalar types that are modifiable l-values.
+
+## Syntax
+
+*`postfix-expression`*:\
+&emsp;*`postfix-expression`*  **`++`**\
+&emsp;*`postfix-expression`*  **`--`**
+
+The result of the postfix increment or decrement operation is the value of the operand. After the result is obtained, the value of the operand is incremented (or decremented). The following code illustrates the postfix increment operator.
+
+```C
+if ( var++ > 0 )
+    *p++ = *q++;
+```
+
+In this example, the variable `var` is compared to 0, then incremented. If `var` was positive before being incremented, the next statement is executed. First, the value of the object pointed to by `q` is assigned to the object pointed to by `p`. Then, `q` and `p` are incremented.
+
+## See also
+
+[Postfix Increment and Decrement Operators: ++ and --](../cpp/postfix-increment-and-decrement-operators-increment-and-decrement.md)

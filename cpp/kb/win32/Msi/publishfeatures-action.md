@@ -1,0 +1,31 @@
+# PublishFeatures Action
+
+The PublishFeatures action writes each feature's state into the system registry. The feature state may be either absent, advertised, or installed. The PublishFeatures action also writes the feature-component mapping into the system registry for each installed feature.
+
+The PublishFeatures action queries the [FeatureComponents table](featurecomponents-table.md), [Feature table](feature-table.md), and [Component table](component-table.md).
+
+## Sequence Restrictions
+
+The PublishFeatures action must come before [PublishProduct](publishproduct-action.md).
+
+## ActionData Messages
+
+
+
+| Field | Description of action data        |
+|-------|-----------------------------------|
+| \[1\] | Identifier of advertised feature. |
+
+
+
+ 
+
+## Remarks
+
+The PublishFeatures action publishes the composition of all features that are selected to be advertised or installed.
+
+ 
+
+ 
+
+

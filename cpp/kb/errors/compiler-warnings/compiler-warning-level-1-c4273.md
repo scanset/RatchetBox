@@ -1,0 +1,32 @@
+# Compiler Warning (level 1) C4273
+
+> '*function*' : inconsistent DLL linkage
+
+## Remarks
+
+Two definitions in a file differ in their use of [`dllimport`](../../cpp/dllexport-dllimport.md).
+
+## Examples
+
+The following example generates C4273, and shows how to fix it.
+
+```cpp
+// C4273.cpp
+// compile with: /W1 /c
+char __declspec(dllimport) c;
+char c;   // C4273, delete this line or the line above to resolve
+```
+
+The following example generates C4273. To fix it, delete the redeclaration of `printf_s`.
+
+```cpp
+// C4273_b.cpp
+// compile with: /W1 /clr /c
+#include <stdio.h>
+extern "C" int printf_s(const char *, ...);   // C4273
+```
+
+## See also
+
+[`dllexport`, `dllimport`](../../cpp/dllexport-dllimport.md)\
+[Export C functions for use in C or C++ language executables](../../build/exporting-c-functions-for-use-in-c-or-cpp-language-executables.md)

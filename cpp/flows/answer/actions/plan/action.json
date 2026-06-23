@@ -1,0 +1,22 @@
+{
+  "$comment": "Decide which KBs the question needs; one focused query per KB, empty to skip (host short-circuits empty queries). answer.respond routes each field into its KB via the binding `path`.",
+  "id": "answer.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [ { "from": "$input", "path": ".", "as": "question" } ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "cppref_q":     { "type": "string" },
+      "cppdocs_q":    { "type": "string" },
+      "win32_q":      { "type": "string" },
+      "patterns_q":   { "type": "string" },
+      "guidelines_q": { "type": "string" },
+      "errors_q":     { "type": "string" },
+      "howto_q":      { "type": "string" }
+    },
+    "required": ["cppref_q", "cppdocs_q", "win32_q", "patterns_q", "guidelines_q", "errors_q", "howto_q"]
+  },
+  "on_success": "answer.respond",
+  "on_failure": "answer.respond"
+}

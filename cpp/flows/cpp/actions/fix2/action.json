@@ -1,0 +1,14 @@
+{
+  "$comment": "Second repair attempt: the first fix still didn't compile. Regenerate from the fix's output and the recompile diagnostics, grounded in the MSVC error docs. Last chance before fail.",
+  "id": "cpp.fix2",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "cpp.fix", "path": ".", "as": "prev", "max_chars": 5000 },
+    { "from": "cpp.recompile", "path": ".", "as": "errors", "max_chars": 2000 },
+    { "search": "errors", "query": "{{ errors }}", "k": 2, "as": "errhelp", "max_chars": 2000 }
+  ],
+  "on_success": "cpp.recompile2",
+  "on_failure": "cpp.fail"
+}

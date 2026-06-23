@@ -1,0 +1,32 @@
+# /GA (Optimize for Windows Application)
+
+Results in more efficient code for an .exe file for accessing thread-local storage (TLS) variables.
+
+## Syntax
+
+```
+/GA
+```
+
+## Remarks
+
+**/GA** speeds access to data declared with [__declspec(thread)](../../cpp/declspec.md) in a Windows-based program. When this option is set, the [__tls_index](/windows/win32/ProcThread/thread-local-storage) macro is assumed to be 0.
+
+Using **/GA** for a DLL can result in bad code generation.
+
+### To set this compiler option in the Visual Studio development environment
+
+1. Open the project's **Property Pages** dialog box. For details, see [Set C++ compiler and build properties in Visual Studio](../working-with-project-properties.md).
+
+1. Select the **Configuration Properties** > **C/C++** > **Command Line** property page.
+
+1. Enter the compiler option in the **Additional Options** box.
+
+### To set this compiler option programmatically
+
+- See <xref:Microsoft.VisualStudio.VCProjectEngine.VCCLCompilerTool.AdditionalOptions%2A>.
+
+## See also
+
+[MSVC Compiler Options](compiler-options.md)<br/>
+[MSVC Compiler Command-Line Syntax](compiler-command-line-syntax.md)

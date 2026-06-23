@@ -1,0 +1,31 @@
+# _enable
+
+**Microsoft Specific**
+
+Enables interrupts.
+
+## Syntax
+
+```C
+void _enable(void);
+```
+
+## Requirements
+
+|Intrinsic|Architecture|
+|---------------|------------------|
+|`_enable`|x86, ARM, x64, ARM64|
+
+**Header file** \<intrin.h>
+
+## Remarks
+
+`_enable` instructs the processor to set the interrupt flag. On x86 systems, this function generates the Set Interrupt Flag (`sti`) instruction.
+
+This function is only available in kernel mode. If used in user mode, a Privileged Instruction exception is thrown.
+
+**END Microsoft Specific**
+
+## See also
+
+[Compiler intrinsics](../intrinsics/compiler-intrinsics.md)

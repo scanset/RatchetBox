@@ -1,0 +1,5 @@
+{
+  "chain": "answer",
+  "input": "What is the difference between std::vector::reserve and std::vector::resize, and when does iterator invalidation happen?",
+  "started": "2026-06-22T21:09:22"
+}

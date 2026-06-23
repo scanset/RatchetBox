@@ -1,0 +1,69 @@
+# AppendStructuredBuffer::GetDimensions function
+
+Gets the resource dimensions.
+
+## Syntax
+
+``` syntax
+void GetDimensions(
+  out uint numStructs,
+  out uint stride
+);
+```
+
+## Parameters
+
+<dl> <dt>
+
+*numStructs* \[out\]
+</dt> <dd>
+
+Type: **uint**
+
+The number of structures.
+
+</dd> <dt>
+
+*stride* \[out\]
+</dt> <dd>
+
+Type: **uint**
+
+The number of bytes in each element.
+
+</dd> </dl>
+
+## Return value
+
+This function does not return a value.
+
+## Remarks
+
+This function is supported for the following types of shaders:
+
+
+
+| Vertex | Hull | Domain | Geometry | Pixel | Compute |
+|--------|------|--------|----------|-------|---------|
+| x      | x    | x      | x        | x     | x       |
+
+
+
+ 
+
+## See also
+
+<dl> <dt>
+
+[AppendStructuredBuffer](sm5-object-appendstructuredbuffer.md)
+</dt> <dt>
+
+[Shader Model 5](d3d11-graphics-reference-sm5.md)
+</dt> </dl>
+
+ 
+
+ 
+
+
+

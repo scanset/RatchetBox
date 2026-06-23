@@ -1,0 +1,34 @@
+# Output-File (`/F`) Options
+
+The output-file options create or rename output files. They affect all C or C++ source files specified in the CL environment variable, on the command line, or in any command file.
+
+- [`/FA`, `/Fa` (Listing File)](fa-fa-listing-file.md)
+
+- [Specifying the Pathname](specifying-the-pathname.md)
+
+- [`/FD` (IDE Minimal Rebuild)](fd-ide-minimal-rebuild.md)
+
+- [`/Fd` (Name PDB File)](fd-program-database-file-name.md)
+
+- [`/Fe` (Name EXE File)](fe-name-exe-file.md)
+
+- [`/Fi` (Preprocess output file name)](fi-preprocess-output-file-name.md)
+
+- [`/FI` (Name Forced Include File)](fi-name-forced-include-file.md)
+
+- [`/Fm` (Name Mapfile)](fm-name-mapfile.md)
+
+- [`/Fo` (Name Object File)](fo-object-file-name.md)
+
+- [`/Fp` (Name .pch File)](fp-name-dot-pch-file.md)
+
+- [`/FR`, `/Fr` (Create .sbr File)](fr-fr-create-dot-sbr-file.md)
+
+- [`/FU` (Name Forced #using File)](fu-name-forced-hash-using-file.md)
+
+- [`/Fx` (Merge Injected Code)](fx-merge-injected-code.md)
+
+## See also
+
+[MSVC Compiler Options](compiler-options.md)\
+[MSVC Compiler Command-Line Syntax](compiler-command-line-syntax.md)

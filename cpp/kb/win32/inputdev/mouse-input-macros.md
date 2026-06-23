@@ -1,0 +1,17 @@
+# Mouse Input Macros
+
+## In This Section
+
+-   [**GET\_APPCOMMAND\_LPARAM**](/windows/win32/api/winuser/nf-winuser-get_appcommand_lparam)
+-   [**GET\_DEVICE\_LPARAM**](/windows/win32/api/winuser/nf-winuser-get_device_lparam)
+-   [**GET\_FLAGS\_LPARAM**](/windows/win32/api/winuser/nf-winuser-get_flags_lparam)
+-   [**GET\_KEYSTATE\_LPARAM**](/windows/win32/api/winuser/nf-winuser-get_keystate_lparam)
+-   [**GET\_KEYSTATE\_WPARAM**](/windows/win32/api/winuser/nf-winuser-get_keystate_wparam)
+-   [**GET\_MOUSEORKEY\_LPARAM**](/previous-versions/windows/desktop/legacy/ms646252(v=vs.85))
+-   [**GET\_NCHITTEST\_WPARAM**](/windows/win32/api/winuser/nf-winuser-get_nchittest_wparam)
+-   [**GET\_WHEEL\_DELTA\_WPARAM**](/windows/win32/api/winuser/nf-winuser-get_wheel_delta_wparam)
+-   [**GET\_XBUTTON\_WPARAM**](/windows/win32/api/winuser/nf-winuser-get_xbutton_wparam)
+
+ 
+
+ 

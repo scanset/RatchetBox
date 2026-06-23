@@ -1,0 +1,58 @@
+# ID3DXRenderToEnvMap::End method
+
+Restore all render targets and, if needed, compose all the rendered faces into the environment map surface.
+
+## Syntax
+
+
+```C++
+HRESULT End(
+  [in] DWORD MipFilter
+);
+```
+
+
+
+## Parameters
+
+<dl> <dt>
+
+*MipFilter* \[in\]
+</dt> <dd>
+
+Type: **[**DWORD**](../winprog/windows-data-types.md)**
+
+A valid combination of one or more [D3DX\_FILTER](d3dx-filter.md) flags.
+
+</dd> </dl>
+
+## Return value
+
+Type: **[**HRESULT**](https://msdn.microsoft.com/library/Bb401631(v=MSDN.10).aspx)**
+
+If the method succeeds, the return value is D3D\_OK. If the method fails, the return value can be D3DERR\_INVALIDCALL.
+
+## Requirements
+
+
+
+| Requirement | Value |
+|--------------------|----------------------------------------------------------------------------------------|
+| Header<br/>  | <dl> <dt>D3dx9core.h</dt> </dl> |
+| Library<br/> | <dl> <dt>D3dx9.lib</dt> </dl>   |
+
+
+
+## See also
+
+<dl> <dt>
+
+[ID3DXRenderToEnvMap](id3dxrendertoenvmap.md)
+</dt> <dt>
+
+[**ID3DXRenderToEnvMap::Face**](id3dxrendertoenvmap--face.md)
+</dt> </dl>
+
+ 
+
+ 

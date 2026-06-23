@@ -1,0 +1,18 @@
+# Compiler Warning (level 1) C4606
+
+> #pragma warning : 'warning_number' ignored; Code Analysis warnings are not associated with warning levels
+
+## Remarks
+
+For Code Analysis warnings, only `error`, `once`, and `default` are supported with the [warning](../../preprocessor/warning.md) pragma.
+
+## Example
+
+The following example generates C4606.
+
+```cpp
+// C4606.cpp
+// compile with: /c /W1
+#pragma warning(1: 6001)   // C4606
+#pragma warning(once: 6001)   // OK
+```

@@ -1,0 +1,3 @@
+### Usage
+
+- typedef declaration

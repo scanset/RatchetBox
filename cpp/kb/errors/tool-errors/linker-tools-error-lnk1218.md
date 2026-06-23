@@ -1,0 +1,9 @@
+# Linker Tools Error LNK1218
+
+> warning treated as error; no output file generated
+
+## Remarks
+
+When you link with **/WX**, any linker warnings will be treated as errors, and no output file will be created.
+
+See [/WX (Treat Linker Warnings as Errors)](../../build/reference/wx-treat-linker-warnings-as-errors.md) for more information.

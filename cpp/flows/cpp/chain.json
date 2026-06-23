@@ -1,0 +1,9 @@
+{
+  "$comment": "cpp: generate a C++ compilation unit for a task. First PLAN the APIs/headers needed, then look those up in cppref (reference lookup - the model picks what to retrieve), generate grounded in them, syntax-check with cl (cl_check), and repair UP TO TWICE (grounded in the MSVC error docs). Unrolled, lints clean, terminates.",
+  "id": "cpp",
+  "version": "1.1.0",
+  "summary": "Generate C++ (C++17, MSVC) for a focused task: plan the APIs, ground on cppreference, compile-check with cl, repair up to twice.",
+  "entry": "cpp.plan",
+  "budgets": { "max_steps": 16, "max_total_tokens": 22000, "max_wallclock_seconds": 1200 },
+  "nodes": ["cpp.plan", "cpp.generate", "cpp.compile", "cpp.fix", "cpp.recompile", "cpp.fix2", "cpp.recompile2", "cpp.done", "cpp.fail"]
+}

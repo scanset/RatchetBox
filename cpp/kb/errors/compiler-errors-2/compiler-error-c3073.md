@@ -1,0 +1,41 @@
+# Compiler Error C3073
+
+> 'type' : ref class does not have a user-defined copy constructor
+
+## Remarks
+
+In a [/clr (Common Language Runtime Compilation)](../../build/reference/clr-common-language-runtime-compilation.md) compilation, the compiler will not generate a copy constructor for a reference type. In any **/clr** compilation, you must define your own copy constructor for a reference type if you expect an instance of the type to be copied.
+
+For more information, see [C++ Stack Semantics for Reference Types](../../dotnet/cpp-stack-semantics-for-reference-types.md).
+
+## Example
+
+The following example generates C3073.
+
+```cpp
+// C3073.cpp
+// compile with: /clr
+ref class R {
+public:
+   R(int) {}
+};
+
+ref class S {
+public:
+   S(int) {}
+   S(const S %rhs) {}   // copy constructor
+};
+
+void f(R) {}
+void f2(S) {}
+void f3(R%){}
+
+int main() {
+   R r(1);
+   f(r);   // C3073
+   f3(r);   // OK
+
+   S s(1);
+   f2(s);   // OK
+}
+```

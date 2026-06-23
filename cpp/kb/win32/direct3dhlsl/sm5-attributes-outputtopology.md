@@ -1,0 +1,53 @@
+# outputtopology
+
+Defines the output primitive type for the tessellator.
+
+
+```
+outputtopology(X)      
+```
+
+
+
+## Remarks
+
+X must be either [**point**](dx-graphics-hlsl-geometry-shader.md), **line**, **triangle\_cw**, or **triangle\_ccw** and must be inside quotes. Here are the valid options for this attribute:
+
+
+```
+[outputtopology("point")]
+[outputtopology("line")]
+[outputtopology("triangle_cw")]
+[outputtopology("triangle_ccw")]
+```
+
+
+
+This attribute is supported in the following types of shaders:
+
+
+
+| Vertex | Hull | Domain | Geometry | Pixel | Compute |
+|--------|------|--------|----------|-------|---------|
+|        | x    |        |          |       |         |
+
+
+
+ 
+
+## Related topics
+
+<dl> <dt>
+
+[Shader Model 5 Attributes](d3d11-graphics-reference-sm5-attributes.md)
+</dt> <dt>
+
+[Shader Model 5](d3d11-graphics-reference-sm5.md)
+</dt> </dl>
+
+ 
+
+ 
+
+
+

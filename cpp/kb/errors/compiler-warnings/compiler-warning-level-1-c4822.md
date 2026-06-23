@@ -1,0 +1,27 @@
+# Compiler Warning (level 1) C4822
+
+> 'member' : local class member function does not have a body
+
+## Remarks
+
+A local class member function was declared but not defined in the class. To use a local class member function, you must define it in the class. You can't declare it in class and define it out of class.
+
+Any out-of-class definition for a local class member function is an error.
+
+In Visual Studio 2019 and later, C4822 is an [off-by-default](../../preprocessor/compiler-warnings-that-are-off-by-default.md) warning.
+
+## Example
+
+The following example generates C4822:
+
+```cpp
+// C4822.cpp
+// compile with: /W1
+int main() {
+   struct C {
+      void func1(int);   // C4822
+      // try the following line instead
+      // void func1(int){}
+  };
+}
+```

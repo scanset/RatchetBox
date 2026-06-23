@@ -1,0 +1,30 @@
+# Compiler Warning (level 4) C4514
+
+> 'function' : unreferenced inline function has been removed
+
+## Remarks
+
+The optimizer removed an inline function that is not called.
+
+This warning is off by default. See [Compiler Warnings That Are Off by Default](../../preprocessor/compiler-warnings-that-are-off-by-default.md) for more information.
+
+## Example
+
+The following example generates C4514:
+
+```cpp
+// C4514.cpp
+// compile with: /W4
+#pragma warning(default : 4514)
+class A
+{
+   public:
+      void func()   // C4514, remove the function to resolve
+      {
+      }
+};
+
+int main()
+{
+}
+```

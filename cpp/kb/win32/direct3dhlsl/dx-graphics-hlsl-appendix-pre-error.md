@@ -1,0 +1,56 @@
+# \#error Directive
+
+Preprocessor directive that produces compiler-time error messages.
+
+
+
+| \#error *token-string* |
+|------------------------|
+
+
+
+ 
+
+## Parameters
+
+
+
+| Item                                                                                    | Description                                                                                                                                                                    |
+|-----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span id="token-string"></span><span id="TOKEN-STRING"></span>*token-string*<br/> | Error message. This parameter consists of a series of tokens, such as keywords, constants, or complete statements. The token string is subject to macro expansion. <br/> |
+
+
+
+ 
+
+## Remarks
+
+\#error directives are most useful for detecting programmer inconsistencies and violation of constraints during preprocessing. When an \#error directive is encountered, compilation terminates.
+
+## Examples
+
+The following example demonstrates error processing during preprocessing.
+
+
+```
+#if !defined(__cplusplus)
+  #error C++ compiler required.
+#endif
+```
+
+
+
+## See also
+
+<dl> <dt>
+
+[Preprocessor Directives (DirectX HLSL)](dx-graphics-hlsl-appendix-preprocessor.md)
+</dt> </dl>
+
+ 
+
+ 
+
+
+
+

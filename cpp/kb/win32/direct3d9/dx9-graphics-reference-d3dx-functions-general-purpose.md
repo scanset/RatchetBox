@@ -1,0 +1,26 @@
+# General Purpose Functions (Direct3D 9 Graphics)
+
+D3DX supplies the following general purpose functions:
+
+-   [**D3DXCheckVersion**](d3dxcheckversion.md)
+-   [**D3DXCreateBuffer**](d3dxcreatebuffer.md)
+-   [**D3DXCreateFont**](d3dxcreatefont.md)
+-   [**D3DXCreateFontIndirect**](d3dxcreatefontindirect.md)
+-   [**D3DXCreateLine**](d3dxcreateline.md)
+-   [**D3DXCreateRenderToEnvMap**](d3dxcreaterendertoenvmap.md)
+-   [**D3DXCreateRenderToSurface**](d3dxcreaterendertosurface.md)
+-   [**D3DXCreateSprite**](d3dxcreatesprite.md)
+-   [**D3DXGetDriverLevel**](d3dxgetdriverlevel.md)
+
+## Related topics
+
+<dl> <dt>
+
+[D3DX Functions](dx9-graphics-reference-d3dx-functions.md)
+</dt> </dl>
+
+ 
+
+ 
+
+

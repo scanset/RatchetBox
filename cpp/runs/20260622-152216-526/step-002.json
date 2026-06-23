@@ -1,0 +1,5 @@
+{
+  "node": "cpp.generate",
+  "kind": "generate",
+  "output": "#include <filesystem>\n#include <iostream>\n\nint main(int argc, char* argv[])\n{\n    std::filesystem::path dir = argc == 2 ? std::filesystem::path{argv[1]} : std::filesystem::current_path();\n\n    for (const std::filesystem::directory_entry& entry : std::filesystem::directory_iterator(dir))\n    {\n        if (entry.is_regular_file() && entry.path().extension() == \".txt\")\n        {\n            std::cout << entry.path() << \" size: \" << entry.file_size() << \" bytes\" << std::endl;\n        }\n    }\n\n    return 0;\n}"
+}

@@ -1,0 +1,28 @@
+# Compiler Warning (level 1) C4405
+
+> 'identifier' : identifier is reserved word
+
+## Remarks
+
+A word reserved for inline assembly is used as a variable name. This may cause unpredictable results. To fix this warning, avoid naming variables with words reserved for inline assembly.
+
+## Example
+
+The following example generates C4405:
+
+```cpp
+// C4405.cpp
+// compile with: /W1
+// processor: x86
+void func1() {
+   int mov = 0, i = 0;
+   _asm {
+      mov mov, 0;   // C4405
+      // instead, try ..
+      // mov i, 0;
+   }
+}
+
+int main() {
+}
+```

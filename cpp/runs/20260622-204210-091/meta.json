@@ -1,0 +1,5 @@
+{
+  "chain": "cpp",
+  "input": "Write a Winsock2 TCP client: initialize Winsock, resolve a host and port with getaddrinfo, connect a socket, send a string, then clean up. Console program.",
+  "started": "2026-06-22T20:42:10"
+}

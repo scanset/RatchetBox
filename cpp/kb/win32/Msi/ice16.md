@@ -1,0 +1,20 @@
+# ICE16
+
+ICE16 validates that the value of the [**ProductName**](productname.md) property in the [Property table](property-table.md) is no greater than 63 characters in length. No limit exists on the length of the registry key for DisplayName.
+
+## Result
+
+ICE16 posts an error message if the ProductName set in the Property table is longer than 63 characters.
+
+## Related topics
+
+<dl> <dt>
+
+[ICE Reference](ice-reference.md)
+</dt> </dl>
+
+ 
+
+ 
+
+

@@ -1,0 +1,27 @@
+# Compiler Warning (level 3) C4633
+
+> XML document comment target: error:  reason
+
+## Remarks
+
+A name passed to the [\<param>](../../build/reference/param-visual-cpp.md) tag was not found by the compiler.
+
+## Example
+
+The following example generates C4633:
+
+```cpp
+// C4633.cpp
+// compile with: /clr /doc /LD /W3
+
+/// Text for class MyClass.
+public ref class MyClass {
+   // C4633 remove line for Int3
+   /// <param name="Int1">Used to indicate status.</param>
+   /// <param name="Int3">Used to indicate status.</param>
+   void MyMethod(int Int1) {
+      Int1 = 0;
+      Int1++;
+   }
+};
+```

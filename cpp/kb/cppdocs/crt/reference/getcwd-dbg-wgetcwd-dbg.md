@@ -1,0 +1,72 @@
+# `_getcwd_dbg`, `_wgetcwd_dbg`
+
+Debug versions of the [`_getcwd`, `_wgetcwd`](getcwd-wgetcwd.md) functions (only available during debug).
+
+## Syntax
+
+```C
+char *_getcwd_dbg(
+   char *buffer,
+   int maxlen,
+   int blockType,
+   const char *filename,
+   int linenumber
+);
+wchar_t *_wgetcwd_dbg(
+   wchar_t *buffer,
+   int maxlen,
+   int blockType,
+   const char *filename,
+   int linenumber
+);
+```
+
+### Parameters
+
+*`buffer`*\
+Storage location for the path.
+
+*`maxlen`*\
+Maximum length of the path in characters: **`char`** for **`_getcwd_dbg`** and **`wchar_t`** for **`_wgetcwd_dbg`**.
+
+*`blockType`*\
+Requested type of the memory block: `_CLIENT_BLOCK` or `_NORMAL_BLOCK`.
+
+*`filename`*\
+Pointer to the name of the source file that requested the allocation operation or `NULL`.
+
+*`linenumber`*\
+Line number in the source file where the allocation operation was requested or `NULL`.
+
+## Return value
+
+Returns a pointer to *`buffer`*. A `NULL` return value indicates an error, and `errno` is set either to `ENOMEM`, indicating that there's insufficient memory to allocate *`maxlen`* bytes (when a `NULL` argument is given as *`buffer`*), or to `ERANGE`, indicating that the path is longer than *`maxlen`* characters.
+
+For more information, see [`errno`, `_doserrno`, `_sys_errlist`, and `_sys_nerr`](../errno-doserrno-sys-errlist-and-sys-nerr.md).
+
+## Remarks
+
+The **`_getcwd_dbg`** and **`_wgetcwd_dbg`** functions are identical to `_getcwd` and `_wgetcwd` except that, when `_DEBUG` is defined, these functions use the debug version of `malloc` and `_malloc_dbg` to allocate memory if `NULL` is passed as the first parameter. For more information, see [`_malloc_dbg`](malloc-dbg.md).
+
+You don't need to call these functions explicitly in most cases. Instead, you can define the `_CRTDBG_MAP_ALLOC` flag. When `_CRTDBG_MAP_ALLOC` is defined, calls to `_getcwd` and `_wgetcwd` are remapped to **`_getcwd_dbg`** and **`_wgetcwd_dbg`**, respectively, with the *`blockType`* set to `_NORMAL_BLOCK`. Thus, you don't need to call these functions explicitly unless you want to mark the heap blocks as `_CLIENT_BLOCK`. For more information, see [Types of blocks on the debug heap](../crt-debug-heap-details.md#types-of-blocks-on-the-debug-heap).
+
+## Generic-text routine mapping
+
+| Tchar.h routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| `_tgetcwd_dbg` | **`_getcwd_dbg`** | **`_getcwd_dbg`** | **`_wgetcwd_dbg`** |
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`_getcwd_dbg`** | \<crtdbg.h> |
+| **`_wgetcwd_dbg`** | \<crtdbg.h> |
+
+For more compatibility information, see [Compatibility](../compatibility.md).
+
+## See also
+
+[`_getcwd`, `_wgetcwd`](getcwd-wgetcwd.md)\
+[Directory control](../directory-control.md)\
+[Debug versions of heap allocation functions](../debug-versions-of-heap-allocation-functions.md)

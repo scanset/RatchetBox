@@ -1,0 +1,98 @@
+# `gets_s`, `_getws_s`
+
+Gets a line from the **`stdin`** stream. These versions of [`gets`, `_getws`](../gets-getws.md) have security enhancements, as described in [Security features in the CRT](../security-features-in-the-crt.md).
+
+## Syntax
+
+```C
+char *gets_s(
+   char *buffer,
+   size_t sizeInCharacters
+);
+wchar_t *_getws_s(
+   wchar_t *buffer,
+   size_t sizeInCharacters
+);
+```
+
+```cpp
+template <size_t size>
+char *gets_s( char (&buffer)[size] ); // C++ only
+
+template <size_t size>
+wchar_t *_getws_s( wchar_t (&buffer)[size] ); // C++ only
+```
+
+### Parameters
+
+*`buffer`*\
+Storage location for input string.
+
+*`sizeInCharacters`*\
+The size of the buffer.
+
+## Return value
+
+Returns *`buffer`* if successful. A `NULL` pointer indicates an error or end-of-file condition. Use [`ferror`](ferror.md) or [`feof`](feof.md) to determine which one has occurred.
+
+## Remarks
+
+The **`gets_s`** function reads a line from the standard input stream **`stdin`** and stores it in *`buffer`*. The line consists of all characters up to and including the first newline character ('`\n`'). **`gets_s`** then replaces the newline character with a null character ('`\0`') before returning the line. In contrast, the **`fgets_s`** function retains the newline character.
+
+If the first character read is the end-of-file character, a null character is stored at the beginning of *`buffer`*, and `NULL` is returned.
+
+**`_getws_s`** is a wide-character version of **`gets_s`**; its argument and return value are wide-character strings.
+
+If *`buffer`* is `NULL` or *`sizeInCharacters`* is less than or equal to zero, or if the buffer is too small to contain the input line and null terminator, these functions invoke an invalid parameter handler, as described in [Parameter validation](../parameter-validation.md). If execution is allowed to continue, these functions return `NULL` and set errno to `ERANGE`.
+
+In C++, using these functions is simplified by template overloads; the overloads can infer buffer length automatically (eliminating the need to specify a size argument) and they can automatically replace older, non-secure functions with their newer, secure counterparts. For more information, see [Secure template overloads](../secure-template-overloads.md).
+
+By default, this function's global state is scoped to the application. To change this behavior, see [Global state in the CRT](../global-state.md).
+
+### Generic-text routine mappings
+
+| `TCHAR.H` routine | `_UNICODE` and `_MBCS` not defined | `_MBCS` defined | `_UNICODE` defined |
+|---|---|---|---|
+| `_getts_s` | **`gets_s`** | **`gets_s`** | **`_getws_s`** |
+
+## Requirements
+
+| Routine | Required header |
+|---|---|
+| **`gets_s`** | `<stdio.h>` |
+| **`_getws_s`** | `<stdio.h>` or `<wchar.h>` |
+
+The console isn't supported in Universal Windows Platform (UWP) apps. The standard stream handles that are associated with the console, **`stdin`**, **`stdout`**, and **`stderr`**, must be redirected before C run-time functions can use them in UWP apps. For more compatibility information, see [Compatibility](../compatibility.md).
+
+## Example
+
+```C
+// crt_gets_s.c
+// This program retrieves a string from the stdin and
+// prints the same string to the console.
+
+#include <stdio.h>
+
+int main( void )
+{
+   char line[21]; // room for 20 chars + '\0'
+   gets_s( line, 20 );
+   printf( "The line entered was: %s\n", line );
+}
+```
+
+```Input
+Hello there!
+```
+
+```Output
+The line entered was: Hello there!
+```
+
+## See also
+
+[Stream I/O](../stream-i-o.md)\
+[`gets`, `_getws`](../gets-getws.md)\
+[`fgets`, `fgetws`](fgets-fgetws.md)\
+[`fputs`, `fputws`](fputs-fputws.md)\
+[`puts`, `_putws`](puts-putws.md)

@@ -1,0 +1,46 @@
+### Usage
+
+- alternative operators: as an alternative for
+
+### Example
+
+Run this code
+
+#include <iostream>
+ 
+void show(bool z, const char* s, int n)
+{
+const char* r{z ? " true " : " false "};
+if (n == 0) std::cout << "┌────────────────┬─────────┐\n";
+if (n <= 2) std::cout << "│ " <<s<< " │ "<<r<<" │\n";
+if (n == 2) std::cout << "└────────────────┴─────────┘\n";
+}
+ 
+int main()
+{
+show(false or false, "false or false", 0);
+show(false or true , "false or true ", 1);
+show(true or false, "true or false", 1);
+show(true or true , "true or true ", 2);
+}
+
+Output:
+
+┌────────────────┬─────────┐
+│ false or false │ false │
+│ false or true │ true │
+│ true or false │ true │
+│ true or true │ true │
+└────────────────┴─────────┘
+
+### See also
+
+- and, and_eq
+
+- bitand, bitor
+
+- not, not_eq
+
+- or_eq
+
+- xor, xor_eq

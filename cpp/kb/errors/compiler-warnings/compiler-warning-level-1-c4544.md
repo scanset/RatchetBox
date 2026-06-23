@@ -1,0 +1,45 @@
+# Compiler Warning (level 1) C4544
+
+> 'declaration': Default template argument ignored on this template declaration
+
+## Remarks
+
+A default template argument was specified in an incorrect location and was ignored. A default template argument for a class template can only be specified in the declaration or definition of the class template and not on a member of the class template.
+
+## Example
+
+This example generates C4544, and the next example shows how to fix it:
+
+```cpp
+// C4544.cpp
+// compile with: /W1 /LD
+template <class T>
+struct S
+{
+   template <class T1>
+      struct S1;
+   void f();
+};
+
+template <class T=int>
+template <class T1>
+struct S<T>::S1 {};   // C4544
+```
+
+In this example, the default parameter applies to class template `S`:
+
+```cpp
+// C4544b.cpp
+// compile with: /LD
+template <class T = int>
+struct S
+{
+   template <class T1>
+      struct S1;
+   void f();
+};
+
+template <class T>
+template <class T1>
+struct S<T>::S1 {};
+```

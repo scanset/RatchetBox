@@ -1,0 +1,13 @@
+# LIB Output Files
+
+The output files produced by LIB depend on the mode in which it is being used, as shown in the following table.
+
+|Mode|Output|
+|----------|------------|
+|Default (building or modifying a library)|COFF library (.lib)|
+|Extracting a member with /EXTRACT|Object (.obj) file|
+|Building an export file and import library with /DEF|Import library (.lib) and export (.exp) file|
+
+## See also
+
+[Overview of LIB](overview-of-lib.md)

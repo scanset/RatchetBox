@@ -1,0 +1,60 @@
+# D3DXKEY\_CALLBACK structure
+
+Describes a callback key for use in key frame animation.
+
+## Syntax
+
+
+```C++
+typedef struct D3DXKEY_CALLBACK {
+  FLOAT  Time;
+  LPVOID pCallbackData;
+} D3DXKEY_CALLBACK, *LPD3DXKEY_CALLBACK;
+```
+
+
+
+## Members
+
+<dl> <dt>
+
+**Time**
+</dt> <dd>
+
+Type: **[**FLOAT**](../winprog/windows-data-types.md)**
+
+</dd> <dd>
+
+Key frame time stamp.
+
+</dd> <dt>
+
+**pCallbackData**
+</dt> <dd>
+
+Type: **[**LPVOID**](../winprog/windows-data-types.md)**
+
+</dd> <dd>
+
+Pointer to user callback data.
+
+</dd> </dl>
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------|----------------------------------------------------------------------------------------|
+| Header<br/> | <dl> <dt>D3dx9anim.h</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+[D3DX Structures](dx9-graphics-reference-d3dx-structures.md)
+</dt> </dl>
+
+**Header:** d3dx9anim.h

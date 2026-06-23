@@ -1,0 +1,22 @@
+# Compiler Error C2277
+
+> '*function*': cannot take address of this member function
+
+## Remarks
+
+You cannot take the address of a [constructor](../../cpp/constructors-cpp.md) or [destructor](../../cpp/destructors-cpp.md). For more information, see [Address-of operator: `&`](../../cpp/address-of-operator-amp.md) and [Pointers to Members](../../cpp/pointers-to-members.md).
+
+## Example
+
+The following example generates C2277:
+
+```cpp
+// compile with: /c
+
+class A
+{
+public:
+   A();
+};
+(*pctor)() = &A::A; // C2277
+```

@@ -1,0 +1,5 @@
+{
+  "node": "cpp.plan",
+  "kind": "generate",
+  "output": "{\"cppref_q\":\"Winsock2 socket connect getaddrinfo\",\"patterns_q\":\"\",\"win32_q\":\"WSAStartup WSACleanup getaddrinfo\",\"cppdocs_q\":\"\"}"
+}

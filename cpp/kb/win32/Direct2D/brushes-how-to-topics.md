@@ -1,0 +1,26 @@
+# Brushes How-to Topics
+
+The topics in this section provide examples showing how to accomplish brush-related tasks, such as painting gradients or filling an area with a bitmap.
+
+## In this section
+
+
+
+| Topic                                                                                         | Description                                                            |
+|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| [How to Create a Solid Color Brush](how-to-create-a-solid-color-brush.md)<br/>         | Shows how to create a solid color brush using Direct2D.<br/>     |
+| [How to Create a Linear Gradient Brush](how-to-create-a-linear-gradient-brush.md)<br/> | Shows how to create a linear gradient brush using Direct2D.<br/> |
+| [How to Create a Radial Gradient Brush](how-to-create-a-radial-gradient-brush.md)<br/> | Shows how to create a radial gradient brush using Direct2D.<br/> |
+| [How to Create a Bitmap Brush](how-to-create-a-bitmap-brush.md)<br/>                   | Shows how to create a bitmap brush using Direct2D.<br/>          |
+
+
+
+ 
+
+ 
+
+ 
+
+
+
+

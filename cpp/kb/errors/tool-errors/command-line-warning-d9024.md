@@ -1,0 +1,23 @@
+# Command-Line Warning D9024
+
+> unrecognized source file type 'filename', object file assumed
+
+## Remarks
+
+The extension of the specified file was not recognized. The file was assumed to be an object file and was passed to the linker.
+
+The following extensions are recognized:
+
+- .c (C source file)
+
+- .cxx (C++ source file)
+
+- .cpp (C++ source file)
+
+- .obj (Object file)
+
+- .lib (Library file)
+
+- .def (Module definition file)
+
+- .exp (Linker exports file, created by LINK /LIB)

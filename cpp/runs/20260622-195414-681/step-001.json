@@ -1,0 +1,5 @@
+{
+  "node": "add_file.generate",
+  "kind": "generate",
+  "output": "```cpp\n#include \"src/core/stats.h\"\n#include <algorithm>\n#include <numeric>\n#include <vector>\n\nnamespace stats {\n\ndouble mean(const std::vector<double>& values) {\n    if (values.empty()) {\n        return 0.0;\n    }\n    double sum = std::accumulate(values.begin(), values.end(), 0.0);\n    return sum / values.size();\n}\n\ndouble median(std::vector<double> values) {\n    if (values.empty()) {\n        return 0.0;\n    }\n    std::sort(values.begin(), values.end());\n    size_t size = values.size();\n    if (size % 2 == 0) {\n        return (values[size / 2 - 1] + values[size / 2]) / 2.0;\n    } else {\n        return values[size / 2];\n    }\n}\n\n} // namespace stats\n```"
+}

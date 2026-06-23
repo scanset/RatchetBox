@@ -1,0 +1,3 @@
+### Usage
+
+- const type qualifier

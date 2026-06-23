@@ -1,0 +1,37 @@
+# MFPKEY\_RESIZE\_SRC\_WIDTH Property
+
+Specifies the width of the source rectangle, in pixels.
+
+## Data Type
+
+VT\_I4
+
+## Applies To
+
+-   [Video Resizer DSP](videoresizer.md)
+
+## Requirements
+
+
+
+| Requirement | Value |
+|-------------------------------------|-----------------------------------------------------------------------------------------|
+| Minimum supported client<br/> | Windows XP \[desktop apps only\]<br/>                                             |
+| Minimum supported server<br/> | Windows Server 2003 \[desktop apps only\]<br/>                                    |
+| Header<br/>                   | <dl> <dt>Wmcodecdsp.h</dt> </dl> |
+
+
+
+## See also
+
+<dl> <dt>
+
+[Media Foundation Properties](media-foundation-properties.md)
+</dt> </dl>
+
+ 
+
+ 
+
+
+
