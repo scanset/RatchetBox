@@ -1,0 +1,10 @@
+{
+  "$comment": "create_spec: plain English -> a validated app spec. generate (grounded in the grammar) -> validate (the spec oracle, vs the ratchet's vocabulary) -> repair once -> revalidate. The validated spec is the chain result, ready for the implement step.",
+  "id": "create_spec",
+  "version": "1.0.0",
+  "summary": "Turn a plain-English app description into a validated spec (entities, polymorphism, behavior) that the implement step builds from.",
+  "entry": "create_spec.generate",
+  "inputs": ["request"],
+  "budgets": { "max_steps": 10, "max_total_tokens": 16000, "max_wallclock_seconds": 600 },
+  "nodes": ["create_spec.generate", "create_spec.validate", "create_spec.fix", "create_spec.revalidate", "create_spec.done", "create_spec.fail"]
+}

@@ -1,0 +1,16 @@
+{
+  "$comment": "OO vocabulary for the cpp ratchet (v0). Declares the legal kinds, edge types, and value types the spec engine validates a spec against. Pure: validation + model grounding only - the spec->C++ mapping lives in the implement flow, not here. Grow from experiential feedback.",
+  "profile": "cpp-oo",
+  "version": "0.1.0",
+  "kinds": {
+    "class":    { "behavior": true },
+    "abstract": { "behavior": true },
+    "struct":   { "behavior": true },
+    "enum":     { "behavior": false }
+  },
+  "edges": {
+    "extends": { "from": ["class", "abstract", "struct"], "to": ["class", "abstract", "struct"] }
+  },
+  "types": ["int", "long", "double", "bool", "string", "void"],
+  "methodModifiers": ["abstract", "virtual", "override", "static"]
+}

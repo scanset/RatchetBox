@@ -1,0 +1,1 @@
+{ "id": "create_spec.fail", "kind": "exit", "outcome": "aborted: spec did not validate after one repair" }

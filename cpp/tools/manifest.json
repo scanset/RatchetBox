@@ -65,6 +65,13 @@
       "timeout": 30
     },
     {
+      "name": "spec_scaffold",
+      "description": "Mapping (deterministic half): turn a validated spec AST (from `ratchet spec-emit`, on stdin) into a BUILDING C++ skeleton - one header per node with inheritance, fields, and method stubs. The model fills the bodies afterward. Arg: proj.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/spec_scaffold.ps1", "-Proj", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "ast": { "type": "string" } }, "required": ["proj", "ast"] },
+      "stdin": "ast", "timeout": 60
+    },
+    {
       "name": "doctor_cl",
       "description": "Domain probe for `ratchet doctor`: exit 0 if MSVC cl is reachable through vcvars32, else 1. Referenced from ratchet.json requirements (tool check).",
       "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/doctor_cl.ps1"],

@@ -2,8 +2,12 @@
   "$comment": "The C# reference ratchet: one config that references dirs (all default under this workdir). Tools are offloaded to tools/manifest.json; flows/ are action chains. Copy the template ratchet to start your own.",
   "name": "dotnet",
   "domain": "Windows automation and tooling with C# (in-box csc, C# 5) and PowerShell 5.1",
-  "models": { "generate": "qwen3-coder:latest", "dispatch": "qwen3-coder:latest", "embed": "nomic-embed-text" },
-  "ollama_url": "http://localhost:11434",
+  "models": { 
+    "generate": "qwen3-coder:latest", 
+    "dispatch": "phi3:mini", 
+    "embed": "nomic-embed-text" 
+  },
+"ollama_url": "http://localhost:11434",
   "router": { "autorun": "confirm" },
   "knowledgeBases": [ { "name": "kb", "path": "kb", "default": true } ],
   "requirements": [

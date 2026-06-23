@@ -1,0 +1,8 @@
+{
+  "id": "create_spec.generate",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [ { "from": "request", "path": ".", "as": "request" } ],
+  "on_success": "create_spec.validate",
+  "on_failure": "create_spec.fail"
+}
