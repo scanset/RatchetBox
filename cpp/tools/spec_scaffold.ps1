@@ -24,6 +24,7 @@ $coreDir = Join-Path $root "src\core"
 if (-not (Test-Path $coreDir)) { New-Item -ItemType Directory -Force $coreDir | Out-Null }
 $utf8 = New-Object System.Text.UTF8Encoding $false
 $written = @()
+$todo = @()   # files containing // TODO bodies, for the implement step's foreach
 
 foreach ($n in $ast.nodes) {
     $base = $null; foreach ($e in $n.edges) { if ($e.type -eq 'extends') { $base = $e.target } }
@@ -47,7 +48,11 @@ foreach ($n in $ast.nodes) {
     [void]$sb.AppendLine($decl + " {")
     [void]$sb.AppendLine("public:")
     $hasVirtual = $false
-    foreach ($f in $n.fields) { [void]$sb.AppendLine("    " + (CppType $f.type) + " " + $f.name + "{};") }
+    foreach ($f in $n.fields) {
+        $init = "{}"
+        if ($f.value) { if ($f.type -eq 'string') { $init = '{"' + $f.value + '"}' } else { $init = '{' + $f.value + '}' } }
+        [void]$sb.AppendLine("    " + (CppType $f.type) + " " + $f.name + $init + ";")
+    }
     # field-wise constructor so the class is constructible with its values (ops use make_unique<T>(...))
     if ($n.fields.Count -gt 0) {
         $cp = @(); $ci = @(); foreach ($f in $n.fields) { $cp += ((CppType $f.type) + " " + $f.name); $ci += ($f.name + "(" + $f.name + ")") }
@@ -72,20 +77,40 @@ foreach ($n in $ast.nodes) {
     $path = Join-Path $coreDir ($n.name + ".h")
     [System.IO.File]::WriteAllText($path, $sb.ToString(), $utf8)
     $written += ("src\core\" + $n.name + ".h")
+    if ($sb.ToString().Contains("// TODO")) { $todo += ("src/core/" + $n.name + ".h") }
 }
 
-# main.cpp includes every node header so the inline stubs compile + link; stub entry point.
+# main.cpp includes every node header so the inline stubs compile + link, and carries each op as a
+# // TODO (uses + steps) so the implement flow's foreach fills the entry point too. main.cpp is added
+# to the worklist LAST, after the class headers, so it builds against real (filled) classes.
 # Do NOT overwrite an existing main.cpp - the op implementation lives there once written.
 $mainPath = Join-Path $root "src\main.cpp"
-if (-not (Test-Path $mainPath)) {
+# (Re)generate main only when it is absent or still the new_project default stub; a hand-written
+# main (no longer carrying the default marker) is preserved across re-scaffolds.
+$writeMain = $true
+if (Test-Path $mainPath) { $cur = Get-Content -Raw $mainPath; if ($cur -and ($cur -notmatch 'App ready\. Add features')) { $writeMain = $false } }
+if ($writeMain) {
     $mainSb = New-Object System.Text.StringBuilder
     foreach ($n in $ast.nodes) { [void]$mainSb.AppendLine('#include "core/' + $n.name + '.h"') }
+    [void]$mainSb.AppendLine("#include <iostream>")
+    [void]$mainSb.AppendLine("#include <memory>")
+    [void]$mainSb.AppendLine("#include <vector>")
     [void]$mainSb.AppendLine("")
-    [void]$mainSb.AppendLine("// ops to implement: " + (($ast.ops | ForEach-Object { $_.name }) -join ", "))
-    [void]$mainSb.AppendLine("int main() { return 0; }")
+    [void]$mainSb.AppendLine("int main() {")
+    foreach ($op in @($ast.ops)) {
+        [void]$mainSb.AppendLine("    // TODO: implement op " + $op.name)
+        if (@($op.uses).Count -gt 0) { [void]$mainSb.AppendLine("    //   uses: " + ((@($op.uses)) -join ", ")) }
+        foreach ($s in @($op.steps)) { [void]$mainSb.AppendLine("    //   step: " + $s) }
+    }
+    [void]$mainSb.AppendLine("    return 0;")
+    [void]$mainSb.AppendLine("}")
     [System.IO.File]::WriteAllText($mainPath, $mainSb.ToString(), $utf8)
     $written += "src\main.cpp"
+    if ($mainSb.ToString().Contains("// TODO")) { $todo += "src/main.cpp" }
 }
 
-Write-Output ("OK: scaffolded " + $ast.nodes.Count + " node(s) -> " + ($written -join ", "))
+# stdout = ONLY the worklist (TODO-bearing files, one per line) for the implement flow's foreach `over`.
+# No summary on stdout OR stderr: the host folds stderr into the action output, so a summary line would
+# be iterated by the foreach as a bogus item.
+foreach ($t in $todo) { Write-Output $t }
 exit 0

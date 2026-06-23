@@ -8,7 +8,7 @@ events to handlers, handlers carry the logic.
 
 ```
 node <kind> <Name>
-  field <name> <type>
+  field <name> <type> = <value>  # literal value sets the control's text/title, e.g.  field text string = `Greet`
   <edgetype> <Target>            # e.g.  contains GreetButton   /   on_click OnGreet
   method <name> <returntype>     # on window/handler kinds (behavior)
     `pseudocode`
@@ -32,7 +32,7 @@ end
 
 ```
 node window Main
-  field title string
+  field title string = `Greeter`
   contains GreetButton
   contains NameBox
   contains OutputLabel
@@ -43,12 +43,12 @@ node textbox NameBox
 end
 
 node button GreetButton
-  field text string
+  field text string = `Greet`
   on_click OnGreet
 end
 
 node label OutputLabel
-  field text string
+  field text string = ``
 end
 
 node handler OnGreet

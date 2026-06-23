@@ -1,0 +1,13 @@
+{
+  "$comment": "Deterministic structure from the validated AST; outputs the worklist (TODO-bearing files, one per line) for the foreach.",
+  "id": "implement.scaffold",
+  "kind": "action",
+  "tool": "spec_scaffold",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "implement.validate", "path": ".", "as": "ast" }
+  ],
+  "body": { "proj": "{{ proj }}", "ast": "{{ ast }}" },
+  "on_success": "implement.fill",
+  "on_failure": "implement.fail"
+}

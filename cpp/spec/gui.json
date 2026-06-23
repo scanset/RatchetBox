@@ -15,6 +15,6 @@
     "on_click":  { "from": ["button"], "to": ["handler"] },
     "on_change": { "from": ["textbox"], "to": ["handler"] }
   },
-  "types": ["string", "int", "bool"],
+  "types": ["string", "int", "bool", "void"],
   "methodModifiers": []
 }

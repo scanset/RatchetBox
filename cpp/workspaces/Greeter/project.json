@@ -1,0 +1,20 @@
+{
+    "name":  "Greeter",
+    "kind":  "win32",
+    "std":  "c++17",
+    "created":  "2026-06-23",
+    "entry":  "src/main.cpp",
+    "out":  "dist/Greeter.exe",
+    "src":  "src",
+    "subsystem":  "windows",
+    "libs":  [
+                 "user32.lib",
+                 "gdi32.lib"
+             ],
+    "files":  [
+                  {
+                      "path":  "src/main.cpp",
+                      "role":  "entry point (WinMain + window class + WndProc)"
+                  }
+              ]
+}

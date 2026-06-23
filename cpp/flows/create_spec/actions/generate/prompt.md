@@ -3,7 +3,7 @@ per line, `#` comments). Output ONLY the spec - no prose, no code fences.
 
 ```
 node <kind> <Name>
-  field <name> <type>
+  field <name> <type> [= <value>]
   method <name> <returntype> [virtual|override|abstract|static]
     param <name> <type>
     `pseudocode of what the method does`

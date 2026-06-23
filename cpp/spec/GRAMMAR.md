@@ -8,7 +8,7 @@ build, never HOW (no C++ in here) - the implement flow maps it to code.
 
 ```
 node <kind> <Name>
-  field <name> <type>
+  field <name> <type> [= <value>]
   method <name> <returntype> [virtual|override|abstract|static]
     param <name> <type>            # zero or more, belong to the method above
     `pseudocode of what the method does`   # optional, belongs to the method above
