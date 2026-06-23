@@ -6,4 +6,4 @@ selects an existing one. The active workspace is injected into prompts and seede
 `$workspace`, so workspace-bound chains (e.g. add_file / edit_file) target it as the project.
 
 Writes (generated files, chain run-state under `runs/`, the search cache under `.index/`) stay under
-the instance's workdir. Build outputs are not indexed.
+the ratchet's workdir. Build outputs are not indexed.

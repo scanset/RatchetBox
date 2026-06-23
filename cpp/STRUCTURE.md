@@ -1,6 +1,6 @@
-# Instance structure (the four-bucket model)
+# Ratchet structure (the four-bucket model)
 
-An instance is **one config that references directories**. `ratchet <dir>` (or `ratchet <ratchet.json>`) composes
+A ratchet is **one config that references directories**. `ratchet <dir>` (or `ratchet <ratchet.json>`) composes
 and runs it. `workdir` (default: this folder) is the write/sandbox root; everything else defaults
 under it or is overridden by a dir field in `ratchet.json`.
 
@@ -39,7 +39,7 @@ workspaces/         project workspaces (one subdir per project; the active one i
   run seeds, a chain-declared input slot, a fixed kb `ref`, or a kb `search`.
 - The model proposes (a generated artifact, or a gated edge); a tool/oracle decides; the operator drives.
 
-## Authoring a new instance
+## Authoring a new ratchet
 
 1. Copy this folder; set `name`/`domain`/`models` in `ratchet.json`.
 2. Drop reference docs into `kb/<subdir>/`, then `ratchet index kb` to build the routing index.

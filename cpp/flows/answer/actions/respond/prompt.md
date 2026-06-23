@@ -25,7 +25,7 @@ they were not consulted for this question.
 ## MSVC diagnostics (error messages)
 {{ errordocs }}
 
-## Using this Ratchet instance (how-to)
+## Using this ratchet (how-to)
 {{ howtodocs }}
 
 Write a clear, accurate answer. Include short code only if it genuinely helps. ASCII only: straight

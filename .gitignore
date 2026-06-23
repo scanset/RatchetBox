@@ -1,6 +1,10 @@
 # Ratchet run-state - a fresh runs/ is written under every ratchet on each flow run. Never source.
 runs/
 
+# Built project artifacts under a ratchet's workspaces/ (project source is kept; binaries are not).
+**/workspaces/*/dist/
+**/workspaces/*/obj/
+
 # OS / editor noise
 Thumbs.db
 desktop.ini

@@ -1,5 +1,5 @@
 {
-  "$comment": "The C++ Ratchet instance. Knowledge bases: cppref (cppreference - what the API is) + guidelines (C++ Core Guidelines - how to use it well). Curated, example-bearing sources only; API-dictionary dumps were dropped as low-signal. Oracle/flows for C++ generation (cl.exe via vcvars32) are the native phase - not wired yet. Launch with `ratchet <this-dir>`; (re)index a kb with `ratchet index <kb-dir>`.",
+  "$comment": "The C++ ratchet: generate/edit/build C++ with the local model, gated by MSVC cl (vcvars32). Seven knowledge bases (cppref, guidelines, patterns, errors, cppdocs, win32, howto) reached via plan-driven routing. Flows: cpp (one-off generate-compile-repair), add_file/edit_file (project lifecycle), answer (grounded Q&A). Tools: cl_check, new_project (console|win32), build_project, stage_and_build, link_libs, bootstrap_vcpkg/add_package (vcpkg), run_app, doctor_cl. `requirements` below feed `ratchet doctor`. Launch with `ratchet <this-dir>`; (re)index a kb with `ratchet index <kb-dir>`.",
   "name": "cpp",
   "domain": "C++ (MSVC cl.exe / vcvars32; STL + Win32) - generate, compile, repair",
   "models": { "generate": "qwen3-coder:latest", "dispatch": "qwen3-coder:latest", "embed": "nomic-embed-text" },

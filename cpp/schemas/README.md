@@ -2,7 +2,7 @@
 
 The deterministic oracle validates tab-separated data tables against a schema. Put one schema per
 table here as `schemas/<table>.json`, and the data to check as `samples/<table>.txt`. Run
-`ratchet validate <instance> <table>`.
+`ratchet validate <ratchet> <table>`.
 
 ## Schema format
 
@@ -36,5 +36,5 @@ table here as `schemas/<table>.json`, and the data to check as `samples/<table>.
 - `ref` cells resolve against the referenced table's id set, when that table's schema + data are
   available to the validate run (the cross-table integrity check).
 
-`example.json` here + `samples/example.txt` are a working pair you can `ratchet validate <instance> example`.
+`example.json` here + `samples/example.txt` are a working pair you can `ratchet validate <ratchet> example`.
 Delete them once you have your own tables.

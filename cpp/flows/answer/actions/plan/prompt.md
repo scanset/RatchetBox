@@ -12,7 +12,7 @@ relevant - do not force it.
 - guidelines_q: C++ Core Guidelines, if the question is about best practice / idioms / style.
 - errors_q: an MSVC compiler or linker error code or message, if the question is about a diagnostic
   (e.g. "C2440", "LNK2019 unresolved external").
-- howto_q: how to USE this Ratchet instance itself, if the question is about adding a library/package,
+- howto_q: how to USE this ratchet itself, if the question is about adding a library/package,
   project setup, or the build model (e.g. "add a third-party library", "link a vcpkg package").
 
 ## Question

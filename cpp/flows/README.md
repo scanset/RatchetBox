@@ -20,4 +20,4 @@ query (templated). Cap injected slots with `max_chars`.
 
 Run with `/flow <chain> <input>` (or let `/route` pick one by `summary`). Lint with
 `ratchet validate-flow <dir>`. The `draft` chain here is a generate->check->repair example; the
-bundled C# instance (`examples/dotnet`) has richer ones (`flows/csharp`, `flows/edit_file`).
+C# ratchet (`dotnet4-x`) has richer ones (`flows/csharp`, `flows/edit_file`).
