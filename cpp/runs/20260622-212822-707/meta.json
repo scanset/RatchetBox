@@ -1,5 +1,0 @@
-{
-  "chain": "edit_file",
-  "input": "src/main.cpp Replace main: read all whitespace-separated words from stdin until EOF, lowercase each word and strip non-alphanumeric characters from its ends, count occurrences, then print each distinct word and its count as 'word count' one per line, sorted by count descending and then word ascending. Use <iostream>, <string>, <map>, <vector>, <algorithm>, <cctype>.",
-  "started": "2026-06-22T21:28:22"
-}

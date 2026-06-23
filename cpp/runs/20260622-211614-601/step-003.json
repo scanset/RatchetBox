@@ -1,5 +1,0 @@
-{
-  "node": "edit_file.generate",
-  "kind": "generate",
-  "output": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string line;\n    std::getline(std::cin, line);\n    \n    int a, b;\n    char op;\n    \n    // Parse the input line\n    // Expected format: \"a b op\" where a and b are integers and op is one of + - * /\n    // We'll use stringstream for parsing\n    std::istringstream iss(line);\n    if (!(iss >> a >> b >> op)) {\n        return 1; // Error parsing input\n    }\n    \n    switch (op) {\n        case '+':\n            std::cout << (a + b) << std::endl;\n            break;\n        case '-':\n            std::cout << (a - b) << std::endl;\n            break;\n        case '*':\n            std::cout << (a * b) << std::endl;\n            break;\n        case '/':\n            if (b == 0) {\n                std::cout << \"error: divide by zero\" << std::endl;\n            } else {\n                std::cout << (a / b) << std::endl;\n            }\n            break;\n        default:\n            return 1; // Invalid operator\n    }\n    \n    return 0;\n}"
-}

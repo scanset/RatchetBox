@@ -1,5 +1,0 @@
-{
-  "chain": "cpp",
-  "input": "Create a minimal Win32 desktop application: register a window class, create a top-level window titled Hello, and run the standard GetMessage/TranslateMessage/DispatchMessage loop. Native Win32, not console.",
-  "started": "2026-06-22T20:14:46"
-}

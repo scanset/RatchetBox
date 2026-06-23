@@ -1,6 +1,0 @@
-{
-  "node": "cpp.recompile",
-  "kind": "action",
-  "ok": false,
-  "output": "source.cpp(34): error C2440: '=': cannot convert from 'ShapeFactory::Impl::{ctor}::<lambda_d04414546d80ecc4fc884d3147ad9149>' to 'std::unique_ptr<Shape,std::default_delete<Shape>> (__cdecl *)(double)'\r\nsource.cpp(34): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called\r\nsource.cpp(35): error C2440: '=': cannot convert from 'ShapeFactory::Impl::{ctor}::<lambda_4953cb2d509788b15e8451d0875a811a>' to 'std::unique_ptr<Shape,std::default_delete<Shape>> (__cdecl *)(double)'\r\nsource.cpp(35): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called\n[exit code 1]"
-}

@@ -1,5 +1,0 @@
-{
-  "chain": "add_file",
-  "input": "src/core/shape_factory.cpp A self-contained file: an abstract Shape with virtual double area(); Circle and Square deriving from it; and a make_shape(const std::string and name) factory returning std::unique_ptr<Shape>. No separate header.",
-  "started": "2026-06-22T20:19:47"
-}

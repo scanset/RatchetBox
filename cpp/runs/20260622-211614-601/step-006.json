@@ -1,6 +1,0 @@
-{
-  "node": "edit_file.rebuild",
-  "kind": "action",
-  "ok": true,
-  "output": "staged src\\main.cpp\r\nOK: built C:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\Calc1\\dist\\Calc1.exe"
-}

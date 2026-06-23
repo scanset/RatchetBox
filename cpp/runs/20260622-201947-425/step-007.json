@@ -1,6 +1,0 @@
-{
-  "node": "add_file.rebuild2",
-  "kind": "action",
-  "ok": true,
-  "output": "staged src\\core\\shape_factory.cpp\r\nOK: built C:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\Shapes\\dist\\Shapes.exe"
-}

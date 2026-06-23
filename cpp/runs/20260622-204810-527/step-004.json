@@ -1,5 +1,0 @@
-{
-  "node": "cpp.fix",
-  "kind": "generate",
-  "output": "#include <iostream>\n#include <intrin.h>\n#include <cstdint>\n\nint main()\n{\n    std::uint64_t value = 0x123456789ABCDEF0ULL;\n    int count = __popcnt64(value);\n    std::cout << \"Number of set bits in 0x\" << std::hex << value << \" is \" << count << std::endl;\n    return 0;\n}"
-}

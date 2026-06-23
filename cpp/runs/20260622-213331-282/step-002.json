@@ -1,5 +1,0 @@
-{
-  "node": "edit_file.plan",
-  "kind": "generate",
-  "output": "{\"cppref_q\":\"std::getline std::string\",\"patterns_q\":\"\",\"win32_q\":\"\",\"cppdocs_q\":\"\"}"
-}

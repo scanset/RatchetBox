@@ -1,5 +1,0 @@
-{
-  "chain": "cpp",
-  "input": "Count the set bits in a 64-bit unsigned integer using the MSVC compiler intrinsic __popcnt64, including the correct intrinsics header. Print the result for a sample value.",
-  "started": "2026-06-22T20:48:10"
-}

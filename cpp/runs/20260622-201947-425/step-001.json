@@ -1,5 +1,0 @@
-{
-  "node": "add_file.plan",
-  "kind": "generate",
-  "output": "{\"cppref_q\":\"std::unique_ptr std::vector std::string\",\"patterns_q\":\"factory method\",\"win32_q\":\"\",\"cppdocs_q\":\"\"}"
-}

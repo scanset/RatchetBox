@@ -1,0 +1,7 @@
+# Ratchet run-state - a fresh runs/ is written under every ratchet on each flow run. Never source.
+runs/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store

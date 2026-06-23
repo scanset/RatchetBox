@@ -1,6 +1,0 @@
-{
-  "node": "add_file.register",
-  "kind": "action",
-  "ok": true,
-  "output": "OK: registered src/core/stats.cpp in Calc"
-}

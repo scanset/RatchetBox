@@ -1,6 +1,0 @@
-{
-  "node": "edit_file.build",
-  "kind": "action",
-  "ok": false,
-  "output": "staged src\\main.cpp\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(4): error C3615: constexpr function 'rpn_eval' cannot result in a constant expression\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(5): note: failure was caused by an uninitialized variable declaration\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(5): note: see usage of 'stack'\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(38): error C2061: syntax error: identifier 't1'\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(39): error C2061: syntax error: identifier 't2'\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(40): error C2061: syntax error: identifier 't3'\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(41): error C2061: syntax error: identifier 't4'\r\nC:\\Users\\curti\\Documents\\ollama_ICM_Code\\RatchetBase\\cpp\\workspaces\\RpnCalc\\src\\main.cpp(42): error C2061: syntax error: identifier 't5'\n[exit code 1]"
-}

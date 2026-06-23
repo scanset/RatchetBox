@@ -1,3 +1,5 @@
+<p align="center"><img src="ratchet.png" alt="Ratchet" width="320"></p>
+
 # RatchetBox
 
 A collection of ready-made **ratchets** for the [Ratchet](https://github.com/CurtisSlone/Ratchet)

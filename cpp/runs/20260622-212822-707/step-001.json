@@ -1,6 +1,0 @@
-{
-  "node": "edit_file.read",
-  "kind": "action",
-  "ok": true,
-  "output": "#include <iostream>\n\n// Entry point. Add pure logic under src/core/ (one class/feature per file) and wire it in here.\nint main() {\n    std::cout << \"App ready. Add features under src/core.\" << std::endl;\n    return 0;\n}"
-}

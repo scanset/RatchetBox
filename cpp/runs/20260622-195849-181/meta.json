@@ -1,5 +1,0 @@
-{
-  "chain": "edit_file",
-  "input": "src/core/stats.cpp Add a third pure function to namespace stats: double variance(const std::vector<double>and v) returning the population variance (mean of squared deviations from the mean). Reuse the existing mean function. Keep mean and median unchanged.",
-  "started": "2026-06-22T19:58:49"
-}

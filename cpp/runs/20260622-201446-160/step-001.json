@@ -1,5 +1,0 @@
-{
-  "node": "cpp.plan",
-  "kind": "generate",
-  "output": "{\"cppref_q\":\"Win32 window class registration CreateWindowEx GetMessage TranslateMessage DispatchMessage\",\"patterns_q\":\"\",\"win32_q\":\"RegisterClassEx CreateWindowEx GetMessage TranslateMessage DispatchMessage WndProc\",\"cppdocs_q\":\"\"}"
-}

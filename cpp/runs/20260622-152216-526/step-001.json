@@ -1,5 +1,0 @@
-{
-  "node": "cpp.plan",
-  "kind": "generate",
-  "output": "#include <filesystem>\n#include <iostream>\n#include <fstream>\n\nstd::filesystem::directory_iterator\nstd::filesystem::path\nstd::filesystem::is_regular_file\nstd::filesystem::file_size\nstd::cout\nstd::endl"
-}

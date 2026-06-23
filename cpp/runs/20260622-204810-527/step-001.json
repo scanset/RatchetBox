@@ -1,5 +1,0 @@
-{
-  "node": "cpp.plan",
-  "kind": "generate",
-  "output": "{\"cppref_q\":\"std::popcount __popcnt64 intrinsic\",\"patterns_q\":\"\",\"win32_q\":\"\",\"cppdocs_q\":\"__popcnt64 MSVC intrinsic header\"}"
-}

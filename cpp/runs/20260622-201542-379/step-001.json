@@ -1,5 +1,0 @@
-{
-  "node": "cpp.plan",
-  "kind": "generate",
-  "output": "{\"cppref_q\":\"std::unique_ptr factory pattern virtual method area\",\"patterns_q\":\"factory method\",\"win32_q\":\"\",\"cppdocs_q\":\"\"}"
-}

@@ -1,5 +1,0 @@
-{
-  "chain": "add_file",
-  "input": "src/core/stats.cpp Provide two pure functions in namespace stats: double mean(const std::vector<double>and values) and double median(std::vector<double> values). Declare them in a matching header src/core/stats.h. Use the STL.",
-  "started": "2026-06-22T19:54:14"
-}

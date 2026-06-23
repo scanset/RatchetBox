@@ -1,6 +1,0 @@
-{
-  "node": "cpp.recompile",
-  "kind": "action",
-  "ok": false,
-  "output": "source.cpp(8): error C3861: '__popcnt64': identifier not found\n[exit code 1]"
-}
