@@ -1,0 +1,19 @@
+{
+    "name":  "t5_concurrency",
+    "kind":  "console",
+    "created":  "2026-06-23",
+    "entry":  "src/Program.cs",
+    "out":  "dist/t5_concurrency.exe",
+    "rsp":  "response.rsp",
+    "assembly":  "single",
+    "references":  [
+                       "System.dll",
+                       "System.Core.dll"
+                   ],
+    "files":  [
+                  {
+                      "path":  "src/Program.cs",
+                      "role":  "entry point"
+                  }
+              ]
+}

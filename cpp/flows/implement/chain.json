@@ -1,9 +1,0 @@
-{
-  "$comment": "implement: a validated spec -> a built app, hands-free. validate (spec oracle -> AST) -> scaffold (deterministic structure + a worklist of TODO files) -> fill (foreach: run edit_file per file to fill the bodies) -> build. Input = the spec text; run in the target workspace via --ws.",
-  "id": "implement",
-  "version": "1.0.0",
-  "summary": "Build an app from a validated spec: scaffold the structure deterministically, fill each body with the model (foreach edit_file), then compile the whole project.",
-  "entry": "implement.validate",
-  "budgets": { "max_steps": 24, "max_total_tokens": 120000, "max_wallclock_seconds": 3000 },
-  "nodes": ["implement.validate", "implement.scaffold", "implement.fill", "implement.build", "implement.done", "implement.fail"]
-}

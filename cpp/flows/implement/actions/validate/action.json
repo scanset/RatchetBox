@@ -1,7 +1,0 @@
-{
-  "id": "implement.validate",
-  "kind": "spec",
-  "inputs": [ { "from": "$input", "path": ".", "as": "spec" } ],
-  "on_success": "implement.scaffold",
-  "on_failure": "implement.fail"
-}

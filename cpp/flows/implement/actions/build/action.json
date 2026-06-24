@@ -1,9 +1,0 @@
-{
-  "id": "implement.build",
-  "kind": "action",
-  "tool": "build_project",
-  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
-  "body": { "proj": "{{ proj }}" },
-  "on_success": "implement.done",
-  "on_failure": "implement.fail"
-}

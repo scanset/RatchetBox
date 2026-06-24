@@ -1,7 +1,0 @@
-{
-  "id": "create_spec.revalidate",
-  "kind": "spec",
-  "inputs": [ { "from": "create_spec.fix", "path": ".", "as": "spec" } ],
-  "on_success": "create_spec.done",
-  "on_failure": "create_spec.fail"
-}

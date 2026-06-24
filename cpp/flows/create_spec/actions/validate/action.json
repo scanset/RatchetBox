@@ -1,8 +1,0 @@
-{
-  "$comment": "The spec oracle: parse the generated spec and resolve it against the ratchet's vocabulary. Valid -> done (the spec is the result); invalid -> fix (the problems feed the repair).",
-  "id": "create_spec.validate",
-  "kind": "spec",
-  "inputs": [ { "from": "create_spec.generate", "path": ".", "as": "spec" } ],
-  "on_success": "create_spec.done",
-  "on_failure": "create_spec.fix"
-}
