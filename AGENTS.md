@@ -27,6 +27,17 @@ Oracle enforces (e.g. C# 5 for `dotnet`, `/std:c++17` + MSVC for `cpp`). `dotnet
 a `transcripts/` folder - real end-to-end build transcripts (the fastest way to see what driving the
 ratchet looks like).
 
+## Discover what a ratchet can do (no engine needed - just read the files)
+
+Point yourself at a ratchet's directory; everything you need to drive it is in plain files:
+
+- `ratchet.json` - the config: model seats, knowledge bases, `requirements`.
+- `flows/manifest.json` - the **flows index** (id + summary): the fastest "what can it do". (Each
+  `flows/<chain>/chain.json` has the full node graph if you need it.)
+- `tools/manifest.json` - the tools and their arguments.
+- `kb/manifest.json` - the knowledge libraries you can `/search`.
+- `AGENTS.md` - the same, human-readable; `transcripts/` (where present) - real end-to-end builds.
+
 ## Working in a ratchet
 
 - **Run / drive:** `ratchet <this-repo>\<ratchet>` (from a Ratchet checkout). Plain text chats;

@@ -60,7 +60,7 @@ context it needs (a prior output, a fixed reference, or a retrieval hit - nothin
 **Oracle** (a compiler, a parser, a table validator) returns a deterministic verdict, so a wrong
 proposal is *caught* and fed back for a bounded repair, not trusted. The chain advances only on a
 pass - a ratchet that turns one way. The full thesis, Context Binding, the local-model adaptation, and
-the control-flow diagram are in **[docs/architecture.md](docs/architecture.md)**.
+the control-flow diagram are in **[docs/architecture.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/concepts/architecture.md)**.
 
 ## Getting started
 
@@ -107,7 +107,7 @@ reference), `cpp` (C++/MSVC), and `template` (an empty, self-documented skeleton
   `launch-Calc.cmd` it writes.
 - `/note <text>` jots session memory; `/route <request>` lets the model pick a chain (you confirm).
 
-See **[docs/console.md](docs/console.md)** for the full command set and the project lifecycle. Prefer
+See **[docs/console.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/use-the-console.md)** for the full command set and the project lifecycle. Prefer
 one-shot? `.\ratchet.cmd flow ..\RatchetBox\dotnet4-x csharp "a string reverser"`.
 
 **Want to see real input/output first?** The `dotnet4-x` ratchet's `Tests\` folder (in
@@ -172,7 +172,7 @@ my-icm/
 
 The model proposes into a chain's constrained slots; a tool or the Oracle decides; you drive. Full
 contract - config fields, the manifest, tools, and **action-chain anatomy** (node kinds, Context
-Binding, the repair loop) - is in **[docs/ratchets.md](docs/ratchets.md)**.
+Binding, the repair loop) - is in **[docs/ratchets.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/build-a-ratchet.md)**.
 
 ## Drive it from a frontier model over MCP
 
@@ -180,7 +180,7 @@ Binding, the repair loop) - is in **[docs/ratchets.md](docs/ratchets.md)**.
 declared tools (with their schemas) and the oracle; `tools/call` runs them. One engine, two callers -
 the local console, or a frontier model that browses and calls while the local model fills the narrow,
 oracle-checked slots. Connection recipes (Claude Desktop / Claude Code) and the current surface are in
-**[docs/mcp.md](docs/mcp.md)**. Because SAC blocks the bare `.exe`, point clients at `run-cli.ps1`.
+**[docs/mcp.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/drive-over-mcp.md)**. Because SAC blocks the bare `.exe`, point clients at `run-cli.ps1`.
 
 ## Security
 
@@ -188,7 +188,7 @@ Opening a ratchet can run its declared **command/script tools** on your machine 
 host does real work. **Only open ratchets you trust**; skim their `tools/` and `ratchet.json` first. The
 local model never picks or runs tools on its own (it proposes into oracle-checked slots), file I/O is
 sandboxed to the ratchet root, and the only network egress is your local Ollama. Full details:
-[SECURITY.md](SECURITY.md).
+[SECURITY.md](https://github.com/CurtisSlone/Ratchet/blob/main/SECURITY.md).
 
 ## Running under Smart App Control
 
@@ -208,31 +208,31 @@ powershell -ExecutionPolicy Bypass -File build.ps1 -Gui     # also rebuild the l
 
 Console-first: the default build writes only `ratchet.exe`, with the in-box .NET Framework `csc.exe`
 (pre-Roslyn, so the code targets C# 5) - no SDK, NuGet, or MSBuild. Verify with `.\ratchet.cmd selftest`.
-Build internals and the `src/` layout are in **[docs/architecture.md](docs/architecture.md)**.
+Build internals and the `src/` layout are in **[docs/architecture.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/concepts/architecture.md)**.
 
 ## Documentation
 
-- **[docs/architecture.md](docs/architecture.md)** - the propose/verify thesis, how a local model
+- **[docs/architecture.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/concepts/architecture.md)** - the propose/verify thesis, how a local model
   changes ICM, the control-flow diagram, and the `src/` layout.
-- **[docs/ratchets.md](docs/ratchets.md)** - the ratchet contract: `ratchet.json`, the kb manifest,
+- **[docs/ratchets.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/build-a-ratchet.md)** - the ratchet contract: `ratchet.json`, the kb manifest,
   tools, and action chains (node kinds, input bindings, the bounded repair loop).
-- **[docs/console.md](docs/console.md)** - operating the console: every command, the router and model
+- **[docs/console.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/use-the-console.md)** - operating the console: every command, the router and model
   seats, workspaces, and the project lifecycle (scaffold → add/edit → build → launch).
-- **[docs/mcp.md](docs/mcp.md)** - driving the ratchet from a frontier model over MCP.
+- **[docs/mcp.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/drive-over-mcp.md)** - driving the ratchet from a frontier model over MCP.
 
 Technical guides (authoring):
-- **[docs/context-binding.md](docs/context-binding.md)** - the deep dive on Context Binding (the
+- **[docs/context-binding.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/concepts/context-binding.md)** - the deep dive on Context Binding (the
   three layers, code snippets, how it composes with the Oracle).
-- **[docs/authoring-flows.md](docs/authoring-flows.md)** - action chains / prompt chaining: node kinds,
+- **[docs/authoring-flows.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/author-flows.md)** - action chains / prompt chaining: node kinds,
   bindings, the bounded repair loop, run state, linting.
-- **[docs/authoring-tools.md](docs/authoring-tools.md)** - tools: the manifest, the runtime contract,
+- **[docs/authoring-tools.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/how-to/author-tools.md)** - tools: the manifest, the runtime contract,
   stdin/BOM, exit-code-as-verdict, MCP exposure.
-- **[docs/gemini-hack.md](docs/gemini-hack.md)** - have a browser frontier model read these docs and
+- **[docs/gemini-hack.md](https://github.com/CurtisSlone/Ratchet/blob/main/docs/agents/frontier-prompting.md)** - have a browser frontier model read these docs and
   write ready-to-paste prompts for your local console.
 
 Agents/models: start at **[AGENTS.md](AGENTS.md)**.
 
 ## License
 
-MIT - see [LICENSE](LICENSE). The Interpretable Context Methodology it builds on is also MIT-licensed
+MIT - see [LICENSE](../LICENSE). The Interpretable Context Methodology it builds on is also MIT-licensed
 by Jake Van Clief and David McDermott.
