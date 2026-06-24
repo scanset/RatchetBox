@@ -1,0 +1,9 @@
+{
+  "id": "compose.read",
+  "kind": "action",
+  "tool": "read_specs",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "ws" } ],
+  "body": { "dir": "{{ ws }}/specs" },
+  "on_success": "compose.plan",
+  "on_failure": "compose.fail"
+}

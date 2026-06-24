@@ -1,0 +1,10 @@
+{
+  "$comment": "Extract the ordered foreach worklist ('<targetpath> <specfile>' per unit) from the plan JSON.",
+  "id": "compose.worklist",
+  "kind": "action",
+  "tool": "plan_units",
+  "inputs": [ { "from": "compose.plan", "path": ".", "as": "plan" } ],
+  "body": { "plan": "{{ plan }}" },
+  "on_success": "compose.fan",
+  "on_failure": "compose.fail"
+}

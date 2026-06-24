@@ -47,6 +47,20 @@
       "timeout": 30
     },
     {
+      "name": "read_specs",
+      "description": "Read every .spec file in a directory (or one .spec file) and print contents labeled by filename, for the plan/add_unit steps. Arg: dir-or-file (relative to the ratchet root, or absolute).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_specs.ps1", "-Dir", "{dir}"],
+      "inputSchema": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] },
+      "timeout": 30
+    },
+    {
+      "name": "plan_units",
+      "description": "Turn a build-plan JSON (from the plan flow, on stdin) into a foreach worklist: one line per unit in dependency order, '<targetpath> <specfile>'. Entry unit (behavior/gui) -> src/Program.cs, others -> src/<Name>.cs.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/plan_units.ps1"],
+      "inputSchema": { "type": "object", "properties": { "plan": { "type": "string" } }, "required": ["plan"] },
+      "stdin": "plan", "timeout": 20
+    },
+    {
       "name": "stage_and_build",
       "description": "Write a candidate C# file into a project's src tree and build the WHOLE project; report OK or diagnostics. Code on stdin.",
       "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/stage_and_build.ps1", "-Proj", "{proj}", "-Path", "{path}"],

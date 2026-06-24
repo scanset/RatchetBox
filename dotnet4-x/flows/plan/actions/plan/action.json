@@ -1,0 +1,42 @@
+{
+  "$comment": "The thin layer: model reads the (unordered, possibly inconsistent) specs and emits a strict ordered build plan. output_schema forces the shape so a compose foreach can consume `units` in order with no parsing.",
+  "id": "plan.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [ { "from": "plan.read", "path": ".", "as": "specs" } ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "units": {
+        "type": "array",
+        "description": "every unit, in dependency order (foundation/data first, dependents later)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string", "enum": ["data", "interface", "component", "behavior", "gui"] },
+            "dependsOn": { "type": "array", "items": { "type": "string" } },
+            "spec": { "type": "string", "description": "the source .spec filename" }
+          },
+          "required": ["name", "role", "dependsOn", "spec"]
+        }
+      },
+      "contracts": {
+        "type": "array",
+        "description": "canonical shared names/types every unit must agree on",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "type": { "type": "string" },
+            "normalizedFrom": { "type": "string", "description": "the other name(s) seen for this thing; empty if the specs were already consistent" }
+          },
+          "required": ["name", "type"]
+        }
+      }
+    },
+    "required": ["units", "contracts"]
+  },
+  "on_success": "plan.done",
+  "on_failure": "plan.fail"
+}

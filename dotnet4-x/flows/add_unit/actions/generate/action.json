@@ -1,0 +1,12 @@
+{
+  "id": "add_unit.generate",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "add_unit.readspec", "path": ".", "as": "spec" },
+    { "from": "add_unit.readproj", "path": ".", "as": "project", "max_chars": 6000 },
+    { "from": "path", "path": ".", "as": "path" }
+  ],
+  "on_success": "add_unit.build",
+  "on_failure": "add_unit.fail"
+}

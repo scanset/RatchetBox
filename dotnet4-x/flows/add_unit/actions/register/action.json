@@ -1,0 +1,13 @@
+{
+  "$comment": "Record the unit in the project's on-disk memory. Best-effort: a register failure does not fail the unit (it already built).",
+  "id": "add_unit.register",
+  "kind": "action",
+  "tool": "register_file",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "path", "path": ".", "as": "path" }
+  ],
+  "body": { "proj": "{{ proj }}", "path": "{{ path }}", "role": "composed unit" },
+  "on_success": "add_unit.done",
+  "on_failure": "add_unit.done"
+}

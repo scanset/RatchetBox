@@ -1,0 +1,1 @@
+{ "id": "add_unit.fail", "kind": "exit", "outcome": "aborted: unit did not build after one repair" }

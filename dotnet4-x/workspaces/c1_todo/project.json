@@ -1,0 +1,27 @@
+﻿{
+    "name":  "c1_todo",
+    "kind":  "console",
+    "created":  "2026-06-24",
+    "entry":  "src/Program.cs",
+    "out":  "dist/c1_todo.exe",
+    "rsp":  "response.rsp",
+    "assembly":  "single",
+    "references":  [
+                       "System.dll",
+                       "System.Core.dll"
+                   ],
+    "files":  [
+                  {
+                      "path":  "src/Program.cs",
+                      "role":  "entry point"
+                  },
+                  {
+                      "path":  "src/Todo.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/TodoList.cs",
+                      "role":  "composed unit"
+                  }
+              ]
+}

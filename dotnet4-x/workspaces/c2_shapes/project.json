@@ -1,0 +1,31 @@
+﻿{
+    "name":  "c2_shapes",
+    "kind":  "console",
+    "created":  "2026-06-24",
+    "entry":  "src/Program.cs",
+    "out":  "dist/c2_shapes.exe",
+    "rsp":  "response.rsp",
+    "assembly":  "single",
+    "references":  [
+                       "System.dll",
+                       "System.Core.dll"
+                   ],
+    "files":  [
+                  {
+                      "path":  "src/Program.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/IShape.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Circle.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Rectangle.cs",
+                      "role":  "composed unit"
+                  }
+              ]
+}

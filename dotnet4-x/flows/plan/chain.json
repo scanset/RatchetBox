@@ -1,0 +1,9 @@
+{
+  "$comment": "plan: the thin composition layer. Read every .spec in a dir, then have the model infer a build plan - units in dependency order + canonical contracts - normalizing messy/unordered/inconsistent specs. Output is schema-forced so a compose foreach can consume it directly. Input = the spec dir (relative to the ratchet root).",
+  "id": "plan",
+  "version": "1.0.0",
+  "summary": "Infer an ordered build plan (units + dependencies + canonical contracts) from a directory of .spec files.",
+  "entry": "plan.read",
+  "budgets": { "max_steps": 8, "max_total_tokens": 16000, "max_wallclock_seconds": 600 },
+  "nodes": ["plan.read", "plan.plan", "plan.done", "plan.fail"]
+}

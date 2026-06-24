@@ -27,6 +27,8 @@ Validates the .NET Framework `csc`, Ollama + the configured models, and the know
 | `powershell` | One-off: a PowerShell script, parse-checked and repaired. |
 | `add_file` | Add a new file to the active project; build the whole project; repair; record it. |
 | `edit_file` | Surgically edit an existing file (refactor, fix, extend); rebuild; repair. |
+| `plan` | Read a dir of `.spec` files and infer an ordered build plan (units in dependency order + canonical contracts) - the composition planner. |
+| `compose` | Build a whole multi-file system from a dir of `.spec` files: plan -> generate each unit in dependency order against the project so far -> build. |
 
 ## Drive it
 
@@ -46,12 +48,38 @@ A real, runnable app (built to an `.exe` under `workspaces/`):
 /do make_launcher Calc                 # writes a SAC-safe launch-Calc.cmd; run that
 ```
 
+## Compose a system from specs
+
+A `.spec` file is a **structured prompt** - `name` / `intent` / `behavior` / `constraints`. Drop a few
+in a project's `specs/` dir, one per concern (data, interfaces, components, behavior, gui), and `compose`
+builds the whole system: the model reads them all and infers the build order + the shared contracts, then
+generates each unit in dependency order against the project built so far (so later units link against the
+real signatures of earlier ones), gated by the whole-project build.
+
+```
+/do new_project Shop console
+/ws switch Shop
+# author specs in workspaces/Shop/specs/*.spec  (one unit per file)
+/flow compose                          # plan -> foreach add_unit -> build
+/do build_project Shop                 # -> dist/Shop.exe
+```
+
+A single spec works too - feed one as the request to a write flow:
+`/flow edit_file src/Program.cs "<the spec text>"`.
+
+**What composes well:** data, interfaces, and units that reference at most one other unit compose
+reliably; a unit that must coordinate *several* other units' exact signatures at once is the soft spot
+(it drifts on constructor arity / method names). Interfaces are the lever - they collapse N concrete
+contracts into one. See `Tests/Compose_Testing.md` for the evidence.
+
 ## See it for real
 
-`Tests/` holds full transcripts of building real projects with this ratchet -
-`COMPLEX_TEST_LOG.md` (multi-file C# projects) and `WINFORMS_TEST_LOG.md` (runnable WinForms apps,
-including a failure-and-fix). Each records the exact commands, the generated code, the build/oracle
-results, and per-turn token counts. It's the fastest way to see what driving a ratchet looks like.
+`Tests/` holds full transcripts of building real projects with this ratchet:
+`WINFORMS_TEST_LOG.md` (runnable WinForms apps, including a failure-and-fix),
+`SPEC_TO_CODE_SERIES_LOG.md` (one structured-prompt spec -> code, procedural through a WinForms
+capstone), and `Compose_Testing.md` (multi-spec composition: a Todo app, an interface-based Shapes app,
+and a concurrent Point-of-Sale capstone). Each records the exact inputs, the generated code, and the
+build/oracle results - the fastest way to see what driving a ratchet looks like.
 
 ## Good to know
 

@@ -1,0 +1,31 @@
+﻿{
+    "name":  "c3_pos",
+    "kind":  "console",
+    "created":  "2026-06-24",
+    "entry":  "src/Program.cs",
+    "out":  "dist/c3_pos.exe",
+    "rsp":  "response.rsp",
+    "assembly":  "single",
+    "references":  [
+                       "System.dll",
+                       "System.Core.dll"
+                   ],
+    "files":  [
+                  {
+                      "path":  "src/Program.cs",
+                      "role":  "entry point"
+                  },
+                  {
+                      "path":  "src/Product.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Catalog.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Sale.cs",
+                      "role":  "composed unit"
+                  }
+              ]
+}

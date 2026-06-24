@@ -15,7 +15,7 @@ them.
 
 | Ratchet | What it builds | Highlights |
 | --- | --- | --- |
-| **`dotnet4-x`** | Windows C# / PowerShell, in-box `csc` (C# 5) | `csharp`, `winforms`, `powershell` chains + a project lifecycle (`new_project` -> `add_file`/`edit_file` -> build) with `Tests/` transcripts of real runs |
+| **`dotnet4-x`** | Windows C# / PowerShell, in-box `csc` (C# 5) | `csharp`/`winforms`/`powershell` one-offs + a project lifecycle (`new_project` -> `add_file`/`edit_file` -> build) + **spec-to-code composition** (`compose` a whole multi-file system from a dir of `.spec` files); `Tests/` has transcripts incl. a concurrent PoS capstone |
 | **`cpp`** | C++ with MSVC `cl` (vcvars32; STL + Win32) | plan-routed retrieval over 7 knowledge bases, generate-compile-repair, a full project lifecycle, native-app linking, vcpkg packages, `ratchet doctor` requirements |
 | **`template`** | (nothing - a skeleton to copy) | the minimal, self-documented starting point for a new ratchet |
 

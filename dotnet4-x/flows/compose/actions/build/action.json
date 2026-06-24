@@ -1,0 +1,9 @@
+{
+  "id": "compose.build",
+  "kind": "action",
+  "tool": "build_project",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "compose.done",
+  "on_failure": "compose.fail"
+}
