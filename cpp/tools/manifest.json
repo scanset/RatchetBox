@@ -30,6 +30,34 @@
       "stdin": "code", "timeout": 120
     },
     {
+      "name": "read_specs",
+      "description": "Read every .spec file in a directory (or one .spec file) and print contents labeled by filename, for compose's plan/add_unit steps. Arg: dir (relative to the ratchet root, or absolute).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_specs.ps1", "-Dir", "{dir}"],
+      "inputSchema": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] },
+      "timeout": 30
+    },
+    {
+      "name": "project_api",
+      "description": "Emit the public API of a composed C++ project's existing units: the unit headers under src/core (the contract by language design), labeled with their src-relative path, so a composed unit calls + includes them correctly instead of inventing them. Arg: proj.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/project_api.ps1", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "plan_units",
+      "description": "Turn a build-plan JSON (stdin) into a foreach worklist: one line per unit in dependency order, '<targetpath> <specfile>'. Entry (behavior/gui) -> src/main.cpp; others -> src/core/<Name>.cpp (with a companion .h emitted alongside).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/plan_units.ps1"],
+      "inputSchema": { "type": "object", "properties": { "plan": { "type": "string" } }, "required": ["plan"] },
+      "stdin": "plan", "timeout": 20
+    },
+    {
+      "name": "stage_unit",
+      "description": "compose's per-unit oracle: write the generated unit (may be MULTIPLE files, each introduced by a '// === <path> ===' marker - a component emits its .h + .cpp; the entry emits main.cpp) into the project, then build the WHOLE project with cl. Each component .cpp is globbed + compiled (real separate compilation), so a failing unit is caught here. Code on stdin.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/stage_unit.ps1", "-Proj", "{proj}", "-Path", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "code": { "type": "string" } }, "required": ["proj", "path", "code"] },
+      "stdin": "code", "timeout": 120
+    },
+    {
       "name": "read_file",
       "description": "Print one project source file verbatim, to ground a surgical edit on its exact current contents.",
       "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_file.ps1", "-Proj", "{proj}", "-Path", "{path}"],

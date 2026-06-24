@@ -1,0 +1,14 @@
+{
+  "$comment": "The oracle: write the generated file into the project and build the WHOLE project. Failure -> one repair.",
+  "id": "add_unit.build",
+  "kind": "action",
+  "tool": "stage_and_build",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "add_unit.generate", "path": ".", "as": "code" }
+  ],
+  "body": { "proj": "{{ proj }}", "path": "{{ path }}", "code": "{{ code }}" },
+  "on_success": "add_unit.register",
+  "on_failure": "add_unit.fix"
+}

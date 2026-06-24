@@ -15,9 +15,9 @@ them.
 
 | Ratchet | What it builds | Highlights |
 | --- | --- | --- |
-| **`dotnet4-x`** | Windows C# / PowerShell, in-box `csc` (C# 5) | `csharp`/`winforms`/`powershell` one-offs + a project lifecycle (`new_project` -> `add_file`/`edit_file` -> build) + **spec-to-code composition** (`compose` a whole multi-file system from a dir of `.spec` files); `Tests/` has transcripts incl. a concurrent PoS capstone |
-| **`cpp`** | C++ with MSVC `cl` (vcvars32; STL + Win32) | plan-routed retrieval over 7 knowledge bases, generate-compile-repair, a full project lifecycle, native-app linking, vcpkg packages, `ratchet doctor` requirements |
-| **`template`** | (nothing - a skeleton to copy) | the minimal, self-documented starting point for a new ratchet |
+| **`dotnet4-x`** | Windows C# / PowerShell, in-box `csc` (C# 5) | `csharp`/`winforms`/`powershell` one-offs + a project lifecycle (`new_project` -> `add_file`/`edit_file` -> build) + **spec-to-code composition** (`compose` a whole multi-file system from a dir of `.spec` files); `transcripts/` has end-to-end build transcripts |
+| **`cpp`** | C++ with MSVC `cl` (vcvars32; STL + Win32) | plan-routed retrieval over 7 knowledge bases, generate-compile-repair, a full project lifecycle, native-app linking, vcpkg packages + **spec-to-code composition** (`.h`/`.cpp` units); `transcripts/` has a worked build |
+| **`template`** | (nothing - a skeleton to copy) | the lifecycle + composition skeleton: working flows with the domain-specific tools as `CHANGE_ME` stubs to fill in |
 
 ## Quick start
 
@@ -36,14 +36,15 @@ cd Ratchet
 .\ratchet.cmd doctor ..\RatchetBox\cpp
 ```
 
-Each ratchet has its own `README.md` (what it does + how to drive it) and `ROBOTS.md` (orientation for
-AI agents). Start there.
+Each ratchet has its own `README.md` (what it does + how to drive it) and `AGENTS.md` (orientation for
+AI agents). Start there. `dotnet4-x` and `cpp` also carry a `transcripts/` folder with real end-to-end
+build transcripts - the fastest way to see what driving the ratchet looks like.
 
 ## Make your own
 
-Copy `template`, rename it, edit its `ratchet.json`, and fill `kb/` + `flows/` + `tools/`. The full
-authoring contract is in the engine's docs (`docs/ratchets.md`, `docs/authoring-flows.md`,
-`docs/authoring-tools.md`).
+Copy `template`, rename it, edit its `ratchet.json`, implement the `CHANGE_ME` tools, and fill `kb/` +
+the flow prompts. The full authoring contract is in the engine's docs (`docs/how-to/build-a-ratchet.md`,
+`docs/how-to/author-flows.md`, `docs/how-to/author-tools.md`, `docs/how-to/compose-from-specs.md`).
 
 ## License
 

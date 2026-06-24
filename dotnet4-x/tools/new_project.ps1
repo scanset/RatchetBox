@@ -50,8 +50,9 @@ Write-Host "built $root\dist\__NAME__.exe"
 Write-Proj "build.ps1" ($buildPs1.Replace("__NAME__", $name))
 
 if ($kind -eq "console") {
-    # ----- console source (minimal: just the entry point + empty Core/Drivers folders to grow into;
-    # the full composition example lives in scaffold/csharp/project-structured.md) -----
+    # ----- console source (minimal, cargo-new style: just the entry point. Subdirs like src/Core are
+    # created on demand when a file is actually placed there - stage_and_build mkdirs the target dir - so
+    # the scaffold ships no empty folders. The full layout lives in scaffold/csharp/project-structured.md) -----
     Write-Proj "src\Program.cs" @'
 using System;
 
@@ -69,8 +70,6 @@ namespace App
     }
 }
 '@
-    New-Item -ItemType Directory -Force (Join-Path $root "src\Core") | Out-Null
-    New-Item -ItemType Directory -Force (Join-Path $root "src\Drivers") | Out-Null
     $rsp = "/nologo`r`n/target:exe`r`n/langversion:5`r`n/warn:4`r`n/reference:System.dll`r`n/reference:System.Core.dll`r`n/out:dist\" + $name + ".exe`r`n/recurse:src\*.cs`r`n"
     $refs = @("System.dll", "System.Core.dll")
     $files = @(

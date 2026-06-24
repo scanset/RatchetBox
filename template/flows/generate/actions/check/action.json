@@ -1,0 +1,10 @@
+{
+  "$comment": "The single-file oracle. Failure -> repair.",
+  "id": "generate.check",
+  "kind": "action",
+  "tool": "check",
+  "inputs": [ { "from": "generate.make", "path": ".", "as": "code" } ],
+  "body": { "code": "{{ code }}" },
+  "on_success": "generate.done",
+  "on_failure": "generate.fix"
+}

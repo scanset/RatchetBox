@@ -1,13 +1,82 @@
 {
-  "$comment": "Tool declarations for this dir (the offloaded config.tools[]). A tool runs by name as tools/<name>.ps1; an entry here adds how to invoke it + metadata. A bare script with no entry is still callable by name (zero-arg). Delete the example below and declare your own.",
+  "$comment": "Tool declarations for this ratchet. A tool runs by name as tools/<name>.ps1; an entry here adds how to invoke it + its input schema. This template ships the GENERIC tools working and the DOMAIN-SPECIFIC ones as stubs marked CHANGE_ME (build_project = the oracle, new_project = the scaffold, project_api = the API extractor, and the path/extension knobs in stage_and_build/plan_units). Implement those for your language and the lifecycle + composition flows light up. See RatchetBox/dotnet4-x (C#) and RatchetBox/cpp (C++) for full implementations.",
   "tools": [
     {
-      "name": "example_check",
-      "description": "Example: an action's oracle. Reads input on stdin (the action declares stdin:code) and exits 0 on success, non-zero on failure (drives on_success/on_failure).",
-      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/example_check.ps1"],
+      "name": "new_project",
+      "description": "CHANGE_ME (scaffold): create workspaces/<name> with project.json + PROJECT.md + a src\\ entry stub. Arg: name. Set the entry file/extension + any project.json fields build_project needs.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/new_project.ps1", "{spec}"],
+      "inputSchema": { "type": "object", "properties": { "spec": { "type": "string" } }, "required": ["spec"] },
+      "timeout": 30
+    },
+    {
+      "name": "build_project",
+      "description": "CHANGE_ME (THE ORACLE): build the WHOLE project (all of src\\) with your toolchain; exit 0 = built, non-zero = failed. Every flow gates on this. Arg: proj (name under workspaces/ or a path).",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/build_project.ps1", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 120
+    },
+    {
+      "name": "check",
+      "description": "CHANGE_ME (single-file oracle): syntax/compile-check ONE code snippet (stdin) with your toolchain, no project build; exit 0 = ok. The `generate` one-off flow gates on this.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/check.ps1"],
       "inputSchema": { "type": "object", "properties": { "code": { "type": "string" } }, "required": ["code"] },
-      "stdin": "code",
-      "timeout": 60
+      "stdin": "code", "timeout": 60
+    },
+    {
+      "name": "stage_and_build",
+      "description": "Write a candidate file into a project's src tree, then build the WHOLE project (build_project) and report the verdict. Code on stdin. Generic; tighten the path-guard extensions for your language.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/stage_and_build.ps1", "-Proj", "{proj}", "-Path", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "code": { "type": "string" } }, "required": ["proj", "path", "code"] },
+      "stdin": "code", "timeout": 120
+    },
+    {
+      "name": "project_api",
+      "description": "CHANGE_ME (domain-specific): emit the public API surface of the project's existing units so a new unit calls them exactly (closes multi-reference drift). C#=regex over .cs; C++=the headers. Arg: proj.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/project_api.ps1", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "read_specs",
+      "description": "Read every .spec file in a directory (or one .spec file) and print contents labeled by filename, for compose's plan/add_unit steps. Arg: dir (relative to the ratchet root, or absolute). Generic.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_specs.ps1", "-Dir", "{dir}"],
+      "inputSchema": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] },
+      "timeout": 30
+    },
+    {
+      "name": "plan_units",
+      "description": "Turn a build-plan JSON (stdin) into a foreach worklist: one line per unit in dependency order, '<targetpath> <specfile>'. Generic; set the source extension + entry-file knobs at the top.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/plan_units.ps1"],
+      "inputSchema": { "type": "object", "properties": { "plan": { "type": "string" } }, "required": ["plan"] },
+      "stdin": "plan", "timeout": 20
+    },
+    {
+      "name": "read_project",
+      "description": "Context loader: emit PROJECT.md + project.json + the src tree (with roles) + a manifest-drift check; -Include all also dumps every src file. Language-agnostic. Arg: proj [include].",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_project.ps1", "{proj}", "{include}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "include": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "register_file",
+      "description": "Record a newly added file in a project's on-disk memory (project.json.files + PROJECT.md). Idempotent. Generic. Args: proj, path, role.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/register_file.ps1", "-Proj", "{proj}", "-Path", "{path}", "-Role", "{role}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "role": { "type": "string" } }, "required": ["proj", "path", "role"] },
+      "timeout": 30
+    },
+    {
+      "name": "log_edit",
+      "description": "Append an 'edited' line to a project's PROJECT.md changelog. Generic. Args: proj, path, summary.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/log_edit.ps1", "-Proj", "{proj}", "-Path", "{path}", "-Summary", "{summary}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "summary": { "type": "string" } }, "required": ["proj", "path", "summary"] },
+      "timeout": 30
+    },
+    {
+      "name": "read_file",
+      "description": "Print one project source file verbatim, to ground a surgical edit on its exact current contents. Generic. Args: proj, path.",
+      "command": ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "tools/read_file.ps1", "-Proj", "{proj}", "-Path", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" } }, "required": ["proj", "path"] },
+      "timeout": 30
     }
   ]
 }

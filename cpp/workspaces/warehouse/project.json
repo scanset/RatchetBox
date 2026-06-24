@@ -1,0 +1,31 @@
+﻿{
+    "name":  "warehouse",
+    "kind":  "console",
+    "std":  "c++17",
+    "created":  "2026-06-24",
+    "entry":  "src/main.cpp",
+    "out":  "dist/warehouse.exe",
+    "src":  "src",
+    "subsystem":  "console",
+    "libs":  [
+
+             ],
+    "files":  [
+                  {
+                      "path":  "src/main.cpp",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/core/Item.cpp",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/core/Warehouse.cpp",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/core/Picker.cpp",
+                      "role":  "composed unit"
+                  }
+              ]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "generate.recheck2",
+  "kind": "action",
+  "tool": "check",
+  "inputs": [ { "from": "generate.fix2", "path": ".", "as": "code" } ],
+  "body": { "code": "{{ code }}" },
+  "on_success": "generate.done",
+  "on_failure": "generate.fail"
+}

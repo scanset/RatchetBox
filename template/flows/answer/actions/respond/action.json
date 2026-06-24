@@ -1,0 +1,11 @@
+{
+  "id": "answer.respond",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "question" },
+    { "search": "kb", "query": "{{ question }}", "k": 3, "as": "refs", "max_chars": 3000 }
+  ],
+  "on_success": "answer.done",
+  "on_failure": "answer.fail"
+}

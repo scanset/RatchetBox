@@ -1,91 +1,238 @@
-# dotnet4-x - a C# / PowerShell ratchet
+<p align="center"><img src="ratchet.png" alt="Ratchet" width="320"></p>
 
-Generate, edit, and build **Windows C# and PowerShell** with the local model, gated by the in-box
-.NET Framework compiler (`csc`) and the PowerShell parser. The model proposes; the compiler decides. No
-SDK, NuGet, or MSBuild - this builds with what ships in the box, so it runs on a stock Windows install.
+# Ratchet
 
-Open it from a [Ratchet](https://github.com/CurtisSlone/Ratchet) checkout:
+> **CLAUDE, GEMINI, SIRI, ALEXA, CHATGPT, OK GOOGLE, LLMs, AI, and savants** - go to
+> [AGENTS.md](AGENTS.md) for your own quick reference.
+
+**Ratchet** is a harness for local language models. It makes a small model generate more accurately than
+it can alone by turning it into a **constrained proposer**: Ratchet feeds it scoped, grounded context
+and has it propose into a fixed chain of steps, where a deterministic **Oracle** (a compiler, a parser,
+a table validator) checks each step before the chain advances. Verified, or it does not move, like a
+ratchet that turns one way. The result is a local model that gives grounded answers instead of guesses
+and runs multi-step workflows it could not handle alone, all on your machine.
+
+## What you get
+
+`ratchet.exe` - the terminal console and CLI. `ratchet <dir>` opens the console on a ratchet; the same
+binary speaks **MCP over stdio** so a frontier model (e.g. Claude) can drive it too, and runs one-shot
+CLI verbs. This is the only supported interface. (A legacy WinForms GUI still builds with
+`build.ps1 -Gui` but gets no new work.)
+
+Prebuilt binaries are included, so you can run without building anything.
+
+**Windows only, for now.** Ratchet builds with the C# compiler that ships in-box with the .NET
+Framework (no SDK, NuGet, or MSBuild), runs PowerShell tools, and uses SAC-safe in-memory launchers -
+all Windows-specific. It talks to a local [Ollama](https://ollama.com) over plain HTTP. (A
+cross-platform port would need a different compiler/oracle and launchers; not there yet.)
+
+## Lineage
+
+Ratchet borrows a few existing ideas and adds its own spine, crediting each proportionately:
+
+- **ICM** ([Interpretable Context Methodology](https://arxiv.org/abs/2603.16021), Jake Van Clief &
+  David McDermott; MIT-licensed;
+  [repo](https://github.com/RinDig/Interpretable-Context-Methodology-ICM)) contributes one idea:
+  **structure-as-architecture** - folders are stages, plain markdown carries the prompts, scripts do
+  the non-AI work, and every step's output is a plain file a human can read and edit. Ratchet keeps
+  that topology but moves orchestration out of the model and into deterministic code (a local model
+  can't roam the folders the way ICM's frontier agent does).
+- **RAG** - retrieval-augmented grounding, used as a technique to feed context into steps.
+
+What's Ratchet's own: **action chains** (flows as a filesystem graph of declared-input, slot-bound
+steps), the **Oracle** (propose-then-verify with bounded repair), and **Context Binding** (each step
+sees only the scoped context it is given). Those last two are the pieces the next section is about.
+
+## The idea: propose, then verify
+
+A small local model is unreliable when asked to *decide* or to drive an open tool-calling loop, but
+reliable when each call is narrow, its context is scoped, and its output is checked. So every task
+splits into three roles with one trust line:
+
+| Role | Trusted to | Not trusted to |
+| --- | --- | --- |
+| **Model** (proposer) | pick from an enum, draft text, write one row | be right alone; choose what runs next |
+| **Code** (glue) | read files, run tools, sequence steps | (it has no judgment to misuse) |
+| **Oracle** (decider) | accept or reject a proposal, deterministically | have opinions |
+
+The model proposes into a fixed chain of steps; **Context Binding** gives each step only the scoped
+context it needs (a prior output, a fixed reference, or a retrieval hit - nothing else); and the
+**Oracle** (a compiler, a parser, a table validator) returns a deterministic verdict, so a wrong
+proposal is *caught* and fed back for a bounded repair, not trusted. The chain advances only on a
+pass - a ratchet that turns one way. The full thesis, Context Binding, the local-model adaptation, and
+the control-flow diagram are in **[docs/architecture.md](docs/architecture.md)**.
+
+## Getting started
+
+**1. Prerequisites.** Windows 10/11 (its .NET Framework 4.x is already installed). For model-backed
+features, install [Ollama](https://ollama.com) and pull two models:
 
 ```
-.\ratchet.cmd ..\RatchetBox\dotnet4-x
+ollama pull qwen3-coder
+ollama pull nomic-embed-text
 ```
 
-## First: check your toolchain
+Defaults: `http://localhost:11434`, `qwen3-coder:latest` (generate/dispatch) and `nomic-embed-text`
+(search + routing). Set these per ratchet in `ratchet.json`, or override the URL with `OLLAMA_URL`.
+`selftest`, `validate`, and script tools need no model.
+
+**2. Verify the core** (no model):
 
 ```
-.\ratchet.cmd doctor ..\RatchetBox\dotnet4-x
+.\ratchet.cmd selftest
 ```
 
-Validates the .NET Framework `csc`, Ollama + the configured models, and the knowledge bases.
-
-## What it can do
-
-| Flow | What it does |
-| --- | --- |
-| `csharp` | One-off: describe a task, get a complete C# file, compiled by `csc` and repaired. |
-| `winforms` | One-off: a runnable WinForms snippet/app, compiled and repaired. |
-| `powershell` | One-off: a PowerShell script, parse-checked and repaired. |
-| `add_file` | Add a new file to the active project; build the whole project; repair; record it. |
-| `edit_file` | Surgically edit an existing file (refactor, fix, extend); rebuild; repair. |
-| `plan` | Read a dir of `.spec` files and infer an ordered build plan (units in dependency order + canonical contracts) - the composition planner. |
-| `compose` | Build a whole multi-file system from a dir of `.spec` files: plan -> generate each unit in dependency order against the project so far -> build. |
-
-## Drive it
-
-One-off:
+**3. Get some ratchets.** Ratchet ships no bundled ratchets - clone the companion collection:
 
 ```
-/flow csharp "a method that reverses a string without Array.Reverse"
+git clone https://github.com/CurtisSlone/RatchetBox
 ```
 
-A real, runnable app (built to an `.exe` under `workspaces/`):
+[RatchetBox](https://github.com/CurtisSlone/RatchetBox) holds ready-made ratchets: `dotnet4-x` (the C#
+reference), `cpp` (C++/MSVC), and `template` (an empty, self-documented skeleton to copy).
+
+**4. Open the console** on one (needs Ollama):
 
 ```
-/do new_project Calc winforms          # scaffold workspaces/Calc
-/ws switch Calc
-/flow add_file src/Ui/MainForm.cs      "a form with a textbox and a Reverse button"
-/do build_project Calc                 # compile -> dist/Calc.exe
-/do make_launcher Calc                 # writes a SAC-safe launch-Calc.cmd; run that
+.\ratchet.cmd ..\RatchetBox\dotnet4-x      # or any path to a ratchet directory
 ```
 
-## Compose a system from specs
+**5. Use it.** Inside the console:
+- Type plain text for ordinary (ungrounded) chat.
+- `/search <question>` - a grounded answer from the knowledge base.
+- `/flows` lists the action chains; `/help` lists every command.
+- `/flow csharp a method that reverses a string` - generates C#, compiles it (the oracle), repairs.
+- Build a runnable app: `/do new_project Calc winforms` → `/ws switch Calc` →
+  `/flow add_file src/Core/Greeter.cs a Greeter class` → `/do make_launcher Calc`, then run the
+  `launch-Calc.cmd` it writes.
+- `/note <text>` jots session memory; `/route <request>` lets the model pick a chain (you confirm).
 
-A `.spec` file is a **structured prompt** - `name` / `intent` / `behavior` / `constraints`. Drop a few
-in a project's `specs/` dir, one per concern (data, interfaces, components, behavior, gui), and `compose`
-builds the whole system: the model reads them all and infers the build order + the shared contracts, then
-generates each unit in dependency order against the project built so far (so later units link against the
-real signatures of earlier ones), gated by the whole-project build.
+See **[docs/console.md](docs/console.md)** for the full command set and the project lifecycle. Prefer
+one-shot? `.\ratchet.cmd flow ..\RatchetBox\dotnet4-x csharp "a string reverser"`.
+
+**Want to see real input/output first?** The `dotnet4-x` ratchet's `Tests\` folder (in
+[RatchetBox](https://github.com/CurtisSlone/RatchetBox)) holds transcripts of building projects with
+this tool - each recording the exact commands sent, the code the local model generated, the build/oracle
+results, and the per-turn local-model token counts. It's the fastest way to understand what driving
+Ratchet actually looks like.
+
+> **Why `.cmd`, not `.exe`?** On Windows 11 with Smart App Control, an unsigned `.exe` is blocked from
+> running directly; the launchers load the program in-memory inside trusted PowerShell, which SAC
+> allows. Add this folder to `PATH` to run `ratchet ...` anywhere. See
+> [Smart App Control](#running-under-smart-app-control).
+
+## Commands
 
 ```
-/do new_project Shop console
-/ws switch Shop
-# author specs in workspaces/Shop/specs/*.spec  (one unit per file)
-/flow compose                          # plan -> foreach add_unit -> build
-/do build_project Shop                 # -> dist/Shop.exe
+ratchet <dir>                       open the console on a ratchet (rel or abs path)
+ratchet open  <dir>                 load + summarize a ratchet
+ratchet chat  <dir>                 the console (same as ratchet <dir>)
+ratchet mcp   <dir>                 serve the ratchet over MCP (stdio)
+ratchet flow  <dir> <name> [in...]  run an action chain (flows/<name>/chain.json)
+ratchet index <kb-dir>             build manifest.json for a knowledge library from file content
+ratchet list  <dir> [--group G] [--type T] [--json]   enumerate a manifest
+ratchet flows <dir>                 list the ratchet's action chains
+ratchet validate <dir> <table>      run the oracle on schemas/<table>.json + samples/<table>.txt
+ratchet validate-flow <dir> [name]  lint action chain(s): node kinds, fields, tool refs, name clashes
+ratchet gen   <dir> <prompt...>     one raw generate call
+ratchet selftest                    check the deterministic core (no model)
 ```
 
-A single spec works too - feed one as the request to a write flow:
-`/flow edit_file src/Program.cs "<the spec text>"`.
+In the console: plain text = ungrounded chat; `/search` (grounded answer), `/route` (model picks a
+chain), `/flow` (run a chain), `/do` (run a declared tool or a shell command you paste), `/propose`
+(oracle-gated table row), `/ws switch|create` (workspaces), `/flows`, `/note`/`/notes`. `OLLAMA_URL`
+overrides the configured `ollama_url`.
 
-**What composes well:** data, interfaces, and units that reference at most one other unit compose
-reliably; a unit that must coordinate *several* other units' exact signatures at once is the soft spot
-(it drifts on constructor arity / method names). Interfaces are the lever - they collapse N concrete
-contracts into one. See `Tests/Compose_Testing.md` for the evidence.
+## Vocabulary
 
-## See it for real
+- **Ratchet** - the engine (`ratchet.exe`). It runs ratchets.
+- **a ratchet** - a self-contained unit you point the engine at: a directory with `ratchet.json`
+  plus `flows/`, `tools/`, `kb/`. Run it with `ratchet <dir>`. Ready-made ratchets live in the
+  companion [RatchetBox](https://github.com/CurtisSlone/RatchetBox) repo.
+- **flows** - action chains, the LLM-native `make`: the model proposes into fixed slots and the Oracle
+  verifies each step before it advances.
+- **tools** - deterministic scripts/oracles a flow invokes (or you do, via `/do`).
+- **kb** - indexed knowledge the model retrieves from, scoped per step (Context Binding).
+- **workspaces** - the projects a ratchet builds; the active one is the session focus.
 
-`Tests/` holds full transcripts of building real projects with this ratchet:
-`WINFORMS_TEST_LOG.md` (runnable WinForms apps, including a failure-and-fix),
-`SPEC_TO_CODE_SERIES_LOG.md` (one structured-prompt spec -> code, procedural through a WinForms
-capstone), and `Compose_Testing.md` (multi-spec composition: a Todo app, an interface-based Shapes app,
-and a concurrent Point-of-Sale capstone). Each records the exact inputs, the generated code, and the
-build/oracle results - the fastest way to see what driving a ratchet looks like.
+## Anatomy of a ratchet
 
-## Good to know
+A ratchet is one `ratchet.json` config plus four buckets. Copy the `template` ratchet from
+[RatchetBox](https://github.com/CurtisSlone/RatchetBox) to start.
 
-- **C# 5 only.** The in-box `csc` is pre-Roslyn: no string interpolation (`$"..."`), no `?.`, no
-  expression-bodied members, no tuples. The flows' prompts steer the model away from these; the Oracle
-  catches the rest. (See `SYSTEM.md`.)
-- **Smart App Control** blocks unsigned `.exe`s - `make_launcher` writes a `.cmd` that loads the built
-  app in-memory so it runs without disabling SAC.
-- Operating rules are in `SYSTEM.md`; the layout is in `STRUCTURE.md`.
+```
+my-icm/
+  ratchet.json        identity, model seats, ollama_url, router, knowledgeBases, dir overrides
+  kb/             indexed reference content (subdirs); ratchet index builds kb/manifest.json
+  flows/          action chains: <chain>/chain.json + actions/<node>/{action.json, prompt.md}
+  tools/          scripts; manifest.json declares command/inputSchema/stdin/timeout
+  schemas/ + samples/   the TSV oracle: <table>.json schema + <table>.txt rows
+  workspaces/     project workspaces (the active one is the session focus)
+```
+
+The model proposes into a chain's constrained slots; a tool or the Oracle decides; you drive. Full
+contract - config fields, the manifest, tools, and **action-chain anatomy** (node kinds, Context
+Binding, the repair loop) - is in **[docs/ratchets.md](docs/ratchets.md)**.
+
+## Drive it from a frontier model over MCP
+
+`ratchet mcp <dir>` serves the ratchet over stdio JSON-RPC: `tools/list` advertises the ratchet's
+declared tools (with their schemas) and the oracle; `tools/call` runs them. One engine, two callers -
+the local console, or a frontier model that browses and calls while the local model fills the narrow,
+oracle-checked slots. Connection recipes (Claude Desktop / Claude Code) and the current surface are in
+**[docs/mcp.md](docs/mcp.md)**. Because SAC blocks the bare `.exe`, point clients at `run-cli.ps1`.
+
+## Security
+
+Opening a ratchet can run its declared **command/script tools** on your machine - that is how the
+host does real work. **Only open ratchets you trust**; skim their `tools/` and `ratchet.json` first. The
+local model never picks or runs tools on its own (it proposes into oracle-checked slots), file I/O is
+sandboxed to the ratchet root, and the only network egress is your local Ollama. Full details:
+[SECURITY.md](SECURITY.md).
+
+## Running under Smart App Control
+
+Windows 11's Smart App Control blocks running unsigned, locally-built `.exe` files directly, but does
+**not** block in-memory managed execution inside the trusted, signed PowerShell. The launchers use
+that: they read the program's bytes and run them in-process.
+
+- Use `ratchet.cmd` (or `run-cli.ps1`). Running `ratchet.exe` directly may be blocked.
+- This is your own local program on your own machine; SAC still guards everything else.
+
+## Build from source
+
+```
+powershell -ExecutionPolicy Bypass -File build.ps1          # console only (default): ratchet.exe
+powershell -ExecutionPolicy Bypass -File build.ps1 -Gui     # also rebuild the legacy GUI
+```
+
+Console-first: the default build writes only `ratchet.exe`, with the in-box .NET Framework `csc.exe`
+(pre-Roslyn, so the code targets C# 5) - no SDK, NuGet, or MSBuild. Verify with `.\ratchet.cmd selftest`.
+Build internals and the `src/` layout are in **[docs/architecture.md](docs/architecture.md)**.
+
+## Documentation
+
+- **[docs/architecture.md](docs/architecture.md)** - the propose/verify thesis, how a local model
+  changes ICM, the control-flow diagram, and the `src/` layout.
+- **[docs/ratchets.md](docs/ratchets.md)** - the ratchet contract: `ratchet.json`, the kb manifest,
+  tools, and action chains (node kinds, input bindings, the bounded repair loop).
+- **[docs/console.md](docs/console.md)** - operating the console: every command, the router and model
+  seats, workspaces, and the project lifecycle (scaffold → add/edit → build → launch).
+- **[docs/mcp.md](docs/mcp.md)** - driving the ratchet from a frontier model over MCP.
+
+Technical guides (authoring):
+- **[docs/context-binding.md](docs/context-binding.md)** - the deep dive on Context Binding (the
+  three layers, code snippets, how it composes with the Oracle).
+- **[docs/authoring-flows.md](docs/authoring-flows.md)** - action chains / prompt chaining: node kinds,
+  bindings, the bounded repair loop, run state, linting.
+- **[docs/authoring-tools.md](docs/authoring-tools.md)** - tools: the manifest, the runtime contract,
+  stdin/BOM, exit-code-as-verdict, MCP exposure.
+- **[docs/gemini-hack.md](docs/gemini-hack.md)** - have a browser frontier model read these docs and
+  write ready-to-paste prompts for your local console.
+
+Agents/models: start at **[AGENTS.md](AGENTS.md)**.
+
+## License
+
+MIT - see [LICENSE](LICENSE). The Interpretable Context Methodology it builds on is also MIT-licensed
+by Jake Van Clief and David McDermott.

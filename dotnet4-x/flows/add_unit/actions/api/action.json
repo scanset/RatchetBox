@@ -1,0 +1,10 @@
+{
+  "$comment": "The exact public API of everything built so far - the authoritative signatures the unit must call, vs read_project's full source dump (which the model doesn't reliably parse). Closes the multi-reference drift.",
+  "id": "add_unit.api",
+  "kind": "action",
+  "tool": "project_api",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "add_unit.generate",
+  "on_failure": "add_unit.generate"
+}

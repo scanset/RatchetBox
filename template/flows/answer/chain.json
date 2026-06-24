@@ -1,0 +1,9 @@
+{
+  "$comment": "answer: grounded Q&A, no build. Retrieve from the kb and answer from only what was retrieved. The question is $input.",
+  "id": "answer",
+  "version": "1.0.0",
+  "summary": "Answer a question grounded in the knowledge base - retrieve, then respond from only what was retrieved.",
+  "entry": "answer.respond",
+  "budgets": { "max_steps": 4, "max_total_tokens": 8000, "max_wallclock_seconds": 300 },
+  "nodes": ["answer.respond", "answer.done", "answer.fail"]
+}

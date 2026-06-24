@@ -5,8 +5,10 @@ Produce a BUILD PLAN as structured data:
 
 - `units`: every unit, in DEPENDENCY ORDER - foundation/data first, then things that depend on them.
   For each unit give its `name`, its `role` (one of: data, interface, component, behavior, gui),
-  `dependsOn` (the names of earlier units it needs; empty for foundations), and `spec` (the source
-  `.spec` filename it came from). Exactly ONE unit should have role behavior or gui as the program
+  `dependsOn` (the names of earlier units it needs; empty for foundations), `spec` (the source
+  `.spec` filename it came from), and `module` (the folder under `src/` the unit belongs in: copy the
+  spec's `module:` line verbatim if it has one, otherwise use `Core` for data/interface/component units;
+  the entry unit's module is ignored). Exactly ONE unit should have role behavior or gui as the program
   entry point (it gets Main); the rest are data/interface/component library files.
 - `contracts`: the canonical shared names/types every unit must agree on. Give the single canonical
   `name` (prefer the name from the spec that DEFINES the thing over one that merely mentions it) and a

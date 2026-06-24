@@ -1,0 +1,12 @@
+{
+  "id": "add_unit.readspec",
+  "kind": "action",
+  "tool": "read_specs",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "ws" },
+    { "from": "specfile", "path": ".", "as": "specfile" }
+  ],
+  "body": { "dir": "{{ ws }}/specs/{{ specfile }}" },
+  "on_success": "add_unit.readproj",
+  "on_failure": "add_unit.fail"
+}

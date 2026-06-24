@@ -1,0 +1,11 @@
+{
+  "id": "generate.make",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "search": "kb", "query": "{{ task }}", "k": 2, "as": "refs", "max_chars": 2000 }
+  ],
+  "on_success": "generate.check",
+  "on_failure": "generate.fail"
+}

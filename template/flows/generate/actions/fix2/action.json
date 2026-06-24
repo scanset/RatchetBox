@@ -1,0 +1,12 @@
+{
+  "id": "generate.fix2",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "generate.recheck", "path": ".", "as": "error" },
+    { "from": "generate.fix", "path": ".", "as": "prev" },
+    { "from": "$input", "path": ".", "as": "task" }
+  ],
+  "on_success": "generate.recheck2",
+  "on_failure": "generate.fail"
+}

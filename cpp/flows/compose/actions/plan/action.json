@@ -1,0 +1,41 @@
+{
+  "$comment": "The thin layer: model infers the build plan (ordered units + canonical contracts) from the messy specs. output_schema forces the shape so plan_units can extract the worklist. No module field - C++ components are flat under src/core.",
+  "id": "compose.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [ { "from": "compose.read", "path": ".", "as": "specs" } ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "units": {
+        "type": "array",
+        "description": "every unit, in dependency order (foundation/data first, dependents later)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string", "enum": ["data", "interface", "component", "behavior", "gui"] },
+            "dependsOn": { "type": "array", "items": { "type": "string" } },
+            "spec": { "type": "string", "description": "the source .spec filename" }
+          },
+          "required": ["name", "role", "dependsOn", "spec"]
+        }
+      },
+      "contracts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "type": { "type": "string" },
+            "normalizedFrom": { "type": "string" }
+          },
+          "required": ["name", "type"]
+        }
+      }
+    },
+    "required": ["units", "contracts"]
+  },
+  "on_success": "compose.worklist",
+  "on_failure": "compose.fail"
+}

@@ -1,0 +1,10 @@
+{
+  "$comment": "The existing unit headers - in C++ the header IS the public API (declarations + inline defs). The authoritative surface the unit must call + #include, vs read_project's full dump. Closes the multi-reference drift.",
+  "id": "add_unit.api",
+  "kind": "action",
+  "tool": "project_api",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "add_unit.generate",
+  "on_failure": "add_unit.generate"
+}

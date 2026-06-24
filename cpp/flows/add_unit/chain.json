@@ -1,0 +1,10 @@
+{
+  "$comment": "add_unit: generate ONE unit of a composed C++ program into the active workspace. Reads its spec (from <ws>/specs/<specfile>) + the existing unit headers (project_api) so it uses prior units' real names/signatures, generates the C++ file (a header-only component or the main.cpp entry), stages it + refreshes the aggregator + builds the WHOLE project (stage_unit, the oracle), repairs up to twice, registers it. Called by the compose foreach: $input = '<targetpath> <specfile>'. proj = $workspace.",
+  "id": "add_unit",
+  "version": "1.0.0",
+  "summary": "Generate one composed C++ unit against the accumulated project, build the whole project with cl, repair twice, register.",
+  "entry": "add_unit.readspec",
+  "inputs": ["path", "specfile"],
+  "budgets": { "max_steps": 12, "max_total_tokens": 22000, "max_wallclock_seconds": 1500 },
+  "nodes": ["add_unit.readspec", "add_unit.readproj", "add_unit.api", "add_unit.generate", "add_unit.build", "add_unit.fix", "add_unit.rebuild", "add_unit.fix2", "add_unit.rebuild2", "add_unit.register", "add_unit.done", "add_unit.fail"]
+}

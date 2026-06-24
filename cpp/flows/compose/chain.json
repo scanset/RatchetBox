@@ -1,0 +1,9 @@
+{
+  "$comment": "compose: build a multi-file C++ program from a directory of .spec files in <ws>/specs. read all specs -> model PLANS the build order + contracts -> extract an ordered worklist -> foreach generates each unit in order (each sees the project so far via project_api headers, so contracts accumulate) -> build the whole project with cl. Run with --ws <project>; specs live in <ws>/specs. proj = $workspace.",
+  "id": "compose",
+  "version": "1.0.0",
+  "summary": "Compose a C++ program from a dir of specs: plan the build order, generate each unit (header-only components + a main.cpp entry) in dependency order against the accumulated project, then build with cl.",
+  "entry": "compose.read",
+  "budgets": { "max_steps": 40, "max_total_tokens": 200000, "max_wallclock_seconds": 4500 },
+  "nodes": ["compose.read", "compose.plan", "compose.worklist", "compose.fan", "compose.build", "compose.done", "compose.fail"]
+}

@@ -1,0 +1,31 @@
+﻿{
+    "name":  "warehouse",
+    "kind":  "console",
+    "created":  "2026-06-24",
+    "entry":  "src/Program.cs",
+    "out":  "dist/warehouse.exe",
+    "rsp":  "response.rsp",
+    "assembly":  "single",
+    "references":  [
+                       "System.dll",
+                       "System.Core.dll"
+                   ],
+    "files":  [
+                  {
+                      "path":  "src/Program.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Core/Item.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Core/Warehouse.cs",
+                      "role":  "composed unit"
+                  },
+                  {
+                      "path":  "src/Core/Picker.cs",
+                      "role":  "composed unit"
+                  }
+              ]
+}

@@ -1,9 +1,0 @@
-{
-  "id": "plan.read",
-  "kind": "action",
-  "tool": "read_specs",
-  "inputs": [ { "from": "$input", "path": ".", "as": "dir" } ],
-  "body": { "dir": "{{ dir }}" },
-  "on_success": "plan.plan",
-  "on_failure": "plan.fail"
-}

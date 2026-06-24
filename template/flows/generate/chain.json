@@ -1,0 +1,9 @@
+{
+  "$comment": "generate: a one-off code snippet (no project). Generate from $input (optionally grounded by the kb), check it with the single-file `check` oracle, repair up to twice. The CHANGE_ME `check` tool is the oracle.",
+  "id": "generate",
+  "version": "1.0.0",
+  "summary": "Generate a self-contained code snippet, check it with the single-file oracle, repair up to twice.",
+  "entry": "generate.make",
+  "budgets": { "max_steps": 12, "max_total_tokens": 16000, "max_wallclock_seconds": 600 },
+  "nodes": ["generate.make", "generate.check", "generate.fix", "generate.recheck", "generate.fix2", "generate.recheck2", "generate.done", "generate.fail"]
+}
