@@ -5,27 +5,34 @@ You are an AI agent working in **RatchetBox**, a collection of *ratchets* for th
 
 ## What this repo is (and is not)
 
-- **Is:** domain data the engine loads - each top-level directory is a ratchet (`ratchet.json` +
-  `flows/`, `tools/`, `kb/`, optionally `schemas/`+`samples/` and `workspaces/`). Pure flows, scripts,
-  knowledge, prompts.
-- **Is not:** the engine. The host binary (`ratchet.exe`), the chain engine, the Oracle mechanism, and
-  the generic verbs live in the separate **Ratchet** repo. Never add engine/C# code here; if a ratchet
-  needs a new capability, add a **flow or tool** to that ratchet, not a host command.
+- **Is:** domain data the engine loads. Ratchets are grouped by the platform their toolchain targets:
+  `Windows/<ratchet>` and `Linux/<ratchet>`. Each ratchet is a directory (`ratchet.json` + `flows/`,
+  `tools/`, `kb/`, optionally `schemas/`+`samples/` and `workspaces/`). Pure flows, scripts, knowledge,
+  prompts.
+- **Is not:** the engine. The host binary (`ratchet` / `ratchet.exe`), the chain engine, the Oracle
+  mechanism, and the generic verbs live in the separate **Ratchet** repo (cross-platform Go). Never add
+  engine code here; if a ratchet needs a new capability, add a **flow or tool** to that ratchet, not a
+  host command.
 
 ## The ratchets
 
-| Dir | `ratchet.json` name | Domain |
-| --- | --- | --- |
-| `dotnet4-x` | `dotnet` | Windows C# / PowerShell, in-box `csc` (C# 5) |
-| `cpp` | `cpp` | C++ with MSVC `cl` (vcvars32; STL + Win32) |
-| `template` | `CHANGE_ME` | empty skeleton to copy |
+| Dir | `ratchet.json` name | Platform | Domain |
+| --- | --- | --- | --- |
+| `Windows/dotnet4-x` | `dotnet` | Windows | C# / PowerShell, in-box `csc` (C# 5) |
+| `Windows/cpp` | `cpp` | Windows | C++ with MSVC `cl` (vcvars32; STL + Win32) |
+| `Windows/template` | `CHANGE_ME` | Windows | empty skeleton to copy (PowerShell-tooled) |
+| `Linux/go` | `go` | Linux / macOS | Go, verified with `go build` (bash oracle; library package) |
+
+A ratchet's platform is decided by its oracle/tools: the Windows ratchets run PowerShell + Windows
+compilers; `Linux/go` runs a bash oracle (`go build`) that works on Linux, WSL, and macOS. The engine
+selects the interpreter per host OS, so a ratchet runs wherever its declared tools exist.
 
 Each ratchet carries its own `README.md` (drive it), `AGENTS.md` (agent orientation - start here), and
 usually `SYSTEM.md` (the operating rules / hard constraints) + `STRUCTURE.md` (the layout). **Read a
 ratchet's `SYSTEM.md` before authoring or generating in it** - it states the language/compiler limits the
-Oracle enforces (e.g. C# 5 for `dotnet`, `/std:c++17` + MSVC for `cpp`). `dotnet4-x` and `cpp` also carry
-a `transcripts/` folder - real end-to-end build transcripts (the fastest way to see what driving the
-ratchet looks like).
+Oracle enforces (e.g. C# 5 for `dotnet`, `/std:c++17` + MSVC for `cpp`, `go build` for `go`).
+`Windows/dotnet4-x` and `Windows/cpp` also carry a `transcripts/` folder - real end-to-end build
+transcripts (the fastest way to see what driving the ratchet looks like).
 
 ## Discover what a ratchet can do (no engine needed - just read the files)
 
@@ -40,8 +47,9 @@ Point yourself at a ratchet's directory; everything you need to drive it is in p
 
 ## Working in a ratchet
 
-- **Run / drive:** `ratchet <this-repo>\<ratchet>` (from a Ratchet checkout). Plain text chats;
-  `/flow`, `/do`, `/search`, `/ws` drive the work. One-shot: `ratchet flow <ratchet> <chain> [input]`.
+- **Run / drive:** `ratchet <this-repo>/<platform>/<ratchet>` (from a Ratchet checkout), e.g.
+  `ratchet ../RatchetBox/Linux/go`. Plain text chats; `/flow`, `/do`, `/search`, `/ws` drive the work.
+  One-shot: `ratchet flow <platform>/<ratchet> <chain> [input]`.
 - **Author a flow:** a chain is a directory `flows/<chain>/` with `chain.json` + `actions/<node>/`
   (`action.json` + `prompt.md`). Node kinds: `action`, `generate` (add `output_schema` for structured
   JSON), `ai_branch`, `summarizer`, `foreach` (sequential sub-chain fan-out, used by `compose`), `exit`.
@@ -49,7 +57,8 @@ Point yourself at a ratchet's directory; everything you need to drive it is in p
 - **Author a tool:** a script in `tools/` declared in `tools/manifest.json` (command, inputSchema,
   optional `stdin`, timeout). The exit code is the Oracle verdict.
 - **Compose a system:** drop `.spec` files in `<ws>/specs/` and run `ratchet flow <ratchet> compose
-  --ws <project> ""`. The `dotnet4-x` and `cpp` ratchets implement it; the `template` ships it as stubs.
+  --ws <project> ""`. The `Windows/dotnet4-x` and `Windows/cpp` ratchets implement it; `Windows/template`
+  ships it as stubs.
 - **Knowledge:** one topic per markdown file under `kb/<lib>/`; `ratchet index <ratchet>\kb` builds the
   manifest. Register libraries in `ratchet.json` `knowledgeBases[]`.
 
