@@ -101,7 +101,27 @@ Ordered by leverage:
 Reuse the existing unrolled-repair shape (generate -> verify -> done | fix -> reverify -> done | fail)
 so chains lint clean and terminate; no cycles.
 
-## 3. Knowledge bases - split the one file into routed libraries
+## 3. Knowledge bases - cpp-style ingested libraries
+
+PROGRESS (2026-06-25): adopted the cpp multi-library model (one `kb/<lib>/` per source, each
+registered separately and indexed to its own manifest), not the single recursive KB. Shipped:
+
+- `tools/kb_ingest_godoc.sh` - deterministic, offline, no-model ingest of the Go standard library via
+  `go doc -all`, one markdown per package. The Go analog of cpp's `cppref` ingest; `go doc` generates
+  it locally so there is nothing to scrape and it matches the installed toolchain.
+- `kb/stdlib/` - 176 package reference files (2.7 MB), registered as the `stdlib` KB, indexed (176
+  manifest entries). Retrieval verified: `/search stdlib <heap query>` routes to `container/heap` and
+  grounds a correct `heap.Interface` priority queue - the exact API run 10 got wrong.
+- `kb/idioms/` - the former single `go-idioms.md`, now its own library (the `kb` default), so the
+  default KB no longer sits at the kb root and does not absorb `stdlib`.
+- `kb/README.md` - the library index (sources, build commands, how to add one).
+
+REMAINING libraries (the routed taxonomy below). Author `patterns/` + `pitfalls/` from the run
+evidence first (cheap, high-signal); `guidelines/` + `spec/` are split-ingests of external text
+(Effective Go, Code Review Comments, Go Proverbs, the language spec) - confirm sourcing before fetch.
+Wiring flows to search `stdlib` (and plan-routing across libraries, cpp-style) is its own step.
+
+### The routed taxonomy
 
 `kb/go-idioms.md` is a single entry today, so routing has almost nothing to discriminate on. Mirror
 the dotnet `reference/patterns/recipes/scaffold/snippets` taxonomy, Go-flavored, one topic per file
