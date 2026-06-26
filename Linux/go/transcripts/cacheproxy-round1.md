@@ -247,3 +247,26 @@ Two findings (the point of the probe):
    failure, like the bump tool does.
 
 State after probe: workspace cacheproxy does not build (fetcher.go updated, callers not).
+
+## Round 2 - PAUSED (good evidence captured)
+
+The context-propagation probe + coedit experiments are paused here. Findings worth keeping:
+
+1. coedit (multi-file transactional edit) works: it staged the file set, verified the WHOLE module
+   (go vet + go test -race), and ROLLED BACK every file on failure - 3 times, cleanly. The capability
+   is sound.
+2. The small model whack-a-moled imports across a 6-file change under a single repair budget (each
+   attempt a different one-line import slip). coedit likely needs: a gofmt/goimports auto-fix pass and/
+   or a second repair round for large change-sets.
+3. edit_file has no rollback - the earlier single-file probe left fetcher.go rewritten on failure.
+   edit_file/stage_check should snapshot+restore the target like bump/stage_files do.
+4. BIGGEST LESSON: a green gate verifies "builds + tests pass", NOT "the contract you intended". The
+   increment-2 "sharded cache (keep Get/Set)" actually drifted to Get->string + Put(...,ttl) (TTL, a
+   deferred feature, crept in) and stayed green because callers/tests moved with it. Driving on I/O-only
+   hid the drift. Takeaway: for contract-sensitive edits, inspect, or add a contract-pinning check, or
+   at least flag "gate green but intent unverified".
+
+State: workspace cacheproxy is left inconsistent (proxy.go []byte vs cache.Put(string); Fetch ctx not
+threaded). Round 1 + R2 increments 1-3 (HTTP server, sharded cache, benchmarks) all passed their gates;
+the inconsistency is from the paused context probe. To resume: reconcile via coedit over ALL files
+(incl. cache.go), deciding whether to keep or strip the accidental TTL.
