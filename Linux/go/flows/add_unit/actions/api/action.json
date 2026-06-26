@@ -1,0 +1,10 @@
+{
+  "$comment": "The exact existing API (type/func/method signatures) of every unit built so far - the authoritative surface this unit must call verbatim. on_failure still proceeds to generate (grounding, not a gate).",
+  "id": "add_unit.api",
+  "kind": "action",
+  "tool": "module_api",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "add_unit.generate",
+  "on_failure": "add_unit.generate"
+}

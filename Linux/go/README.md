@@ -25,11 +25,16 @@ ratchet <path-to>/go                              # operator console; then: /flo
 ```
 
 ## The two flows
-- **`go`** - generate -> `go build` -> repair once. Verifies the code *type-checks* (library package).
-- **`test`** - generate an implementation AND a test -> `go vet` + `go test` -> repair once. Verifies
-  *behavior*, not just that it compiles. This is what `go build` alone cannot do; it is the headline of
-  this ratchet. The generate step emits two marker-separated files (`// === solution.go ===` and
-  `// === solution_test.go ===`) that the oracle splits and runs.
+Both open with a **plan** step (cpp-style plan-routing): the model emits one search query per knowledge
+library (`stdlib`, `patterns`, `idioms`), an empty query skips that library, and the generate step is
+grounded only on the libraries the task actually needs - so a heap task pulls `container/heap` while a
+FizzBuzz pulls nothing.
+
+- **`go`** - plan -> generate -> `go build` -> repair once. Verifies the code *type-checks* (library package).
+- **`test`** - plan -> generate an implementation AND a test -> `go vet` + `go test` -> repair once.
+  Verifies *behavior*, not just that it compiles. This is what `go build` alone cannot do; it is the
+  headline of this ratchet. The generate step emits two marker-separated files (`// === solution.go ===`
+  and `// === solution_test.go ===`) that the oracle splits and runs.
 
 ## The oracles (tools)
 - `go_build` (`tools/go_check.sh`) - reads a Go file on stdin and runs `go build` as a library package

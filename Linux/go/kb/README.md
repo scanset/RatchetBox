@@ -11,7 +11,7 @@ ground on a library via a `search`/`ref` input binding; `/search <lib> <query>` 
 |---|---|---|---|---|
 | `idioms/`  | `kb` (default) | hand-written Go idioms for buildable code | author | seed |
 | `stdlib/`  | `stdlib`       | the Go standard library API reference (176 packages) | `tools/kb_ingest_godoc.sh` (offline `go doc -all`) | built |
-| `patterns/`  | (planned) | curated complete Go units (worker pool, two-heap median, table-driven test, ...) | author + evidence | planned |
+| `patterns/`| `patterns`     | the 23 GoF design patterns in compiling Go (impl + runnable example) | `tools/kb_ingest_patterns.sh` (from a Category/Pattern repo) | built |
 | `pitfalls/`  | (planned) | builds-but-wrong traps (unused imports, loop-var capture, nil-map write) | evidence from `runs/` | planned |
 | `guidelines/`| (planned) | Effective Go / Code Review Comments / Go Proverbs, split by heading | ingest (split) | planned |
 | `spec/`      | (planned) | the Go language spec, split by section | ingest (split) | planned |
@@ -23,8 +23,10 @@ version. Regenerate after a toolchain upgrade.
 ## Build / rebuild
 
 ```
-tools/kb_ingest_godoc.sh kb/stdlib     # (re)generate the stdlib library, offline, deterministic
-ratchet index kb/stdlib                # (re)build its routing manifest (run after any kb/<lib> edit)
+tools/kb_ingest_godoc.sh kb/stdlib                    # (re)generate stdlib, offline, deterministic
+tools/kb_ingest_patterns.sh <patterns-repo> kb/patterns   # (re)generate the design-patterns library
+ratchet index kb/stdlib                # (re)build a library's routing manifest (after any kb/<lib> edit)
+ratchet index kb/patterns
 ratchet index kb/idioms
 ```
 

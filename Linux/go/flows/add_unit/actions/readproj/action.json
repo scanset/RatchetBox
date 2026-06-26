@@ -1,0 +1,9 @@
+{
+  "id": "add_unit.readproj",
+  "kind": "action",
+  "tool": "read_module",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "add_unit.api",
+  "on_failure": "add_unit.fail"
+}

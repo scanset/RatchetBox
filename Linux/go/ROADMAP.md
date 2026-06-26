@@ -115,11 +115,24 @@ registered separately and indexed to its own manifest), not the single recursive
 - `kb/idioms/` - the former single `go-idioms.md`, now its own library (the `kb` default), so the
   default KB no longer sits at the kb root and does not absorb `stdlib`.
 - `kb/README.md` - the library index (sources, build commands, how to add one).
+- `tools/kb_ingest_patterns.sh` + `kb/patterns/` - the 23 GoF design patterns in compiling Go (impl +
+  runnable example per pattern), ingested from a Category/Pattern repo (the Go analog of cpp's
+  `ingest-md.ps1 -Mode patterns`). Registered as the `patterns` KB, indexed (23 entries; keywords pulled
+  from the fenced Go code). Retrieval verified: a "notify many subscribers" query routes to
+  `behavioral_observer.md`.
 
-REMAINING libraries (the routed taxonomy below). Author `patterns/` + `pitfalls/` from the run
-evidence first (cheap, high-signal); `guidelines/` + `spec/` are split-ingests of external text
-(Effective Go, Code Review Comments, Go Proverbs, the language spec) - confirm sourcing before fetch.
-Wiring flows to search `stdlib` (and plan-routing across libraries, cpp-style) is its own step.
+WIRED (2026-06-25): both flows (`go`, `test`) now open with a `plan` node (cpp-style plan-routing) -
+the model emits one search query per library (`stdlib_q`/`patterns_q`/`idioms_q`), an empty query is
+skipped, and `generate` routes each non-empty query into that library's `search`. Verified live: the
+run-10 heap task now plans `stdlib_q="container/heap"` (patterns skipped), the `container/heap` doc
+reaches the prompt, and the task PASSES (it failed even after repair pre-grounding); the `go` flow
+plans `stdlib_q="encoding/json Marshal"` for a JSON task. On a malformed plan, the node routes to
+`generate` and proceeds ungrounded (never aborts).
+
+REMAINING libraries (the routed taxonomy below). Author `patterns/` (done - 23 ingested) is in; add
+`pitfalls/` from the run evidence next (cheap, high-signal); `guidelines/` + `spec/` are split-ingests
+of external text (Effective Go, Code Review Comments, Go Proverbs, the language spec) - confirm
+sourcing before fetch. Re-running the phase-2 batch now (with grounding on) would quantify the lift.
 
 ### The routed taxonomy
 
@@ -157,7 +170,17 @@ per oracle for native Windows; it is not in scope for the phases below and shoul
    split them into standalone oracle nodes later only if the run evidence shows it helps attribution.
 2. Split + grow the KB into the routed taxonomy.
 3. Project lifecycle (`new_project` -> `add_file` / `edit_file`).
-4. `compose` from specs.
+4. DONE (2026-06-25) - `compose` from specs. Shipped 8 Go-native tools (`new_module`, `read_specs`,
+   `module_api`, `stage_build`, `read_module`, `plan_units`, `register_file`, `module_check`) + the
+   `add_unit` and `compose` flows. Go-native simplifications over the C# version: every unit shares
+   `package main` at the module root (no cross-imports - the analog of "everything in namespace App");
+   `module_api` is grep over `^type|^func` (no parser); the per-unit oracle is `go vet ./...`
+   (type-checks without linking, so intermediate units pass before the entry's `func main` is staged);
+   the final `module_check` is `go build ./...` + `go test ./...`, so composition is BEHAVIOR-verified
+   (stronger than the C# compose, which only gates compilation). Plan-routing wired into `add_unit`
+   too (stdlib + patterns keyed on the spec). Verified end to end: the 3-spec `ledger` module composed,
+   built, and its concurrent `TestCounter` (50 goroutines x 100 = 5000) passed under `go test`. Full
+   transcript: `transcripts/phase2-grounded-and-compose.md`.
 5. `.ps1` oracle siblings for native Windows parity.
 
 ## Open decisions (settle before building each phase)

@@ -10,8 +10,9 @@
   "ollama_url": "http://localhost:11434",
   "router": { "autorun": "confirm" },
   "knowledgeBases": [
-    { "name": "kb",     "path": "kb/idioms", "default": true },
-    { "name": "stdlib", "path": "kb/stdlib" }
+    { "name": "kb",       "path": "kb/idioms", "default": true },
+    { "name": "stdlib",   "path": "kb/stdlib" },
+    { "name": "patterns", "path": "kb/patterns" }
   ],
   "requirements": [
     { "name": "go toolchain",   "exe": "go", "hint": "install Go (https://go.dev/dl) and put it on PATH" },
@@ -19,7 +20,8 @@
     { "name": "model generate", "model": "qwen3-coder:latest", "hint": "ollama pull qwen3-coder" },
     { "name": "model embed",    "model": "nomic-embed-text", "hint": "ollama pull nomic-embed-text" },
     { "name": "KB kb",          "kb": "kb" },
-    { "name": "KB stdlib",      "kb": "stdlib" }
+    { "name": "KB stdlib",      "kb": "stdlib" },
+    { "name": "KB patterns",    "kb": "patterns" }
   ]
 }
  

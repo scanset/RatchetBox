@@ -31,6 +31,64 @@
       "script": "tools/doctor_go.sh",
       "inputSchema": { "type": "object", "properties": {} },
       "timeout": 30
+    },
+    {
+      "name": "new_module",
+      "description": "Scaffold a Go module workspace for composition under workspaces/<name> (go.mod, PROJECT.md, specs/). Every composed unit is a file in `package main` at the module root. Arg: spec = the module name. Then drop .spec files in workspaces/<name>/specs and run `compose --ws <name>`.",
+      "command": ["bash", "tools/new_module.sh", "{spec}"],
+      "inputSchema": { "type": "object", "properties": { "spec": { "type": "string", "description": "module/workspace name" } }, "required": ["spec"] },
+      "timeout": 30
+    },
+    {
+      "name": "read_specs",
+      "description": "Read every .spec file in a directory (or one .spec file) and print contents labeled by filename, for compose's plan step and add_unit's per-unit read. Arg: dir-or-file (workspace-relative paths resolve under workspaces/).",
+      "command": ["bash", "tools/read_specs.sh", "{dir}"],
+      "inputSchema": { "type": "object", "properties": { "dir": { "type": "string" } }, "required": ["dir"] },
+      "timeout": 30
+    },
+    {
+      "name": "module_api",
+      "description": "Emit the existing API surface of a composed module: every top-level type/func and method declaration in its .go files, labeled by file - the authoritative names a new unit must call verbatim. Arg: proj (workspace name).",
+      "command": ["bash", "tools/module_api.sh", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "read_module",
+      "description": "Show a composed module's state for grounding: PROJECT.md, go.mod, and the .go file tree. Arg: proj (workspace name).",
+      "command": ["bash", "tools/read_module.sh", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 30
+    },
+    {
+      "name": "stage_build",
+      "description": "Compose per-unit oracle: write a generated Go file into a module workspace and build the WHOLE module (go build ./...). Exit 0 iff the whole module compiles. Args: proj, path; the Go source on stdin.",
+      "command": ["bash", "tools/stage_build.sh", "{proj}", "{path}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string", "description": "target file under the module, e.g. main.go or warehouse.go" }, "code": { "type": "string", "description": "complete Go source" } }, "required": ["proj", "path", "code"] },
+      "stdin": "code",
+      "timeout": 120
+    },
+    {
+      "name": "plan_units",
+      "description": "Turn a compose build-plan JSON (on stdin) into the foreach worklist: one line per unit in dependency order, '<targetpath> <specfile>'. Entry (role behavior/gui) -> main.go; others -> <name>.go at the module root.",
+      "command": ["bash", "tools/plan_units.sh"],
+      "inputSchema": { "type": "object", "properties": { "plan": { "type": "string" } }, "required": ["plan"] },
+      "stdin": "plan",
+      "timeout": 20
+    },
+    {
+      "name": "register_file",
+      "description": "Record a composed unit in the module's PROJECT.md changelog (idempotent, best-effort, always exits 0). Args: proj, path, role.",
+      "command": ["bash", "tools/register_file.sh", "{proj}", "{path}", "{role}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" }, "path": { "type": "string" }, "role": { "type": "string" } }, "required": ["proj", "path", "role"] },
+      "timeout": 20
+    },
+    {
+      "name": "module_check",
+      "description": "Whole-module FINAL oracle for compose: go build ./... then go test ./... over the entire module. Exit 0 iff both pass (behavior, not just compilation). Arg: proj.",
+      "command": ["bash", "tools/module_check.sh", "{proj}"],
+      "inputSchema": { "type": "object", "properties": { "proj": { "type": "string" } }, "required": ["proj"] },
+      "timeout": 150
     }
   ]
 }

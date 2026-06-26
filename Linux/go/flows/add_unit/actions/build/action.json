@@ -1,0 +1,14 @@
+{
+  "$comment": "The oracle: stage the generated file into the module and build the WHOLE module (go build ./...). Failure -> one repair.",
+  "id": "add_unit.build",
+  "kind": "action",
+  "tool": "stage_build",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "add_unit.generate", "path": ".", "as": "code" }
+  ],
+  "body": { "proj": "{{ proj }}", "path": "{{ path }}", "code": "{{ code }}" },
+  "on_success": "add_unit.register",
+  "on_failure": "add_unit.fix"
+}

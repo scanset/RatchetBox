@@ -1,0 +1,10 @@
+{
+  "$comment": "The whole-module final oracle: go build ./... + go test ./... over the entire composed module (behavior, not just compilation).",
+  "id": "compose.build",
+  "kind": "action",
+  "tool": "module_check",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "compose.done",
+  "on_failure": "compose.fail"
+}

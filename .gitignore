@@ -1,6 +1,11 @@
 # Ratchet run-state - a fresh runs/ is written under every ratchet on each flow run. Never source.
 runs/
 
+# Search-index cache - regenerated on first /search of a KB (fingerprint-invalidated). Not source.
+# Note: the cpp/dotnet ratchets still commit theirs (already tracked) so a fresh clone searches
+# instantly; this rule keeps newly built caches (e.g. Linux/go) out of git.
+**/.index/
+
 # Built project artifacts under a ratchet's workspaces/ (project source is kept; binaries are not).
 **/workspaces/*/dist/
 **/workspaces/*/obj/
@@ -9,3 +14,4 @@ runs/
 Thumbs.db
 desktop.ini
 .DS_Store
+.claude/

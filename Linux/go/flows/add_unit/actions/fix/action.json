@@ -1,0 +1,15 @@
+{
+  "$comment": "Repair: regenerate the unit given the whole-module build errors + the existing API + the previous attempt. Bounded - one fix, then rebuild.",
+  "id": "add_unit.fix",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "add_unit.readspec", "path": ".", "as": "spec" },
+    { "from": "add_unit.api", "path": ".", "as": "api" },
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "add_unit.generate", "path": ".", "as": "prev", "max_chars": 5000 },
+    { "from": "add_unit.build", "path": ".", "as": "errors", "max_chars": 2500 }
+  ],
+  "on_success": "add_unit.rebuild",
+  "on_failure": "add_unit.fail"
+}

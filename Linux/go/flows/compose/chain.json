@@ -1,0 +1,9 @@
+{
+  "$comment": "compose: build a multi-file Go module from a directory of .spec files in <ws>/specs. read all specs -> model PLANS the build order + canonical contracts -> extract an ordered worklist -> foreach generates each unit in dependency order against the module so far (contracts accumulate; module_api keeps names exact) -> build AND test the whole module. Run with --ws <project>; scaffold it first via `/do new_module <project>` and drop specs in workspaces/<project>/specs. proj = $workspace.",
+  "id": "compose",
+  "version": "1.0.0",
+  "summary": "Compose a Go module from a dir of specs: plan the build order, generate each unit in dependency order against the accumulated module, then build and test the whole thing.",
+  "entry": "compose.read",
+  "budgets": { "max_steps": 50, "max_total_tokens": 220000, "max_wallclock_seconds": 4000 },
+  "nodes": ["compose.read", "compose.plan", "compose.worklist", "compose.fan", "compose.build", "compose.done", "compose.fail"]
+}

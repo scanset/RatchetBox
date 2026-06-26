@@ -22,5 +22,16 @@ Rules:
 ## Task
 {{ task }}
 
-## Reference material (from the knowledge base)
+## Reference material (only the libraries the task needed were retrieved; sections may be empty)
+
+### Go standard library
+{{ stdlib_refs }}
+
+### Design pattern
+{{ pattern_refs }}
+
+### Go idioms
 {{ refs }}
+
+Use the reference above when it is relevant; ignore an empty section. Prefer the exact signatures and
+identifiers shown over recalled ones.

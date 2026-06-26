@@ -1,0 +1,13 @@
+{
+  "id": "add_unit.rebuild",
+  "kind": "action",
+  "tool": "stage_build",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "path", "path": ".", "as": "path" },
+    { "from": "add_unit.fix", "path": ".", "as": "code" }
+  ],
+  "body": { "proj": "{{ proj }}", "path": "{{ path }}", "code": "{{ code }}" },
+  "on_success": "add_unit.register",
+  "on_failure": "add_unit.fail"
+}

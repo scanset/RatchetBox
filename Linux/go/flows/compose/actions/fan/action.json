@@ -1,0 +1,11 @@
+{
+  "$comment": "Fan out over the ordered worklist: run add_unit once per unit, in dependency order (foreach is sequential), each generating against the module built so far. Succeeds only if every unit builds.",
+  "id": "compose.fan",
+  "kind": "foreach",
+  "inputs": [ { "from": "compose.worklist", "path": ".", "as": "units" } ],
+  "over": "units",
+  "flow": "add_unit",
+  "input": "{{ item }}",
+  "on_success": "compose.build",
+  "on_failure": "compose.fail"
+}

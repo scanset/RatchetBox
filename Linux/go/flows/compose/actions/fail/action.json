@@ -1,0 +1,1 @@
+{ "id": "compose.fail", "kind": "exit", "outcome": "aborted: could not plan, a unit did not build, or the module failed build/test" }

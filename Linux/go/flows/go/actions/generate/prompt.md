@@ -9,7 +9,18 @@ Write a COMPLETE Go source file for the task below. It must type-check under `go
 ## Task
 {{ task }}
 
-## Reference material (from the knowledge base)
+## Reference material (only the libraries the task needed were retrieved; sections may be empty)
+
+### Go standard library
+{{ stdlib_refs }}
+
+### Design pattern
+{{ pattern_refs }}
+
+### Go idioms
 {{ refs }}
+
+Use the reference above when it is relevant; ignore an empty section. Prefer the exact signatures and
+identifiers shown over recalled ones.
 
 Output ONLY the Go source - no prose, no markdown fences.

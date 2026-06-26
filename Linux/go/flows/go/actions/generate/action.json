@@ -1,10 +1,16 @@
 {
+  "$comment": "Generate one complete Go file, grounded on the libraries the plan node chose. Each `from: go.plan` binding exposes a planned query; the `search` binding right after it routes that query into the library and an empty query is skipped (so only chosen libraries are consulted).",
   "id": "go.generate",
   "kind": "generate",
   "prompt": "./prompt.md",
   "inputs": [
     { "from": "$input", "path": ".", "as": "task" },
-    { "search": "kb", "query": "{{ task }}", "k": 2, "as": "refs", "max_chars": 2000 }
+    { "from": "go.plan", "path": "stdlib_q", "as": "stdlib_q" },
+    { "search": "stdlib", "query": "{{ stdlib_q }}", "k": 2, "as": "stdlib_refs", "max_chars": 3000 },
+    { "from": "go.plan", "path": "patterns_q", "as": "patterns_q" },
+    { "search": "patterns", "query": "{{ patterns_q }}", "k": 1, "as": "pattern_refs", "max_chars": 3000 },
+    { "from": "go.plan", "path": "idioms_q", "as": "idioms_q" },
+    { "search": "kb", "query": "{{ idioms_q }}", "k": 1, "as": "refs", "max_chars": 1500 }
   ],
   "on_success": "go.build",
   "on_failure": "go.fail"

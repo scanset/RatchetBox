@@ -1,0 +1,20 @@
+{
+  "$comment": "Plan-routing (cpp-style): the model emits one search query per knowledge library, or an empty string to skip it. go.generate routes each non-empty query into that library's search. On a malformed plan, proceed to generate ungrounded rather than abort.",
+  "id": "go.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "stdlib_q":   { "type": "string", "description": "a Go standard-library package/symbol query, or empty" },
+      "patterns_q": { "type": "string", "description": "a GoF design-pattern query, or empty" },
+      "idioms_q":   { "type": "string", "description": "a Go-idioms query, or empty" }
+    },
+    "required": ["stdlib_q", "patterns_q", "idioms_q"]
+  },
+  "on_success": "go.generate",
+  "on_failure": "go.generate"
+}
