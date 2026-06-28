@@ -11,7 +11,7 @@
         "atomic",
         "field",
         "int64",
-        "processed",
+        "process",
         "dispatcher",
         "alignment",
         "first",
@@ -26,12 +26,28 @@
       "keywords": [
         "channel",
         "send",
-        "close",
+        "goroutine",
         "receive",
-        "unbuffered",
-        "chan",
-        "closed",
-        "goroutines"
+        "clos",
+        "close",
+        "unbuffer",
+        "block"
+      ]
+    },
+    {
+      "id": "converting-integers-to-strings-with-string",
+      "title": "Pitfall: converting integers to strings with string()",
+      "path": "converting-integers-to-strings-with-string.md",
+      "summary": "Go ACCEPTS `string(n)` and `string(rune(n))` but produces the wrong result: the Unicode code point for that value, not its decimal text. This silently corrupts generated keys/ids/values at runtime.",
+      "keywords": [
+        "yield",
+        "decimal",
+        "itoa",
+        "produce",
+        "rune",
+        "strconv",
+        "text",
+        "wrong"
       ]
     },
     {
@@ -43,11 +59,27 @@
         "loop",
         "variable",
         "closure",
-        "func",
         "goroutine",
-        "items",
+        "item",
+        "func",
         "iteration",
         "process"
+      ]
+    },
+    {
+      "id": "mutating-under-rlock",
+      "title": "Pitfall: mutating under RLock",
+      "path": "mutating-under-rlock.md",
+      "summary": "Acquiring only a read lock (RLock) on a sync.RWMutex and then mutating shared state like a map",
+      "keywords": [
+        "rlock",
+        "lock",
+        "return",
+        "under",
+        "defer",
+        "delete",
+        "race",
+        "runlock"
       ]
     },
     {
@@ -56,14 +88,14 @@
       "path": "nil-map-write.md",
       "summary": "A nil map reads fine (returns zero values) but PANICS on write at runtime - `go build` accepts it; the",
       "keywords": [
-        "string",
+        "count",
         "counter",
-        "counts",
         "initialize",
-        "make",
         "panic",
+        "make",
         "build",
-        "constructor"
+        "constructor",
+        "field"
       ]
     },
     {
@@ -73,13 +105,13 @@
       "summary": "Go REJECTS redeclaration of any top-level name (like `func main`) when adding a new file to an existing package — this causes a compile error at build time because all top-level declarations must be",
       "keywords": [
         "main",
-        "package",
         "func",
+        "package",
         "level",
+        "file",
+        "name",
         "println",
-        "across",
-        "adding",
-        "already"
+        "across"
       ]
     },
     {
@@ -89,13 +121,13 @@
       "summary": "A slice is a view (pointer, len, cap) over a backing array. Slices that share a backing array alias",
       "keywords": [
         "append",
-        "array",
-        "backing",
         "slice",
+        "array",
+        "back",
         "base",
         "copy",
-        "shares",
-        "storage"
+        "share",
+        "overwrite"
       ]
     },
     {
@@ -105,13 +137,13 @@
       "summary": "Go REJECTS non-declaration statements at package scope - `go build` fails with a syntax error because only declarations (var, const, type, func) are allowed at package level; statements like assignmen",
       "keywords": [
         "package",
+        "declaration",
         "function",
+        "statement",
         "level",
-        "allowed",
-        "declarations",
+        "allow",
         "func",
-        "inside",
-        "main"
+        "inside"
       ]
     },
     {
@@ -123,11 +155,11 @@
         "import",
         "name",
         "only",
-        "string",
         "local",
         "never",
         "return",
-        "strconv"
+        "strconv",
+        "unus"
       ]
     }
   ]

@@ -621,6 +621,72 @@
       },
       "stdin": "code",
       "timeout": 150
+    },
+    {
+      "name": "kb_catalog",
+      "description": "Generate kb/catalog.json, the high-level KB routing catalog (one entry per knowledge library: name, path, doc-count, default, one-line subject summary) that the search-time route walk reads. Structure is regenerated from ratchet.json + each manifest (cannot drift); authored summaries are preserved. Modes via {mode}: empty=write, --list=print 'name: summary' lines for a plan prompt, --check=exit 1 if stale or any summary empty.",
+      "command": [
+        "bash",
+        "tools/kb_catalog.sh",
+        "{mode}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "description": "empty | --list | --check"
+          }
+        }
+      },
+      "timeout": 30
+    },
+    {
+      "name": "route_score",
+      "description": "Deterministic oracle for model-driven KB routing: given the task as {query} and the planner's KB selections (JSON on stdin, or KB names as extra args), score each pick's grounding against its catalog summary + manifest keywords and check coverage (a discriminating query term held by an unpicked KB = a dropped-relevant-branch). Exit 0 if picks are plausible and coverage is complete; exit 1 to make the engine widen/backtrack (re-plan).",
+      "command": [
+        "bash",
+        "tools/route_score.sh",
+        "{query}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "plan": {
+            "type": "string",
+            "description": "planner JSON: {\"selections\":[{\"kb\":\"...\",\"query\":\"...\"}]}"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "stdin": "plan",
+      "timeout": 30
+    },
+    {
+      "name": "pack_refs",
+      "description": "Assemble the route flow's retrieved grounding (sentinel-marked <<<kb>>> sections on stdin) into a clean context pack, dropping empty sections. The output of route: a verified, grounded context.",
+      "command": [
+        "bash",
+        "tools/pack_refs.sh"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pack": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "pack"
+        ]
+      },
+      "stdin": "pack",
+      "timeout": 20
     }
   ]
 }

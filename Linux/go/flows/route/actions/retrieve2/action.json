@@ -1,0 +1,20 @@
+{
+  "$comment": "Same as route.retrieve, but on the repair path: consumes the CORRECTED selections from route.fix (the re-plan the oracle accepted), not the rejected route.plan.",
+  "id": "route.retrieve2",
+  "kind": "action",
+  "tool": "pack_refs",
+  "inputs": [
+    { "from": "route.fix", "path": "selections/0/kb", "as": "kb1" },
+    { "from": "route.fix", "path": "selections/0/query", "as": "q1" },
+    { "from": "route.fix", "path": "selections/1/kb", "as": "kb2" },
+    { "from": "route.fix", "path": "selections/1/query", "as": "q2" },
+    { "from": "route.fix", "path": "selections/2/kb", "as": "kb3" },
+    { "from": "route.fix", "path": "selections/2/query", "as": "q3" },
+    { "search": "{{ kb1 }}", "query": "{{ q1 }}", "k": 2, "as": "refs1", "max_chars": 2000 },
+    { "search": "{{ kb2 }}", "query": "{{ q2 }}", "k": 2, "as": "refs2", "max_chars": 2000 },
+    { "search": "{{ kb3 }}", "query": "{{ q3 }}", "k": 2, "as": "refs3", "max_chars": 2000 }
+  ],
+  "body": { "pack": "<<<{{ kb1 }}>>>\n{{ refs1 }}\n<<<{{ kb2 }}>>>\n{{ refs2 }}\n<<<{{ kb3 }}>>>\n{{ refs3 }}" },
+  "on_success": "route.done",
+  "on_failure": "route.fail"
+}

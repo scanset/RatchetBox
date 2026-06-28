@@ -1,0 +1,31 @@
+{
+  "$comment": "Re-plan: the oracle rejected the picks (groundless, hallucinated, or a relevant KB missed). Correct the selection using the oracle's exact feedback.",
+  "id": "route.fix",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "route.catalog", "path": ".", "as": "catalog" },
+    { "from": "route.plan", "path": ".", "as": "prev" },
+    { "from": "route.gate", "path": ".", "as": "verdict" }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "selections": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kb": { "type": "string", "description": "a KB name EXACTLY as in the catalog" },
+            "query": { "type": "string", "description": "a focused search query for that KB" }
+          },
+          "required": ["kb", "query"]
+        }
+      }
+    },
+    "required": ["selections"]
+  },
+  "on_success": "route.regate",
+  "on_failure": "route.fail"
+}

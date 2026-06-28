@@ -4,14 +4,69 @@
   "kind": "generate",
   "prompt": "./prompt.md",
   "inputs": [
-    { "from": "request", "path": ".", "as": "request" },
-    { "from": "path", "path": ".", "as": "path" },
-    { "from": "add_file.api", "path": ".", "as": "api" },
-    { "from": "add_file.readproj", "path": ".", "as": "project", "max_chars": 5000 },
-    { "search": "stdlib", "query": "{{ request }}", "k": 1, "as": "stdlib_refs", "max_chars": 2500 },
-    { "search": "patterns", "query": "{{ request }}", "k": 1, "as": "pattern_refs", "max_chars": 2500 },
-    { "search": "pitfalls", "query": "{{ request }}", "k": 1, "as": "pitfall_refs", "max_chars": 2000 },
-    { "search": "deps", "query": "{{ request }}", "k": 1, "as": "dep_refs", "max_chars": 2500 }
+    {
+      "from": "request",
+      "path": ".",
+      "as": "request"
+    },
+    {
+      "from": "path",
+      "path": ".",
+      "as": "path"
+    },
+    {
+      "from": "add_file.api",
+      "path": ".",
+      "as": "api"
+    },
+    {
+      "from": "add_file.readproj",
+      "path": ".",
+      "as": "project",
+      "max_chars": 5000
+    },
+    {
+      "search": "stdlib",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "stdlib_refs",
+      "max_chars": 2500
+    },
+    {
+      "search": "patterns",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "pattern_refs",
+      "max_chars": 2500
+    },
+    {
+      "search": "pitfalls",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "pitfall_refs",
+      "max_chars": 2000
+    },
+    {
+      "search": "deps",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "dep_refs",
+      "max_chars": 2500
+    },
+    {
+      "search": "concurrency",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "concurrency_refs",
+      "max_chars": 2500
+    },
+    {
+      "search": "cache",
+      "query": "{{ request }}",
+      "k": 1,
+      "as": "cache_refs",
+      "max_chars": 2500
+    }
   ],
   "on_success": "add_file.check",
   "on_failure": "add_file.fail"

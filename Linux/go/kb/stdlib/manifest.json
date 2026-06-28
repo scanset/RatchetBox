@@ -8,14 +8,14 @@
       "path": "archive_tar.md",
       "summary": "Package tar implements access to tar archives.",
       "keywords": [
-        "header",
-        "format",
         "file",
-        "writer",
+        "format",
+        "header",
         "archive",
-        "name",
-        "next",
-        "error"
+        "writer",
+        "error",
+        "type",
+        "name"
       ]
     },
     {
@@ -28,9 +28,9 @@
         "writer",
         "func",
         "error",
-        "fileheader",
         "name",
-        "reader",
+        "return",
+        "fileheader",
         "method"
       ]
     },
@@ -40,14 +40,14 @@
       "path": "bufio.md",
       "summary": "Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer",
       "keywords": [
-        "reader",
+        "return",
         "error",
-        "returns",
-        "func",
-        "scanner",
-        "writer",
+        "reader",
+        "byte",
         "buffer",
-        "byte"
+        "scanner",
+        "func",
+        "writer"
       ]
     },
     {
@@ -57,13 +57,13 @@
       "summary": "Package bytes implements functions for the manipulation of byte slices. It is",
       "keywords": [
         "byte",
+        "return",
         "buffer",
         "func",
-        "returns",
         "slice",
-        "bytes",
+        "subslice",
         "error",
-        "code"
+        "read"
       ]
     },
     {
@@ -72,14 +72,14 @@
       "path": "cmp.md",
       "summary": "Package cmp provides types and functions related to comparing ordered values.",
       "keywords": [
-        "ordered",
-        "less",
-        "types",
-        "compare",
-        "equal",
+        "type",
+        "order",
         "value",
-        "values",
-        "comparing"
+        "less",
+        "equal",
+        "compare",
+        "function",
+        "compar"
       ]
     },
     {
@@ -91,11 +91,11 @@
         "bzip2",
         "compress",
         "data",
+        "implement",
         "package",
         "reader",
         "structuralerror",
-        "decompression",
-        "func"
+        "decompression"
       ]
     },
     {
@@ -107,10 +107,10 @@
         "error",
         "writer",
         "data",
+        "compress",
+        "return",
         "reader",
         "func",
-        "returned",
-        "compressed",
         "level"
       ]
     },
@@ -124,10 +124,10 @@
         "gzip",
         "writer",
         "data",
-        "header",
-        "close",
-        "error",
-        "func"
+        "read",
+        "compress",
+        "return",
+        "error"
       ]
     },
     {
@@ -139,11 +139,11 @@
         "reader",
         "writer",
         "order",
+        "compress",
+        "read",
         "close",
         "data",
-        "func",
-        "litwidth",
-        "underlying"
+        "func"
       ]
     },
     {
@@ -154,12 +154,12 @@
       "keywords": [
         "writer",
         "zlib",
+        "compress",
         "data",
-        "compressed",
         "error",
-        "func",
-        "readcloser",
-        "returned"
+        "read",
+        "return",
+        "func"
       ]
     },
     {
@@ -170,12 +170,12 @@
       "keywords": [
         "heap",
         "interface",
+        "remove",
         "element",
         "push",
-        "package",
-        "remove",
         "type",
-        "complexity"
+        "package",
+        "call"
       ]
     },
     {
@@ -188,10 +188,10 @@
         "element",
         "func",
         "mark",
-        "returns",
+        "return",
         "value",
         "front",
-        "inserts"
+        "insert"
       ]
     },
     {
@@ -202,11 +202,11 @@
       "keywords": [
         "ring",
         "element",
-        "elements",
         "func",
         "next",
         "empty",
         "value",
+        "link",
         "result"
       ]
     },
@@ -217,13 +217,13 @@
       "summary": "Package context defines the Context type, which carries deadlines, cancellation",
       "keywords": [
         "context",
-        "canceled",
+        "return",
+        "cancel",
         "cause",
-        "returns",
-        "done",
-        "func",
+        "call",
+        "value",
         "parent",
-        "deadline"
+        "done"
       ]
     },
     {
@@ -234,12 +234,12 @@
       "keywords": [
         "hash",
         "crypto",
-        "import",
         "interface",
-        "signer",
+        "import",
         "type",
-        "byte",
-        "function"
+        "sign",
+        "signer",
+        "byte"
       ]
     },
     {
@@ -248,14 +248,14 @@
       "path": "crypto_aes.md",
       "summary": "Package aes implements AES encryption (formerly Rijndael), as defined in U.S.",
       "keywords": [
-        "package",
-        "systems",
-        "block",
-        "cipher",
         "constant",
+        "package",
+        "system",
+        "block",
+        "byte",
+        "cipher",
         "crypto",
-        "newcipher",
-        "time"
+        "implement"
       ]
     },
     {
@@ -267,11 +267,11 @@
         "block",
         "cipher",
         "mode",
-        "stream",
         "byte",
-        "returns",
+        "stream",
+        "return",
         "given",
-        "func"
+        "length"
       ]
     },
     {
@@ -283,11 +283,11 @@
         "block",
         "cipher",
         "data",
+        "standard",
+        "byte",
         "crypto",
         "encryption",
-        "error",
-        "func",
-        "package"
+        "error"
       ]
     },
     {
@@ -296,14 +296,14 @@
       "path": "crypto_dsa.md",
       "summary": "Package dsa implements the Digital Signature Algorithm, as defined in FIPS",
       "keywords": [
-        "parameters",
-        "fips",
+        "parameter",
         "hash",
         "privatekey",
         "signature",
+        "byte",
         "crypto",
-        "keys",
-        "package"
+        "error",
+        "length"
       ]
     },
     {
@@ -312,14 +312,14 @@
       "path": "crypto_ecdh.md",
       "summary": "Package ecdh implements Elliptic Curve Diffie-Hellman over NIST curves and",
       "keywords": [
-        "ecdh",
         "curve",
+        "ecdh",
+        "return",
         "privatekey",
         "publickey",
+        "check",
         "crypto",
-        "func",
-        "returns",
-        "nist"
+        "func"
       ]
     },
     {
@@ -330,12 +330,12 @@
       "keywords": [
         "elliptic",
         "curve",
+        "byte",
+        "return",
         "crypto",
         "ecdh",
         "error",
-        "privatekey",
-        "publickey",
-        "returns"
+        "privatekey"
       ]
     },
     {
@@ -346,12 +346,12 @@
       "keywords": [
         "crypto",
         "ed25519",
-        "publickey",
-        "privatekey",
+        "byte",
         "hash",
+        "publickey",
         "message",
-        "private",
-        "func"
+        "privatekey",
+        "private"
       ]
     },
     {
@@ -363,11 +363,11 @@
         "curve",
         "ecdh",
         "crypto",
-        "deprecated",
+        "return",
+        "deprecat",
         "package",
-        "curveparams",
-        "point",
-        "func"
+        "curveparam",
+        "point"
       ]
     },
     {
@@ -376,14 +376,14 @@
       "path": "crypto_fips140.md",
       "summary": "Package fips140 provides information about the FIPS 140-3 Go Cryptographic",
       "keywords": [
-        "fips",
         "fips140",
         "version",
-        "enabled",
+        "enabl",
         "enforcement",
         "module",
         "withoutenforcement",
-        "func"
+        "func",
+        "return"
       ]
     },
     {
@@ -396,8 +396,8 @@
         "byte",
         "hkdf",
         "expand",
-        "func",
         "extract",
+        "func",
         "info",
         "salt"
       ]
@@ -414,8 +414,8 @@
         "crypto",
         "equal",
         "func",
-        "byte",
-        "messagemac"
+        "return",
+        "byte"
       ]
     },
     {
@@ -424,14 +424,14 @@
       "path": "crypto_hpke.md",
       "summary": "Package hpke implements Hybrid Public Key Encryption (HPKE) as defined in RFC",
       "keywords": [
-        "returns",
+        "return",
         "hpke",
         "func",
-        "ecdh",
-        "aead",
-        "error",
         "byte",
-        "publickey"
+        "ecdh",
+        "error",
+        "aead",
+        "implement"
       ]
     },
     {
@@ -441,13 +441,13 @@
       "summary": "Package md5 implements the MD5 hash algorithm as defined in RFC 1321.",
       "keywords": [
         "hash",
+        "byte",
         "checksum",
         "crypto",
-        "encoding",
-        "implements",
+        "encod",
+        "implement",
         "package",
-        "size",
-        "1321"
+        "size"
       ]
     },
     {
@@ -457,13 +457,13 @@
       "summary": "Package mlkem implements the quantum-resistant key encapsulation method ML-KEM",
       "keywords": [
         "byte",
+        "ciphertext",
         "encapsulation",
         "func",
-        "ciphertext",
         "decapsulation",
-        "bytes",
         "error",
-        "returns"
+        "return",
+        "decapsulationkey768"
       ]
     },
     {
@@ -472,14 +472,14 @@
       "path": "crypto_mlkem_mlkemtest.md",
       "summary": "Package mlkemtest provides testing functions for the ML-KEM algorithm.",
       "keywords": [
+        "byte",
         "mlkemtest",
         "mlkem",
-        "byte",
         "encapsulation",
+        "test",
         "crypto",
-        "functions",
-        "package",
-        "algorithm"
+        "function",
+        "package"
       ]
     },
     {
@@ -490,12 +490,12 @@
       "keywords": [
         "pbkdf2",
         "function",
+        "byte",
         "derivation",
         "hash",
         "password",
-        "based",
-        "byte",
-        "keylength"
+        "keylength",
+        "salt"
       ]
     },
     {
@@ -505,13 +505,13 @@
       "summary": "Package rand implements a cryptographically secure random number generator.",
       "keywords": [
         "reader",
+        "return",
         "rand",
         "error",
         "random",
-        "uses",
-        "returns",
         "cryptographically",
-        "read"
+        "read",
+        "secure"
       ]
     },
     {
@@ -521,13 +521,13 @@
       "summary": "Package rc4 implements RC4 encryption, as defined in Bruce Schneier's Applied",
       "keywords": [
         "cipher",
-        "func",
         "byte",
+        "func",
         "crypto",
         "package",
         "reset",
-        "applied",
-        "bruce"
+        "type",
+        "appli"
       ]
     },
     {
@@ -537,13 +537,13 @@
       "summary": "Package rsa implements RSA encryption as specified in PKCS #1 and RFC 8017.",
       "keywords": [
         "hash",
+        "byte",
         "error",
         "random",
-        "byte",
         "crypto",
         "message",
-        "privatekey",
-        "func"
+        "function",
+        "privatekey"
       ]
     },
     {
@@ -554,12 +554,12 @@
       "keywords": [
         "hash",
         "sha1",
+        "byte",
         "checksum",
         "crypto",
-        "encoding",
-        "implements",
-        "package",
-        "size"
+        "encod",
+        "implement",
+        "package"
       ]
     },
     {
@@ -570,10 +570,10 @@
       "keywords": [
         "hash",
         "sha256",
-        "checksum",
-        "encoding",
-        "sha224",
         "byte",
+        "checksum",
+        "encod",
+        "sha224",
         "data",
         "func"
       ]
@@ -584,14 +584,14 @@
       "path": "crypto_sha3.md",
       "summary": "Package sha3 implements the SHA-3 hash algorithms and the SHAKE extendable",
       "keywords": [
+        "byte",
         "func",
         "sha3",
-        "byte",
         "hash",
         "data",
         "shake",
         "error",
-        "implements"
+        "implement"
       ]
     },
     {
@@ -601,12 +601,12 @@
       "summary": "Package sha512 implements the SHA-384, SHA-512, SHA-512/224, and SHA-512/256",
       "keywords": [
         "hash",
-        "encoding",
-        "checksum",
+        "encod",
         "byte",
+        "checksum",
+        "return",
         "data",
         "func",
-        "returns",
         "size"
       ]
     },
@@ -617,13 +617,13 @@
       "summary": "Package subtle implements functions that are often useful in cryptographic code",
       "keywords": [
         "func",
-        "withdataindependenttiming",
+        "return",
+        "withdataindependenttim",
+        "call",
         "code",
         "independent",
-        "returns",
         "subtle",
-        "otherwise",
-        "timing"
+        "otherwise"
       ]
     },
     {
@@ -632,14 +632,14 @@
       "path": "crypto_tls.md",
       "summary": "Package tls partially implements TLS 1.2, as specified in RFC 5246, and TLS 1.3,",
       "keywords": [
-        "config",
         "certificate",
+        "config",
+        "return",
+        "connection",
         "client",
-        "error",
-        "func",
         "server",
-        "conn",
-        "connection"
+        "error",
+        "func"
       ]
     },
     {
@@ -652,10 +652,10 @@
         "func",
         "error",
         "byte",
-        "string",
+        "extension",
         "type",
-        "extensions",
-        "field"
+        "field",
+        "encod"
       ]
     },
     {
@@ -664,14 +664,14 @@
       "path": "crypto_x509_pkix.md",
       "summary": "Package pkix contains shared, low level structures used for ASN.1 parsing and",
       "keywords": [
-        "asn1",
         "name",
-        "string",
+        "asn1",
         "type",
-        "names",
         "rdnsequence",
+        "structure",
         "struct",
-        "time"
+        "time",
+        "attributetypeandvalue"
       ]
     },
     {
@@ -680,13 +680,13 @@
       "path": "database_sql.md",
       "summary": "Package sql provides a generic interface around SQL (or SQL-like) databases.",
       "keywords": [
-        "func",
-        "context",
+        "return",
         "error",
         "scan",
+        "func",
+        "context",
         "query",
         "value",
-        "rows",
         "driver"
       ]
     },
@@ -696,14 +696,14 @@
       "path": "database_sql_driver.md",
       "summary": "Package driver defines interfaces to be implemented by database drivers as used",
       "keywords": [
+        "return",
         "type",
-        "interface",
-        "value",
         "driver",
+        "value",
         "error",
-        "database",
-        "should",
-        "query"
+        "interface",
+        "implement",
+        "database"
       ]
     },
     {
@@ -713,13 +713,13 @@
       "summary": "Package buildinfo provides access to information embedded in a Go binary about",
       "keywords": [
         "buildinfo",
+        "binary",
         "information",
         "debug",
-        "binary",
         "build",
         "built",
-        "embedded",
-        "package"
+        "embedd",
+        "module"
       ]
     },
     {
@@ -731,11 +731,11 @@
         "attr",
         "type",
         "dwarf",
-        "string",
         "entry",
         "func",
-        "represents",
-        "struct"
+        "represent",
+        "struct",
+        "value"
       ]
     },
     {
@@ -747,11 +747,11 @@
         "machine",
         "r_ppc64",
         "r_arm",
+        "type",
         "dyntag",
         "r_aarch64",
-        "string",
         "r_larch",
-        "type"
+        "section"
       ]
     },
     {
@@ -762,12 +762,12 @@
       "keywords": [
         "func",
         "symbol",
-        "line",
         "table",
-        "string",
+        "line",
+        "file",
         "name",
-        "uint64",
-        "file"
+        "return",
+        "uint64"
       ]
     },
     {
@@ -780,10 +780,10 @@
         "type",
         "mach",
         "uint64",
-        "string",
         "func",
+        "file",
         "struct",
-        "file"
+        "loadcmd"
       ]
     },
     {
@@ -795,11 +795,11 @@
         "uint32",
         "uint16",
         "section",
+        "symbol",
         "type",
-        "string",
         "file",
-        "struct",
-        "symbol"
+        "name",
+        "struct"
       ]
     },
     {
@@ -813,7 +813,7 @@
         "plan",
         "open",
         "func",
-        "plan9obj",
+        "symbol",
         "type",
         "error"
       ]
@@ -824,14 +824,14 @@
       "path": "embed.md",
       "summary": "Package embed provides access to files embedded in the running Go program.",
       "keywords": [
-        "embed",
         "file",
-        "files",
-        "string",
-        "package",
         "content",
-        "patterns",
-        "directive"
+        "package",
+        "pattern",
+        "directory",
+        "variable",
+        "directive",
+        "byte"
       ]
     },
     {
@@ -841,13 +841,13 @@
       "summary": "Package encoding defines interfaces shared by other packages that convert",
       "keywords": [
         "interface",
-        "encoding",
-        "byte",
+        "encod",
         "type",
+        "byte",
+        "implement",
         "itself",
-        "data",
-        "error",
-        "implemented"
+        "package",
+        "representation"
       ]
     },
     {
@@ -857,12 +857,12 @@
       "summary": "Package ascii85 implements the ascii85 data encoding as used in the btoa tool",
       "keywords": [
         "ascii85",
-        "encoding",
-        "data",
+        "encod",
+        "byte",
         "decode",
+        "data",
+        "return",
         "func",
-        "bytes",
-        "written",
         "encode"
       ]
     },
@@ -874,12 +874,12 @@
       "keywords": [
         "type",
         "byte",
-        "string",
+        "value",
+        "field",
         "struct",
+        "unmarshal",
         "written",
-        "causes",
-        "values",
-        "error"
+        "caus"
       ]
     },
     {
@@ -888,13 +888,13 @@
       "path": "encoding_base32.md",
       "summary": "Package base32 implements base32 encoding as specified by RFC 4648.",
       "keywords": [
-        "encoding",
-        "base32",
+        "encod",
         "byte",
+        "base32",
+        "return",
         "func",
-        "returns",
-        "bytes",
-        "padding",
+        "character",
+        "padd",
         "data"
       ]
     },
@@ -904,14 +904,14 @@
       "path": "encoding_base64.md",
       "summary": "Package base64 implements base64 encoding as specified by RFC 4648.",
       "keywords": [
-        "encoding",
+        "encod",
         "base64",
         "byte",
         "func",
-        "padding",
-        "returns",
-        "4648",
-        "bytes"
+        "return",
+        "character",
+        "padd",
+        "4648"
       ]
     },
     {
@@ -922,12 +922,12 @@
       "keywords": [
         "byte",
         "data",
-        "bytes",
-        "returns",
+        "read",
+        "value",
+        "return",
         "error",
         "func",
-        "read",
-        "size"
+        "encod"
       ]
     },
     {
@@ -937,13 +937,13 @@
       "summary": "Package csv reads and writes comma-separated values (CSV) files. There are many",
       "keywords": [
         "field",
-        "writer",
-        "error",
         "record",
-        "fields",
+        "error",
+        "writer",
         "read",
-        "reader",
-        "line"
+        "return",
+        "line",
+        "reader"
       ]
     },
     {
@@ -955,11 +955,11 @@
         "type",
         "value",
         "struct",
+        "encod",
         "field",
-        "encoding",
-        "data",
-        "sent",
-        "interface"
+        "byte",
+        "interface",
+        "data"
       ]
     },
     {
@@ -968,14 +968,14 @@
       "path": "encoding_hex.md",
       "summary": "Package hex implements hexadecimal encoding and decoding.",
       "keywords": [
-        "returns",
-        "func",
         "byte",
+        "return",
+        "func",
+        "encod",
         "hexadecimal",
-        "bytes",
-        "encoding",
-        "string",
-        "error"
+        "error",
+        "decode",
+        "decod"
       ]
     },
     {
@@ -985,12 +985,12 @@
       "summary": "Package json implements encoding and decoding of JSON as defined in RFC 7159.",
       "keywords": [
         "json",
-        "string",
         "value",
         "field",
         "type",
-        "error",
         "unmarshal",
+        "error",
+        "encod",
         "func"
       ]
     },
@@ -1000,14 +1000,14 @@
       "path": "encoding_pem.md",
       "summary": "Package pem implements the PEM data encoding, which originated in Privacy",
       "keywords": [
+        "encod",
         "block",
-        "encoding",
-        "encoded",
-        "headers",
-        "type",
         "byte",
+        "type",
+        "header",
         "data",
-        "bytes"
+        "return",
+        "encode"
       ]
     },
     {
@@ -1016,14 +1016,14 @@
       "path": "encoding_xml.md",
       "summary": "Package xml implements a simple XML 1.0 parser that understands XML name spaces.",
       "keywords": [
-        "field",
         "element",
+        "field",
         "name",
+        "token",
         "error",
         "struct",
-        "token",
         "value",
-        "unmarshal"
+        "return"
       ]
     },
     {
@@ -1033,13 +1033,13 @@
       "summary": "Package errors implements functions to manipulate errors.",
       "keywords": [
         "error",
-        "errors",
+        "return",
         "target",
         "unwrap",
         "method",
-        "returns",
         "type",
-        "tree"
+        "tree",
+        "value"
       ]
     },
     {
@@ -1048,11 +1048,11 @@
       "path": "expvar.md",
       "summary": "Package expvar provides a standardized interface to public variables,",
       "keywords": [
-        "string",
         "func",
-        "value",
-        "float",
         "variable",
+        "value",
+        "type",
+        "float",
         "expvar",
         "interface",
         "name"
@@ -1064,14 +1064,14 @@
       "path": "flag.md",
       "summary": "Package flag implements command-line flag parsing.",
       "keywords": [
-        "string",
-        "value",
         "flag",
+        "value",
         "name",
         "usage",
         "func",
         "default",
-        "flagset"
+        "flagset",
+        "define"
       ]
     },
     {
@@ -1080,14 +1080,14 @@
       "path": "fmt.md",
       "summary": "Package fmt implements formatted I/O with functions analogous to C's printf and",
       "keywords": [
-        "string",
         "format",
+        "space",
         "error",
-        "input",
         "verb",
-        "number",
         "value",
-        "func"
+        "return",
+        "operand",
+        "newline"
       ]
     },
     {
@@ -1097,13 +1097,13 @@
       "summary": "Package ast declares the types used to represent syntax trees for Go packages.",
       "keywords": [
         "token",
-        "func",
         "type",
+        "func",
         "node",
         "position",
         "struct",
-        "represents",
-        "expr"
+        "comment",
+        "represent"
       ]
     },
     {
@@ -1112,14 +1112,14 @@
       "path": "go_build.md",
       "summary": "Package build gathers information about Go packages.",
       "keywords": [
-        "string",
         "package",
+        "file",
         "import",
-        "files",
         "path",
         "directory",
         "source",
-        "build"
+        "build",
+        "error"
       ]
     },
     {
@@ -1128,12 +1128,12 @@
       "path": "go_build_constraint.md",
       "summary": "Package constraint implements parsing and evaluation of build constraint lines.",
       "keywords": [
-        "string",
         "build",
         "func",
         "expression",
-        "bool",
         "constraint",
+        "bool",
+        "line",
         "goversion",
         "expr"
       ]
@@ -1147,11 +1147,11 @@
         "value",
         "unknown",
         "result",
-        "returns",
+        "return",
         "func",
-        "string",
         "token",
-        "bool"
+        "bool",
+        "float"
       ]
     },
     {
@@ -1160,14 +1160,14 @@
       "path": "go_doc.md",
       "summary": "Package doc extracts source code documentation from a Go AST.",
       "keywords": [
-        "string",
         "package",
+        "example",
         "text",
-        "examples",
         "type",
-        "func",
         "comment",
-        "example"
+        "func",
+        "file",
+        "documentation"
       ]
     },
     {
@@ -1177,13 +1177,13 @@
       "summary": "Package comment implements parsing and reformatting of Go doc comments,",
       "keywords": [
         "text",
-        "string",
         "comment",
-        "name",
         "link",
+        "name",
         "list",
         "package",
-        "type"
+        "type",
+        "func"
       ]
     },
     {
@@ -1192,11 +1192,11 @@
       "path": "go_format.md",
       "summary": "Package format implements standard formatting of Go source.",
       "keywords": [
-        "source",
         "node",
+        "source",
         "format",
-        "formatting",
         "file",
+        "formatt",
         "package",
         "result",
         "error"
@@ -1209,12 +1209,12 @@
       "summary": "Package importer provides access to export data importers.",
       "keywords": [
         "importer",
-        "lookup",
-        "package",
         "import",
-        "forcompiler",
-        "types",
-        "access",
+        "package",
+        "lookup",
+        "type",
+        "function",
+        "path",
         "compiler"
       ]
     },
@@ -1225,13 +1225,13 @@
       "summary": "Package parser implements a parser for Go source files.",
       "keywords": [
         "source",
+        "error",
+        "file",
+        "package",
         "mode",
         "parser",
-        "file",
-        "error",
-        "errors",
-        "parsefile",
-        "package"
+        "pars",
+        "parsefile"
       ]
     },
     {
@@ -1245,9 +1245,9 @@
         "output",
         "printer",
         "mode",
-        "config",
-        "default",
-        "package"
+        "print",
+        "type",
+        "config"
       ]
     },
     {
@@ -1261,9 +1261,9 @@
         "scanner",
         "errorlist",
         "func",
-        "string",
         "file",
-        "position"
+        "position",
+        "return"
       ]
     },
     {
@@ -1275,11 +1275,11 @@
         "file",
         "position",
         "line",
-        "func",
         "offset",
-        "fileset",
-        "base",
-        "value"
+        "func",
+        "value",
+        "token",
+        "fileset"
       ]
     },
     {
@@ -1290,12 +1290,12 @@
       "keywords": [
         "type",
         "func",
-        "returns",
+        "return",
         "package",
-        "string",
-        "scope",
         "object",
-        "name"
+        "scope",
+        "method",
+        "field"
       ]
     },
     {
@@ -1306,12 +1306,12 @@
       "keywords": [
         "version",
         "lang",
-        "versions",
-        "string",
         "toolchain",
-        "name",
         "compare",
-        "func"
+        "name",
+        "func",
+        "package",
+        "return"
       ]
     },
     {
@@ -1322,12 +1322,12 @@
       "keywords": [
         "hash",
         "interface",
+        "return",
         "state",
+        "function",
+        "write",
         "data",
-        "size",
-        "functions",
-        "returns",
-        "type"
+        "reset"
       ]
     },
     {
@@ -1339,10 +1339,10 @@
         "checksum",
         "adler",
         "adler32",
-        "hash",
         "byte",
+        "hash",
         "hash32",
-        "implements",
+        "implement",
         "package"
       ]
     },
@@ -1352,14 +1352,14 @@
       "path": "hash_crc32.md",
       "summary": "Package crc32 implements the 32-bit cyclic redundancy check, or CRC-32,",
       "keywords": [
-        "table",
         "polynomial",
+        "table",
         "hash",
         "ieee",
         "checksum",
+        "byte",
         "crc32",
-        "func",
-        "hash32"
+        "func"
       ]
     },
     {
@@ -1369,13 +1369,13 @@
       "summary": "Package crc64 implements the 64-bit cyclic redundancy check, or CRC-64,",
       "keywords": [
         "table",
+        "polynomial",
         "checksum",
         "crc64",
         "hash",
-        "polynomial",
+        "byte",
         "uint64",
-        "func",
-        "byte"
+        "func"
       ]
     },
     {
@@ -1385,12 +1385,12 @@
       "summary": "Package fnv implements FNV-1 and FNV-1a, non-cryptographic hash",
       "keywords": [
         "hash",
+        "return",
         "byte",
         "endian",
         "func",
         "method",
         "order",
-        "returns",
         "value"
       ]
     },
@@ -1402,12 +1402,12 @@
       "keywords": [
         "hash",
         "seed",
-        "func",
-        "bytes",
         "byte",
-        "comparable",
-        "returns",
-        "setseed"
+        "func",
+        "value",
+        "return",
+        "sequence",
+        "comparable"
       ]
     },
     {
@@ -1417,13 +1417,13 @@
       "summary": "Package html provides functions for escaping and unescaping HTML text.",
       "keywords": [
         "html",
-        "escapestring",
-        "always",
-        "string",
-        "unescapestring",
-        "escapes",
-        "functions",
-        "package"
+        "escapestr",
+        "alway",
+        "unescapestr",
+        "escape",
+        "function",
+        "package",
+        "unescape"
       ]
     },
     {
@@ -1434,12 +1434,12 @@
       "keywords": [
         "template",
         "html",
-        "string",
         "error",
-        "script",
+        "context",
+        "name",
         "func",
-        "data",
-        "href"
+        "script",
+        "output"
       ]
     },
     {
@@ -1452,10 +1452,10 @@
         "color",
         "image",
         "rectangle",
-        "returns",
+        "return",
+        "pixel",
         "opaque",
-        "bounds",
-        "rect"
+        "bound"
       ]
     },
     {
@@ -1499,10 +1499,10 @@
         "image",
         "draw",
         "color",
+        "type",
         "interface",
         "mask",
         "rectangle",
-        "type",
         "drawer"
       ]
     },
@@ -1513,9 +1513,9 @@
       "summary": "Package gif implements a GIF image decoder and encoder.",
       "keywords": [
         "image",
+        "frame",
         "config",
         "disposal",
-        "frame",
         "color",
         "error",
         "func",
@@ -1532,10 +1532,10 @@
         "jpeg",
         "error",
         "func",
-        "options",
+        "option",
         "reader",
-        "package",
-        "string"
+        "type",
+        "package"
       ]
     },
     {
@@ -1547,11 +1547,11 @@
         "image",
         "compressionlevel",
         "type",
+        "encod",
         "encoder",
-        "error",
-        "func",
         "encoderbuffer",
-        "encode"
+        "error",
+        "func"
       ]
     },
     {
@@ -1562,12 +1562,12 @@
       "keywords": [
         "index",
         "data",
+        "byte",
         "suffixarray",
         "func",
         "lookup",
-        "byte",
-        "result",
-        "where"
+        "match",
+        "return"
       ]
     },
     {
@@ -1578,12 +1578,12 @@
       "keywords": [
         "error",
         "read",
+        "return",
+        "byte",
         "interface",
-        "bytes",
-        "returns",
         "write",
         "reader",
-        "return"
+        "func"
       ]
     },
     {
@@ -1594,12 +1594,12 @@
       "keywords": [
         "file",
         "error",
+        "return",
         "directory",
-        "returns",
-        "string",
-        "type",
+        "name",
         "path",
-        "readdir"
+        "type",
+        "call"
       ]
     },
     {
@@ -1609,13 +1609,13 @@
       "summary": "Package ioutil implements some I/O utility functions.",
       "keywords": [
         "directory",
-        "error",
-        "string",
         "file",
-        "returns",
-        "deprecated",
-        "calls",
-        "func"
+        "error",
+        "call",
+        "read",
+        "return",
+        "function",
+        "deprecat"
       ]
     },
     {
@@ -1625,13 +1625,13 @@
       "summary": "Package iter provides basic definitions and operations related to iterators over",
       "keywords": [
         "iterator",
+        "return",
         "sequence",
+        "value",
         "func",
         "next",
-        "returns",
-        "over",
-        "stop",
-        "yield"
+        "call",
+        "stop"
       ]
     },
     {
@@ -1643,10 +1643,10 @@
         "logger",
         "func",
         "output",
+        "flag",
         "print",
-        "prefix",
         "call",
-        "string",
+        "prefix",
         "standard"
       ]
     },
@@ -1660,10 +1660,10 @@
         "value",
         "logger",
         "func",
-        "string",
         "handler",
-        "time",
-        "context"
+        "attr",
+        "call",
+        "record"
       ]
     },
     {
@@ -1679,7 +1679,7 @@
         "func",
         "message",
         "priority",
-        "string"
+        "package"
       ]
     },
     {
@@ -1688,14 +1688,14 @@
       "path": "maps.md",
       "summary": "Package maps defines various functions useful with maps of any type.",
       "keywords": [
+        "value",
         "func",
         "comparable",
-        "maps",
-        "value",
-        "keys",
-        "pairs",
-        "returns",
-        "values"
+        "pair",
+        "return",
+        "iter",
+        "bool",
+        "copy"
       ]
     },
     {
@@ -1706,11 +1706,11 @@
       "keywords": [
         "float64",
         "func",
-        "returns",
+        "return",
         "special",
-        "cases",
-        "atan2",
         "sign",
+        "atan2",
+        "value",
         "integer"
       ]
     },
@@ -1722,12 +1722,12 @@
       "keywords": [
         "func",
         "float",
-        "returns",
+        "return",
         "value",
-        "sets",
+        "round",
         "precision",
         "result",
-        "rounding"
+        "base"
       ]
     },
     {
@@ -1736,14 +1736,14 @@
       "path": "math_bits.md",
       "summary": "Package bits implements bit counting and manipulation functions for the",
       "keywords": [
+        "return",
         "func",
-        "returns",
-        "bits",
+        "function",
+        "input",
         "uint",
         "number",
         "uint32",
-        "uint64",
-        "depend"
+        "uint64"
       ]
     },
     {
@@ -1753,8 +1753,8 @@
       "summary": "Package cmplx provides basic constants and mathematical functions for complex",
       "keywords": [
         "complex128",
+        "return",
         "func",
-        "returns",
         "complex",
         "cmplx",
         "hyperbolic",
@@ -1771,7 +1771,7 @@
         "func",
         "random",
         "rand",
-        "returns",
+        "return",
         "source",
         "pseudo",
         "seed",
@@ -1785,8 +1785,8 @@
       "summary": "Package rand implements pseudo-random number generators suitable for tasks such",
       "keywords": [
         "func",
+        "return",
         "random",
-        "returns",
         "pseudo",
         "uint64",
         "rand",
@@ -1801,13 +1801,13 @@
       "summary": "Package mime implements parts of the MIME spec.",
       "keywords": [
         "mime",
-        "string",
-        "types",
         "type",
+        "return",
         "error",
+        "charset",
+        "extension",
         "func",
-        "returns",
-        "charset"
+        "encod"
       ]
     },
     {
@@ -1816,14 +1816,14 @@
       "path": "mime_multipart.md",
       "summary": "Package multipart implements MIME multipart parsing, as defined in RFC 2046.",
       "keywords": [
+        "part",
         "multipart",
         "writer",
         "func",
-        "part",
         "error",
-        "string",
         "file",
-        "reader"
+        "header",
+        "return"
       ]
     },
     {
@@ -1834,12 +1834,12 @@
       "keywords": [
         "writer",
         "printable",
-        "quoted",
+        "quot",
         "reader",
         "quotedprintable",
         "func",
         "binary",
-        "underlying"
+        "byte"
       ]
     },
     {
@@ -1849,13 +1849,13 @@
       "summary": "Package net provides a portable interface for network I/O, including TCP/IP,",
       "keywords": [
         "func",
-        "error",
         "address",
+        "error",
         "network",
-        "string",
-        "returns",
+        "return",
+        "name",
         "addr",
-        "name"
+        "connection"
       ]
     },
     {
@@ -1866,12 +1866,12 @@
       "keywords": [
         "request",
         "http",
+        "return",
         "error",
+        "header",
         "func",
         "body",
-        "server",
-        "header",
-        "client"
+        "handler"
       ]
     },
     {
@@ -1883,11 +1883,11 @@
         "http",
         "request",
         "handler",
-        "string",
         "environment",
         "path",
-        "current",
-        "directory"
+        "error",
+        "return",
+        "current"
       ]
     },
     {
@@ -1901,9 +1901,9 @@
         "public",
         "suffix",
         "cookie",
-        "options",
+        "option",
         "publicsuffixlist",
-        "cookies"
+        "cooky"
       ]
     },
     {
@@ -1912,14 +1912,14 @@
       "path": "net_http_fcgi.md",
       "summary": "Package fcgi implements the FastCGI protocol.",
       "keywords": [
-        "fcgi",
         "request",
-        "handler",
+        "fcgi",
         "http",
-        "fastcgi",
+        "handler",
         "read",
-        "server",
-        "package"
+        "connection",
+        "fastcgi",
+        "server"
       ]
     },
     {
@@ -1928,14 +1928,14 @@
       "path": "net_http_httptest.md",
       "summary": "Package httptest provides utilities for HTTP testing.",
       "keywords": [
-        "server",
         "http",
+        "server",
         "func",
         "handler",
-        "responserecorder",
-        "body",
-        "response",
-        "returns"
+        "call",
+        "return",
+        "header",
+        "request"
       ]
     },
     {
@@ -1944,14 +1944,14 @@
       "path": "net_http_httptrace.md",
       "summary": "Package httptrace provides mechanisms to trace the events within HTTP client",
       "keywords": [
-        "called",
+        "call",
         "func",
-        "connection",
         "request",
+        "connection",
         "http",
         "error",
         "context",
-        "clienttrace"
+        "hook"
       ]
     },
     {
@@ -1960,14 +1960,14 @@
       "path": "net_http_httputil.md",
       "summary": "Package httputil provides HTTP utility functions, complementing the more common",
       "keywords": [
-        "http",
         "request",
-        "func",
+        "http",
         "header",
+        "func",
+        "return",
         "client",
-        "forwarded",
-        "response",
-        "rewrite"
+        "forward",
+        "response"
       ]
     },
     {
@@ -1982,7 +1982,7 @@
         "debug",
         "trace",
         "package",
-        "profiles",
+        "second",
         "request"
       ]
     },
@@ -1993,12 +1993,12 @@
       "summary": "Package mail implements parsing of mail messages.",
       "keywords": [
         "address",
-        "string",
-        "mail",
         "header",
+        "mail",
+        "pars",
         "func",
-        "error",
         "message",
+        "error",
         "example"
       ]
     },
@@ -2009,10 +2009,10 @@
       "summary": "Package netip defines an IP address type that's a small value type. Building on",
       "keywords": [
         "addr",
-        "func",
         "address",
+        "func",
+        "return",
         "prefix",
-        "returns",
         "byte",
         "ipv6",
         "ipv4"
@@ -2026,12 +2026,12 @@
       "keywords": [
         "error",
         "server",
-        "client",
-        "func",
-        "type",
         "call",
-        "connection",
-        "args"
+        "client",
+        "type",
+        "func",
+        "method",
+        "connection"
       ]
     },
     {
@@ -2061,9 +2061,9 @@
         "error",
         "smtp",
         "func",
-        "string",
+        "return",
         "auth",
-        "mail"
+        "extension"
       ]
     },
     {
@@ -2072,14 +2072,14 @@
       "path": "net_textproto.md",
       "summary": "Package textproto implements generic support for text-based request/response",
       "keywords": [
+        "line",
+        "return",
         "func",
         "reader",
-        "string",
-        "line",
         "error",
-        "returns",
+        "value",
         "code",
-        "response"
+        "read"
       ]
     },
     {
@@ -2088,13 +2088,13 @@
       "path": "net_url.md",
       "summary": "Package url parses URLs and implements query escaping.",
       "keywords": [
-        "string",
         "func",
+        "value",
         "path",
         "error",
+        "return",
         "host",
-        "returns",
-        "values",
+        "form",
         "query"
       ]
     },
@@ -2104,14 +2104,14 @@
       "path": "os.md",
       "summary": "Package os provides a platform-independent interface to operating system",
       "keywords": [
-        "error",
         "file",
+        "error",
+        "return",
         "func",
-        "returns",
-        "string",
         "directory",
+        "name",
         "root",
-        "name"
+        "process"
       ]
     },
     {
@@ -2124,10 +2124,10 @@
         "error",
         "process",
         "path",
-        "string",
-        "file",
+        "return",
+        "pipe",
         "wait",
-        "func"
+        "call"
       ]
     },
     {
@@ -2137,13 +2137,13 @@
       "summary": "Package signal implements access to incoming signals.",
       "keywords": [
         "signal",
-        "signals",
-        "handler",
         "program",
+        "handler",
+        "call",
         "code",
         "notify",
-        "called",
-        "behavior"
+        "behavior",
+        "default"
       ]
     },
     {
@@ -2153,12 +2153,12 @@
       "summary": "Package user allows user account lookups by name or id.",
       "keywords": [
         "user",
-        "string",
         "group",
         "error",
         "name",
-        "func",
+        "return",
         "type",
+        "func",
         "cannot"
       ]
     },
@@ -2169,13 +2169,13 @@
       "summary": "Package path implements utility routines for manipulating slash-separated paths.",
       "keywords": [
         "path",
-        "string",
-        "returns",
-        "empty",
         "slash",
-        "character",
+        "return",
+        "match",
         "element",
-        "func"
+        "character",
+        "empty",
+        "name"
       ]
     },
     {
@@ -2185,12 +2185,12 @@
       "summary": "Package filepath implements utility routines for manipulating filename paths in",
       "keywords": [
         "path",
-        "string",
+        "return",
         "directory",
-        "returns",
         "error",
-        "walk",
         "file",
+        "walk",
+        "separator",
         "func"
       ]
     },
@@ -2201,13 +2201,13 @@
       "summary": "Package plugin implements loading and symbol resolution of Go plugins.",
       "keywords": [
         "plugin",
-        "plugins",
-        "symbol",
         "application",
+        "symbol",
+        "load",
         "package",
-        "applications",
-        "func",
-        "function"
+        "function",
+        "open",
+        "part"
       ]
     },
     {
@@ -2218,12 +2218,12 @@
       "keywords": [
         "value",
         "type",
+        "return",
         "func",
-        "returns",
         "kind",
-        "panics",
-        "string",
-        "slice"
+        "panic",
+        "method",
+        "field"
       ]
     },
     {
@@ -2232,14 +2232,14 @@
       "path": "regexp.md",
       "summary": "Package regexp implements regular expression search.",
       "keywords": [
-        "regexp",
         "match",
-        "string",
+        "regexp",
+        "return",
         "expression",
         "func",
-        "returns",
         "byte",
-        "regular"
+        "regular",
+        "slice"
       ]
     },
     {
@@ -2249,13 +2249,13 @@
       "summary": "Package syntax parses regular expressions into parse trees and compiles parse",
       "keywords": [
         "character",
+        "match",
         "regexp",
-        "string",
         "class",
-        "matches",
         "errorcode",
+        "flag",
         "func",
-        "name"
+        "rune"
       ]
     },
     {
@@ -2264,14 +2264,14 @@
       "path": "runtime.md",
       "summary": "Package runtime contains operations that interact with Go's runtime system,",
       "keywords": [
+        "call",
         "function",
+        "return",
+        "object",
         "func",
-        "memory",
         "runtime",
         "stack",
-        "program",
-        "call",
-        "objects"
+        "memory"
       ]
     },
     {
@@ -2284,10 +2284,10 @@
         "value",
         "void",
         "mygoprint",
+        "pointer",
         "runtime",
         "uintptr_t",
-        "code",
-        "func"
+        "code"
       ]
     },
     {
@@ -2297,13 +2297,13 @@
       "summary": "Package coverage contains APIs for writing coverage profile data at runtime from",
       "keywords": [
         "coverage",
-        "error",
         "program",
-        "running",
+        "error",
+        "runn",
         "currently",
         "data",
         "counter",
-        "built"
+        "write"
       ]
     },
     {
@@ -2315,11 +2315,11 @@
         "memory",
         "runtime",
         "limit",
+        "return",
         "func",
-        "string",
         "system",
-        "module",
-        "returns"
+        "program",
+        "call"
       ]
     },
     {
@@ -2329,13 +2329,13 @@
       "summary": "Package metrics provides a stable interface to access implementation-defined",
       "keywords": [
         "default",
+        "behavior",
         "godebug",
-        "package",
-        "executed",
-        "number",
         "metric",
-        "setting",
-        "memory"
+        "execut",
+        "package",
+        "number",
+        "sett"
       ]
     },
     {
@@ -2346,12 +2346,12 @@
       "keywords": [
         "profile",
         "pprof",
-        "func",
-        "context",
-        "stack",
         "label",
-        "profiling",
-        "value"
+        "func",
+        "stack",
+        "context",
+        "value",
+        "call"
       ]
     },
     {
@@ -2365,7 +2365,7 @@
         "runtime",
         "data",
         "detection",
-        "implements",
+        "implement",
         "import",
         "logic"
       ]
@@ -2378,12 +2378,12 @@
       "keywords": [
         "trace",
         "task",
+        "region",
         "func",
         "context",
-        "region",
-        "execution",
-        "flight",
-        "tracing"
+        "start",
+        "goroutine",
+        "trac"
       ]
     },
     {
@@ -2394,12 +2394,12 @@
       "keywords": [
         "slice",
         "func",
-        "elements",
-        "returns",
+        "element",
+        "return",
+        "order",
         "result",
         "empty",
-        "slices",
-        "bool"
+        "sort"
       ]
     },
     {
@@ -2408,12 +2408,12 @@
       "path": "sort.md",
       "summary": "Package sort provides primitives for sorting slices and user-defined",
       "keywords": [
-        "func",
         "sort",
-        "less",
-        "data",
+        "func",
         "slice",
+        "less",
         "order",
+        "data",
         "search",
         "index"
       ]
@@ -2424,14 +2424,14 @@
       "path": "strconv.md",
       "summary": "Package strconv implements conversions to and from string representations of",
       "keywords": [
-        "string",
+        "return",
         "func",
-        "returns",
-        "byte",
+        "character",
         "value",
-        "rune",
-        "strconv",
-        "character"
+        "byte",
+        "literal",
+        "error",
+        "rune"
       ]
     },
     {
@@ -2440,13 +2440,13 @@
       "path": "strings.md",
       "summary": "Package strings implements simple functions to manipulate UTF-8 encoded strings.",
       "keywords": [
-        "string",
         "func",
-        "returns",
+        "return",
         "unicode",
         "slice",
         "empty",
         "code",
+        "point",
         "reader"
       ]
     },
@@ -2457,13 +2457,13 @@
       "summary": "Package structs defines marker types that can be used as struct fields to modify",
       "keywords": [
         "struct",
-        "structs",
         "type",
+        "field",
         "hostlayout",
-        "fields",
         "host",
         "layout",
-        "field"
+        "marker",
+        "package"
       ]
     },
     {
@@ -2472,14 +2472,14 @@
       "path": "sync.md",
       "summary": "Package sync provides basic synchronization primitives such as mutual exclusion",
       "keywords": [
-        "func",
-        "value",
         "call",
         "lock",
-        "waitgroup",
-        "rwmutex",
+        "return",
+        "func",
+        "value",
         "wait",
-        "returns"
+        "waitgroup",
+        "rwmutex"
       ]
     },
     {
@@ -2492,10 +2492,10 @@
         "addr",
         "func",
         "atomically",
-        "returns",
+        "return",
+        "store",
         "uint64",
-        "uint32",
-        "int64"
+        "uint32"
       ]
     },
     {
@@ -2508,10 +2508,10 @@
         "error",
         "errno",
         "byte",
-        "string",
-        "int64",
         "type",
-        "uint32"
+        "int64",
+        "uint32",
+        "struct"
       ]
     },
     {
@@ -2522,12 +2522,12 @@
       "keywords": [
         "test",
         "func",
+        "call",
         "benchmark",
         "function",
-        "string",
-        "tests",
-        "testing",
-        "fuzz"
+        "fuzz",
+        "return",
+        "fail"
       ]
     },
     {
@@ -2536,14 +2536,14 @@
       "path": "testing_cryptotest.md",
       "summary": "Package cryptotest provides deterministic random source testing.",
       "keywords": [
+        "test",
         "cryptotest",
         "setglobalrandom",
-        "testing",
         "cryptographic",
-        "crypto",
-        "deterministic",
         "package",
-        "random"
+        "source",
+        "crypto",
+        "deterministic"
       ]
     },
     {
@@ -2553,13 +2553,13 @@
       "summary": "Package fstest implements support for testing implementations and users of file",
       "keywords": [
         "file",
-        "fsys",
-        "mapfs",
-        "string",
         "error",
+        "mapf",
         "func",
         "fileinfo",
-        "fstest"
+        "system",
+        "test",
+        "directory"
       ]
     },
     {
@@ -2569,13 +2569,13 @@
       "summary": "Package iotest implements Readers and Writers useful mainly for testing.",
       "keywords": [
         "reader",
-        "returns",
+        "read",
+        "return",
         "error",
         "func",
-        "read",
+        "writer",
         "data",
-        "iotest",
-        "writer"
+        "iotest"
       ]
     },
     {
@@ -2584,14 +2584,14 @@
       "path": "testing_quick.md",
       "summary": "Package quick implements utility functions to help with black box testing.",
       "keywords": [
+        "value",
         "rand",
         "type",
+        "return",
+        "test",
         "error",
         "func",
-        "quick",
-        "value",
-        "returns",
-        "testing"
+        "function"
       ]
     },
     {
@@ -2600,14 +2600,14 @@
       "path": "testing_slogtest.md",
       "summary": "Package slogtest implements support for testing implementations of",
       "keywords": [
+        "test",
         "handler",
         "slog",
-        "testing",
+        "call",
+        "result",
         "should",
         "slogtest",
-        "test",
-        "calls",
-        "func"
+        "error"
       ]
     },
     {
@@ -2616,14 +2616,14 @@
       "path": "testing_synctest.md",
       "summary": "Package synctest provides support for testing concurrent code.",
       "keywords": [
+        "test",
         "bubble",
         "context",
-        "test",
+        "goroutine",
+        "block",
         "time",
         "wait",
-        "testing",
-        "synctest",
-        "goroutine"
+        "synctest"
       ]
     },
     {
@@ -2633,13 +2633,13 @@
       "summary": "Package scanner provides a scanner and tokenizer for UTF-8-encoded text.",
       "keywords": [
         "scanner",
+        "character",
         "position",
         "error",
-        "character",
-        "func",
-        "returns",
-        "string",
-        "field"
+        "token",
+        "return",
+        "field",
+        "func"
       ]
     },
     {
@@ -2649,13 +2649,13 @@
       "summary": "Package tabwriter implements a write filter (tabwriter.Writer) that translates",
       "keywords": [
         "writer",
+        "column",
+        "cell",
         "text",
-        "columns",
+        "character",
         "width",
-        "characters",
         "output",
-        "tabwriter",
-        "padding"
+        "tabwriter"
       ]
     },
     {
@@ -2666,12 +2666,12 @@
       "keywords": [
         "template",
         "value",
+        "return",
         "name",
-        "string",
+        "argument",
         "pipeline",
-        "error",
-        "output",
-        "func"
+        "function",
+        "error"
       ]
     },
     {
@@ -2680,14 +2680,14 @@
       "path": "text_template_parse.md",
       "summary": "Package parse builds parse trees for templates as defined by text/template and",
       "keywords": [
-        "string",
         "func",
         "node",
         "type",
+        "field",
         "copy",
         "nodetype",
-        "struct",
-        "tree"
+        "tree",
+        "struct"
       ]
     },
     {
@@ -2697,13 +2697,13 @@
       "summary": "Package time provides functionality for measuring and displaying time.",
       "keywords": [
         "time",
+        "return",
         "func",
-        "returns",
         "duration",
-        "string",
         "location",
+        "clock",
         "zone",
-        "clock"
+        "value"
       ]
     },
     {
@@ -2714,12 +2714,12 @@
       "keywords": [
         "package",
         "tzdata",
+        "import",
         "program",
         "time",
         "database",
-        "embedded",
-        "imported",
-        "timezone"
+        "embedd",
+        "library"
       ]
     },
     {
@@ -2729,7 +2729,7 @@
       "summary": "Package unicode provides data and functions to test some properties of Unicode",
       "keywords": [
         "unicode",
-        "characters",
+        "character",
         "script",
         "rune",
         "category",
@@ -2746,8 +2746,8 @@
       "keywords": [
         "rune",
         "unicode",
-        "returns",
-        "encoding",
+        "return",
+        "encod",
         "code",
         "func",
         "point",
@@ -2760,14 +2760,14 @@
       "path": "unicode_utf8.md",
       "summary": "Package utf8 implements functions and constants to support text encoded",
       "keywords": [
+        "encod",
         "rune",
-        "encoding",
-        "func",
-        "returns",
         "byte",
+        "func",
+        "return",
         "runeerror",
         "invalid",
-        "string"
+        "empty"
       ]
     },
     {
@@ -2776,14 +2776,14 @@
       "path": "unique.md",
       "summary": "The unique package provides facilities for canonicalizing (\"interning\")",
       "keywords": [
-        "unique",
         "value",
         "handle",
+        "unique",
         "equal",
-        "handles",
-        "values",
+        "type",
         "comparable",
-        "make"
+        "make",
+        "package"
       ]
     },
     {
@@ -2794,12 +2794,12 @@
       "keywords": [
         "pointer",
         "uintptr",
-        "unsafe",
         "type",
+        "unsafe",
+        "return",
         "value",
         "conversion",
-        "reflect",
-        "returns"
+        "argument"
       ]
     },
     {
@@ -2812,10 +2812,10 @@
         "weak",
         "object",
         "value",
-        "pointers",
         "return",
-        "equal",
-        "objects"
+        "become",
+        "compare",
+        "equal"
       ]
     }
   ]

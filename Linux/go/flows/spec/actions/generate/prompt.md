@@ -30,12 +30,10 @@ Rules:
 ## Request
 {{ desc }}
 
-## Reference (use it to name the right concerns; any section may be empty)
-### Recipes (playbooks for this kind of app - mirror their unit breakdown and the APIs/deps they name)
-{{ recipe_refs }}
-### Patterns
-{{ pattern_refs }}
-### Idiomatic style
-{{ guideline_refs }}
-### Pitfalls
-{{ pitfall_refs }}
+## Reference (retrieved from the KB(s) selected for this task; any section may be empty)
+### {{ kb1 }}
+{{ refs1 }}
+### {{ kb2 }}
+{{ refs2 }}
+### {{ kb3 }}
+{{ refs3 }}

@@ -10,12 +10,12 @@
       "keywords": [
         "http",
         "handler",
-        "func",
         "pattern",
-        "string",
+        "func",
         "method",
+        "route",
         "handlerfunc",
-        "route"
+        "middleware"
       ]
     },
     {
@@ -24,14 +24,14 @@
       "path": "golang_org_x_sync_singleflight.md",
       "summary": "Package singleflight provides a duplicate function call suppression mechanism.",
       "keywords": [
+        "result",
         "singleflight",
+        "call",
         "duplicate",
         "func",
         "group",
-        "call",
         "error",
-        "function",
-        "results"
+        "function"
       ]
     }
   ]

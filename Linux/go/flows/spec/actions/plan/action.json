@@ -1,0 +1,30 @@
+{
+  "$comment": "Select the relevant KB(s) + a per-KB query for this spec-drafting task, grounded ONLY on the catalog summaries. output_schema forces the shape the route_score oracle reads and the generate's dynamic searches consume.",
+  "id": "spec.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "spec.catalog", "path": ".", "as": "catalog" }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "selections": {
+        "type": "array",
+        "description": "only the KB(s) relevant to the task; at most 3, most relevant first",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kb": { "type": "string", "description": "a KB name EXACTLY as in the catalog" },
+            "query": { "type": "string", "description": "a focused search query for that KB" }
+          },
+          "required": ["kb", "query"]
+        }
+      }
+    },
+    "required": ["selections"]
+  },
+  "on_success": "spec.gate",
+  "on_failure": "spec.fail"
+}

@@ -1,0 +1,76 @@
+{
+  "$comment": "High-level KB registry: one entry per knowledge library (name, path, doc-count, default, one-line subject). The ENGINE reads this as its knowledge registry (Knowledge() prefers it over ratchet.json knowledgeBases). KBs + doc-counts are auto-discovered from disk by tools/kb_catalog.sh; name/default/summary are authored here and preserved on regenerate.",
+  "version": 1,
+  "entries": [
+    {
+      "name": "cache",
+      "path": "kb/cache",
+      "default": false,
+      "docs": 8,
+      "summary": "Concurrent in-memory cache building blocks: sharded store, reader-biased RWMutex, single-flight, timer-wheel TTL, W-TinyLFU, count-min sketch."
+    },
+    {
+      "name": "concurrency",
+      "path": "kb/concurrency",
+      "default": false,
+      "docs": 18,
+      "summary": "Concurrent Go: channel & goroutine patterns - fan-in/out, worker pool, select-timeout, context cancellation, bounded parallelism, semaphores, generators."
+    },
+    {
+      "name": "cqrs",
+      "path": "kb/cqrs",
+      "default": false,
+      "docs": 10,
+      "summary": "Event-driven / CQRS building blocks: Message, Publisher/Subscriber, Router + middleware, command/event bus, processors, marshaler."
+    },
+    {
+      "name": "deps",
+      "path": "kb/deps",
+      "default": false,
+      "docs": 2,
+      "summary": "Third-party module API surface (go doc per added dependency)."
+    },
+    {
+      "name": "guidelines",
+      "path": "kb/guidelines",
+      "default": false,
+      "docs": 11,
+      "summary": "Idiomatic Go style from Effective Go, Code Review Comments, and Go Proverbs."
+    },
+    {
+      "name": "kb",
+      "path": "kb/idioms",
+      "default": true,
+      "docs": 1,
+      "summary": "Hand-written Go idioms: buildable-code basics - errors, slices/maps, interfaces, zero values, defer."
+    },
+    {
+      "name": "patterns",
+      "path": "kb/patterns",
+      "default": false,
+      "docs": 25,
+      "summary": "Design & algorithm patterns: 23 GoF patterns plus authored algorithms (two-heap median, production HTTP server)."
+    },
+    {
+      "name": "pitfalls",
+      "path": "kb/pitfalls",
+      "default": false,
+      "docs": 10,
+      "summary": "Builds-but-wrong traps: unused vars, nil-map writes, loop-var capture, channel deadlock, slice aliasing, RLock mutation, string(int)."
+    },
+    {
+      "name": "recipes",
+      "path": "kb/recipes",
+      "default": false,
+      "docs": 5,
+      "summary": "End-to-end app playbooks: unit breakdown plus the APIs/deps for a kind of program (e.g. an HTTP service)."
+    },
+    {
+      "name": "stdlib",
+      "path": "kb/stdlib",
+      "default": false,
+      "docs": 176,
+      "summary": "Go standard library API reference (go doc): io, net/http, sync, context, encoding, and 170+ packages."
+    }
+  ]
+}

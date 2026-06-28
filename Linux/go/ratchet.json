@@ -1,5 +1,5 @@
 {
-  "$comment": "The Go reference ratchet: cross-platform code generation verified by `go build`. All dirs default under this workdir. The oracle tool (go_build) is a .sh script the engine dispatches to bash on unix/WSL/macOS; add a .ps1 sibling to also run native on Windows. Launch with `ratchet <this-dir>`; one-shot with `ratchet flow <this-dir> go \"...\"`.",
+  "$comment": "The Go reference ratchet: cross-platform code generation verified by `go build`. All dirs default under this workdir. The oracle tool (go_build) is a .sh script the engine dispatches to bash on unix/WSL/macOS; add a .ps1 sibling to also run native on Windows. Launch with `ratchet <this-dir>`; one-shot with `ratchet flow <this-dir> go \"...\"`. Knowledge bases are registered in kb/catalog.json (auto-discovered + authored summaries), not here.",
   "name": "go",
   "domain": "Cross-platform Go code generation, verified with `go build`",
   "models": {
@@ -11,37 +11,6 @@
   "router": {
     "autorun": "confirm"
   },
-  "knowledgeBases": [
-    {
-      "name": "kb",
-      "path": "kb/idioms",
-      "default": true
-    },
-    {
-      "name": "stdlib",
-      "path": "kb/stdlib"
-    },
-    {
-      "name": "patterns",
-      "path": "kb/patterns"
-    },
-    {
-      "name": "deps",
-      "path": "kb/deps"
-    },
-    {
-      "name": "guidelines",
-      "path": "kb/guidelines"
-    },
-    {
-      "name": "pitfalls",
-      "path": "kb/pitfalls"
-    },
-    {
-      "name": "recipes",
-      "path": "kb/recipes"
-    }
-  ],
   "requirements": [
     {
       "name": "go toolchain",
@@ -54,6 +23,11 @@
       "hint": "/do doctor_go for the full toolbelt report"
     },
     {
+      "name": "python3",
+      "exe": "python3",
+      "hint": "install Python 3 (https://python.org); used by JSON-handling tools (write_specs, plan_units, route_score, kb_catalog, pack_refs, ...)"
+    },
+    {
       "name": "model generate",
       "model": "qwen3-coder:latest",
       "hint": "ollama pull qwen3-coder"
@@ -62,34 +36,6 @@
       "name": "model embed",
       "model": "nomic-embed-text",
       "hint": "ollama pull nomic-embed-text"
-    },
-    {
-      "name": "KB kb",
-      "kb": "kb"
-    },
-    {
-      "name": "KB stdlib",
-      "kb": "stdlib"
-    },
-    {
-      "name": "KB patterns",
-      "kb": "patterns"
-    },
-    {
-      "name": "KB deps",
-      "kb": "deps"
-    },
-    {
-      "name": "KB guidelines",
-      "kb": "guidelines"
-    },
-    {
-      "name": "KB pitfalls",
-      "kb": "pitfalls"
-    },
-    {
-      "name": "KB recipes",
-      "kb": "recipes"
     }
   ]
 }

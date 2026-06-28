@@ -1,0 +1,20 @@
+{
+  "$comment": "Execute the VERIFIED routing: bind the top-3 selections (applyPath JSON-pointer extraction) into kb/query slots, then pull each KB's hits via DYNAMIC search bindings - the search target is the planner's chosen KB, resolved at runtime from the slot (engine: render(ib.Lib)). pack_refs assembles the hits into a context pack, dropping slots the planner left empty. This is where actions stem from retrieval.",
+  "id": "route.retrieve",
+  "kind": "action",
+  "tool": "pack_refs",
+  "inputs": [
+    { "from": "route.plan", "path": "selections/0/kb", "as": "kb1" },
+    { "from": "route.plan", "path": "selections/0/query", "as": "q1" },
+    { "from": "route.plan", "path": "selections/1/kb", "as": "kb2" },
+    { "from": "route.plan", "path": "selections/1/query", "as": "q2" },
+    { "from": "route.plan", "path": "selections/2/kb", "as": "kb3" },
+    { "from": "route.plan", "path": "selections/2/query", "as": "q3" },
+    { "search": "{{ kb1 }}", "query": "{{ q1 }}", "k": 2, "as": "refs1", "max_chars": 2000 },
+    { "search": "{{ kb2 }}", "query": "{{ q2 }}", "k": 2, "as": "refs2", "max_chars": 2000 },
+    { "search": "{{ kb3 }}", "query": "{{ q3 }}", "k": 2, "as": "refs3", "max_chars": 2000 }
+  ],
+  "body": { "pack": "<<<{{ kb1 }}>>>\n{{ refs1 }}\n<<<{{ kb2 }}>>>\n{{ refs2 }}\n<<<{{ kb3 }}>>>\n{{ refs3 }}" },
+  "on_success": "route.done",
+  "on_failure": "route.fail"
+}

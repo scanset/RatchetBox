@@ -1,0 +1,10 @@
+{
+  "$comment": "Emit the high-level KB catalog as 'name: summary' lines for the planner to choose from.",
+  "id": "route.catalog",
+  "kind": "action",
+  "tool": "kb_catalog",
+  "inputs": [],
+  "body": { "mode": "--list" },
+  "on_success": "route.plan",
+  "on_failure": "route.fail"
+}

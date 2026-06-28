@@ -13,9 +13,9 @@
         "server",
         "stop",
         "time",
+        "request",
         "second",
-        "signal",
-        "context"
+        "signal"
       ]
     },
     {
@@ -29,9 +29,9 @@
         "heap",
         "data",
         "intheap",
+        "return",
         "func",
-        "push",
-        "return"
+        "push"
       ]
     },
     {
@@ -59,11 +59,11 @@
         "command",
         "receiver",
         "invoker",
-        "commands",
         "execute",
         "func",
         "result",
-        "string"
+        "implementation",
+        "return"
       ]
     },
     {
@@ -73,12 +73,12 @@
       "summary": "Iterator is a behavioral design pattern. Idiomatic Go implementation with a runnable example below.",
       "keywords": [
         "iterator",
-        "index",
         "book",
+        "index",
         "bookiterator",
-        "books",
         "func",
         "interface",
+        "return",
         "shelf"
       ]
     },
@@ -95,7 +95,7 @@
         "func",
         "money",
         "addmoney",
-        "ketchup"
+        "tomato"
       ]
     },
     {
@@ -109,9 +109,9 @@
         "originator",
         "caretaker",
         "func",
+        "return",
         "creatememento",
-        "example",
-        "getstate"
+        "example"
       ]
     },
     {
@@ -139,7 +139,7 @@
         "alert",
         "state",
         "mobilealert",
-        "string",
+        "return",
         "func",
         "result",
         "vrrr",
@@ -154,9 +154,9 @@
       "keywords": [
         "sort",
         "strategy",
+        "algorithm",
         "expect",
         "size",
-        "algorithm",
         "context",
         "func",
         "result1"
@@ -168,14 +168,14 @@
       "path": "behavioral_templatemethod.md",
       "summary": "TemplateMethod is a behavioral design pattern. Idiomatic Go implementation with a runnable example below.",
       "keywords": [
-        "quotes",
-        "string",
+        "quote",
+        "open",
         "func",
         "close",
-        "open",
         "return",
-        "frenchquotes",
-        "expect"
+        "frenchquote",
+        "expect",
+        "germanquote"
       ]
     },
     {
@@ -185,13 +185,13 @@
       "summary": "Visitor is a behavioral design pattern. Idiomatic Go implementation with a runnable example below.",
       "keywords": [
         "visitor",
-        "string",
+        "place",
         "func",
         "accept",
         "city",
         "return",
-        "implements",
-        "place"
+        "implement",
+        "burgerbar"
       ]
     },
     {
@@ -205,9 +205,9 @@
         "float64",
         "water",
         "cocacolafactory",
+        "return",
         "abstractwater",
-        "func",
-        "interface"
+        "func"
       ]
     },
     {
@@ -218,12 +218,12 @@
       "keywords": [
         "builder",
         "product",
-        "string",
         "footer",
         "header",
         "concretebuilder",
         "director",
-        "func"
+        "func",
+        "content"
       ]
     },
     {
@@ -234,8 +234,8 @@
       "keywords": [
         "action",
         "product",
-        "string",
         "factory",
+        "return",
         "type",
         "createproduct",
         "func",
@@ -254,8 +254,8 @@
         "prototype",
         "prototyper",
         "getname",
-        "clone",
-        "func"
+        "return",
+        "clone"
       ]
     },
     {
@@ -298,12 +298,12 @@
       "keywords": [
         "engine",
         "getsound",
+        "return",
         "bridge",
         "sound",
         "func",
-        "string",
         "type",
-        "return"
+        "enginer"
       ]
     },
     {
@@ -313,13 +313,13 @@
       "summary": "Composite is a structural design pattern. Idiomatic Go implementation with a runnable example below.",
       "keywords": [
         "name",
-        "string",
-        "component",
         "child",
+        "return",
+        "component",
         "func",
         "directory",
         "file",
-        "return"
+        "composite"
       ]
     },
     {
@@ -350,8 +350,8 @@
         "facade",
         "func",
         "result",
-        "born",
-        "build"
+        "return",
+        "born"
       ]
     },
     {
@@ -364,10 +364,10 @@
         "height",
         "opacity",
         "width",
-        "flyweight",
         "draw",
+        "flyweight",
         "flyweighter",
-        "string"
+        "pool"
       ]
     },
     {
@@ -377,8 +377,8 @@
       "summary": "Proxy is a structural design pattern. Idiomatic Go implementation with a runnable example below.",
       "keywords": [
         "proxy",
-        "realsubject",
         "send",
+        "realsubject",
         "subject",
         "expect",
         "result",

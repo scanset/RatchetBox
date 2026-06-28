@@ -1,0 +1,30 @@
+{
+  "$comment": "The model selects the relevant KB(s) and a focused per-KB query, grounded ONLY on the catalog summaries (cheap - no doc retrieval yet). Pick the few that fit; omit the rest. output_schema forces the shape the route_score oracle reads.",
+  "id": "route.plan",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "route.catalog", "path": ".", "as": "catalog" }
+  ],
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "selections": {
+        "type": "array",
+        "description": "only the KB(s) relevant to the task; omit the rest",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kb": { "type": "string", "description": "a KB name EXACTLY as in the catalog" },
+            "query": { "type": "string", "description": "a focused search query for that KB" }
+          },
+          "required": ["kb", "query"]
+        }
+      }
+    },
+    "required": ["selections"]
+  },
+  "on_success": "route.gate",
+  "on_failure": "route.fail"
+}

@@ -1,0 +1,24 @@
+{
+  "$comment": "The oracle: route_score scores each pick's grounding and checks coverage against the catalog + per-lib manifests (task as {query}, planner JSON on stdin). PASS -> done; FAIL -> one re-plan with the oracle's feedback.",
+  "id": "route.gate",
+  "kind": "action",
+  "tool": "route_score",
+  "inputs": [
+    {
+      "from": "$input",
+      "path": ".",
+      "as": "task"
+    },
+    {
+      "from": "route.plan",
+      "path": ".",
+      "as": "plan"
+    }
+  ],
+  "body": {
+    "query": "{{ task }}",
+    "plan": "{{ plan }}"
+  },
+  "on_success": "route.retrieve",
+  "on_failure": "route.fix"
+}

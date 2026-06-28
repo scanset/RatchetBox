@@ -39,5 +39,9 @@ only unless the spec says otherwise.
 {{ guideline_refs }}
 ### Recipe (playbook for this kind of unit - follow its API shape)
 {{ recipe_refs }}
+### Concurrency patterns (channels/select/fan-in/worker-pool/context; use for concurrent code)
+{{ concurrency_refs }}
+### Concurrent cache building blocks (theine: sharded store, reader-biased mutex, single-flight, timer-wheel TTL, TinyLFU)
+{{ cache_refs }}
 ### Third-party module (already in this workspace's go.mod)
 {{ dep_refs }}

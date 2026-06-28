@@ -1,14 +1,19 @@
 {
-  "$comment": "Draft the spec(s) from the description, grounded on patterns/guidelines/pitfalls so the specs name the right concerns. Output is marker-separated .spec blocks the write_specs oracle validates + writes.",
+  "$comment": "Draft the spec(s) grounded on the SELECTED KBs (catalog-driven dynamic retrieval): extract the top-3 verified selections and search each at runtime (search target = the chosen KB, resolved from a slot), replacing the old 6 fixed search blocks. Output is marker-separated .spec blocks the write_specs oracle validates + writes.",
   "id": "spec.generate",
   "kind": "generate",
   "prompt": "./prompt.md",
   "inputs": [
     { "from": "$input", "path": ".", "as": "desc" },
-    { "search": "recipes", "query": "{{ desc }}", "k": 2, "as": "recipe_refs", "max_chars": 3500 },
-    { "search": "patterns", "query": "{{ desc }}", "k": 1, "as": "pattern_refs", "max_chars": 2500 },
-    { "search": "guidelines", "query": "{{ desc }}", "k": 1, "as": "guideline_refs", "max_chars": 2000 },
-    { "search": "pitfalls", "query": "{{ desc }}", "k": 1, "as": "pitfall_refs", "max_chars": 2000 }
+    { "from": "spec.plan", "path": "selections/0/kb", "as": "kb1" },
+    { "from": "spec.plan", "path": "selections/0/query", "as": "q1" },
+    { "from": "spec.plan", "path": "selections/1/kb", "as": "kb2" },
+    { "from": "spec.plan", "path": "selections/1/query", "as": "q2" },
+    { "from": "spec.plan", "path": "selections/2/kb", "as": "kb3" },
+    { "from": "spec.plan", "path": "selections/2/query", "as": "q3" },
+    { "search": "{{ kb1 }}", "query": "{{ q1 }}", "k": 2, "as": "refs1", "max_chars": 3000 },
+    { "search": "{{ kb2 }}", "query": "{{ q2 }}", "k": 2, "as": "refs2", "max_chars": 3000 },
+    { "search": "{{ kb3 }}", "query": "{{ q3 }}", "k": 1, "as": "refs3", "max_chars": 2000 }
   ],
   "on_success": "spec.write",
   "on_failure": "spec.fail"

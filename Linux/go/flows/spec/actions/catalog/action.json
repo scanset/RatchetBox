@@ -1,0 +1,10 @@
+{
+  "$comment": "Emit the high-level KB catalog as 'name: summary' lines for the planner to select from (catalog-driven retrieval, replacing the old fixed search blocks).",
+  "id": "spec.catalog",
+  "kind": "action",
+  "tool": "kb_catalog",
+  "inputs": [],
+  "body": { "mode": "--list" },
+  "on_success": "spec.plan",
+  "on_failure": "spec.fail"
+}

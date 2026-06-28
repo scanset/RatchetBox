@@ -16,3 +16,4 @@ desktop.ini
 .DS_Store
 .claude/
 **/ROADMAP.md
+cqrs-go-ref.md

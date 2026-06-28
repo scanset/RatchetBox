@@ -29,3 +29,7 @@ Rules:
 {{ pattern_refs }}
 ### Pitfalls to avoid (builds-but-wrong / redeclaration)
 {{ pitfall_refs }}
+### Concurrency patterns (channels/select/fan-in/worker-pool/context; use for concurrent code)
+{{ concurrency_refs }}
+### Concurrent cache building blocks (theine: sharded store, reader-biased mutex, single-flight, timer-wheel TTL, TinyLFU)
+{{ cache_refs }}

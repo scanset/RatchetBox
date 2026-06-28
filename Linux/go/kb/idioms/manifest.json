@@ -8,13 +8,13 @@
       "path": "go-idioms.md",
       "summary": "Guidance for emitting a single Go file that type-checks under `go build` as a library package.",
       "keywords": [
-        "library",
-        "errors",
-        "package",
         "error",
-        "sort",
-        "func",
         "import",
+        "library",
+        "package",
+        "sort",
+        "check",
+        "func",
         "only"
       ]
     }

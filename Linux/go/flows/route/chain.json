@@ -1,0 +1,23 @@
+{
+  "$comment": "route: the model-driven, oracle-gated KB retrieval front-end - the AI+oracle hybrid context planner. read the high-level catalog (kb_catalog --list) -> the model PLANS which KB(s) to consult + a per-KB query -> the route_score ORACLE gates that selection (grounding + coverage), re-planning ONCE on a FAIL -> retrieve EXECUTES the verified routing via DYNAMIC search bindings (search target = the chosen KB, resolved at runtime from a slot) and pack_refs assembles the grounded context. Output is a verified, grounded context pack a downstream generate step can consume. Run: `ratchet flow . route \"<task>\"`.",
+  "id": "route",
+  "version": "1.0.0",
+  "summary": "Pick which knowledge libraries to consult for a task and verify the choice with a deterministic oracle (grounding + coverage), re-planning once if the picks are groundless or miss a relevant KB.",
+  "entry": "route.catalog",
+  "budgets": {
+    "max_steps": 16,
+    "max_total_tokens": 16000,
+    "max_wallclock_seconds": 300
+  },
+  "nodes": [
+    "route.catalog",
+    "route.plan",
+    "route.gate",
+    "route.fix",
+    "route.regate",
+    "route.retrieve",
+    "route.retrieve2",
+    "route.done",
+    "route.fail"
+  ]
+}

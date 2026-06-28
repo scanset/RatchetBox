@@ -1,0 +1,13 @@
+{
+  "$comment": "Oracle: route_score gates the KB selection (grounding + coverage) against the catalog + per-lib manifests (task as {query}, planner JSON on stdin). PASS -> draft the spec(s). FAIL -> abort (the route could not be verified; re-run - the planner is stochastic).",
+  "id": "spec.gate",
+  "kind": "action",
+  "tool": "route_score",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "task" },
+    { "from": "spec.plan", "path": ".", "as": "plan" }
+  ],
+  "body": { "query": "{{ task }}", "plan": "{{ plan }}" },
+  "on_success": "spec.generate",
+  "on_failure": "spec.fail"
+}

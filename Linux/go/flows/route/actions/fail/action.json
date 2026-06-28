@@ -1,0 +1,1 @@
+{ "id": "route.fail", "kind": "exit", "outcome": "aborted: could not verify a KB routing after one re-plan" }

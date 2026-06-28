@@ -1,0 +1,24 @@
+{
+  "$comment": "Re-run the oracle on the corrected selection. PASS -> done; still FAIL -> give up (the route could not be verified after one repair).",
+  "id": "route.regate",
+  "kind": "action",
+  "tool": "route_score",
+  "inputs": [
+    {
+      "from": "$input",
+      "path": ".",
+      "as": "task"
+    },
+    {
+      "from": "route.fix",
+      "path": ".",
+      "as": "plan"
+    }
+  ],
+  "body": {
+    "query": "{{ task }}",
+    "plan": "{{ plan }}"
+  },
+  "on_success": "route.retrieve2",
+  "on_failure": "route.fail"
+}

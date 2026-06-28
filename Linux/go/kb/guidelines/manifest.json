@@ -3,35 +3,19 @@
   "name": "guidelines",
   "entries": [
     {
-      "id": "ATTRIBUTION",
-      "title": "Attribution",
-      "path": "ATTRIBUTION.md",
-      "summary": "The entries in this `guidelines` library are derived from the official Go documentation:",
-      "keywords": [
-        "https",
-        "license",
-        "attribution",
-        "code",
-        "documentation",
-        "entries",
-        "licensed",
-        "proverbs"
-      ]
-    },
-    {
       "id": "comments-and-docs",
       "title": "Comments and doc conventions",
       "path": "comments-and-docs.md",
       "summary": "Documentation conventions (Effective Go; Code Review Comments). Documentation is for users; doc comments",
       "keywords": [
-        "package",
         "comment",
+        "package",
         "request",
-        "comments",
         "code",
-        "conventions",
+        "convention",
         "documentation",
-        "encode"
+        "encode",
+        "name"
       ]
     },
     {
@@ -45,9 +29,9 @@
         "chan",
         "concurrency",
         "func",
+        "item",
         "make",
-        "results",
-        "item"
+        "result"
       ]
     },
     {
@@ -58,12 +42,12 @@
       "keywords": [
         "switch",
         "return",
-        "case",
         "range",
+        "case",
         "type",
         "style",
-        "cases",
-        "chain"
+        "chain",
+        "default"
       ]
     },
     {
@@ -75,11 +59,11 @@
         "defer",
         "return",
         "cleanup",
+        "name",
+        "deferr",
         "function",
         "iteration",
-        "name",
-        "deferred",
-        "returns"
+        "call"
       ]
     },
     {
@@ -89,13 +73,13 @@
       "summary": "Go has no inheritance; it composes via embedding (Effective Go). An embedded field's exported methods",
       "keywords": [
         "type",
+        "embedd",
         "logger",
-        "embedding",
-        "promoted",
-        "methods",
+        "interface",
+        "promot",
+        "method",
         "outer",
-        "embed",
-        "embedded"
+        "field"
       ]
     },
     {
@@ -106,12 +90,12 @@
       "keywords": [
         "error",
         "return",
-        "errors",
-        "string",
-        "path",
         "value",
+        "path",
         "func",
-        "patherror"
+        "indent",
+        "patherror",
+        "perr"
       ]
     },
     {
@@ -120,12 +104,12 @@
       "path": "go-proverbs.md",
       "summary": "Rob Pike's Go proverbs - short rules of thumb for idiomatic Go. Source: https://go-proverbs.github.io/",
       "keywords": [
-        "proverbs",
-        "always",
+        "proverb",
+        "alway",
         "better",
         "build",
         "clear",
-        "errors",
+        "error",
         "favorite",
         "gofmt"
       ]
@@ -137,13 +121,13 @@
       "summary": "How idiomatic Go defines and uses interfaces (Effective Go; Code Review Comments; proverbs). The bigger",
       "keywords": [
         "interface",
-        "interfaces",
-        "thinger",
         "type",
-        "package",
         "return",
+        "thinger",
+        "package",
         "consumer",
-        "func"
+        "func",
+        "method"
       ]
     },
     {
@@ -152,10 +136,10 @@
       "path": "naming.md",
       "summary": "Idiomatic Go names (Effective Go; Code Review Comments). Names carry meaning; keep them MixedCaps.",
       "keywords": [
-        "names",
+        "name",
         "owner",
         "case",
-        "mixedcaps",
+        "mixedcap",
         "servehttp",
         "short",
         "chubby",
@@ -168,14 +152,14 @@
       "path": "receivers.md",
       "summary": "Choosing a method receiver type (Code Review Comments). Be consistent: don't mix value and pointer",
       "keywords": [
-        "pointer",
         "receiver",
+        "pointer",
         "type",
         "point",
         "value",
-        "counter",
-        "func",
-        "receivers"
+        "method",
+        "struct",
+        "counter"
       ]
     },
     {
@@ -184,14 +168,14 @@
       "path": "slices-and-maps.md",
       "summary": "Working with slices and maps (Effective Go; Code Review Comments). Slices and maps are references to an",
       "keywords": [
+        "slice",
         "make",
         "append",
-        "maps",
-        "slice",
-        "slices",
-        "string",
-        "names",
-        "comma"
+        "zero",
+        "name",
+        "comma",
+        "distinguish",
+        "idiom"
       ]
     }
   ]

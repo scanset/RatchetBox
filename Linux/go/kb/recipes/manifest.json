@@ -9,13 +9,13 @@
       "summary": "`github.com/go-chi/chi/v5` is a lightweight, idiomatic HTTP router (stdlib-compatible `http.Handler`).",
       "keywords": [
         "http",
-        "middleware",
         "router",
+        "middleware",
         "func",
         "github",
-        "server",
         "handler",
-        "framework"
+        "server",
+        "route"
       ]
     },
     {
@@ -25,13 +25,13 @@
       "summary": "A command-line tool using only `flag` + `os` - no dependencies. For subcommands, give each its own",
       "keywords": [
         "flag",
-        "args",
+        "command",
         "count",
         "greet",
         "name",
         "parse",
-        "command",
-        "exit"
+        "exit",
+        "exitonerror"
       ]
     },
     {
@@ -40,12 +40,12 @@
       "path": "cobra-cli.md",
       "summary": "`github.com/spf13/cobra` is the standard framework for rich CLIs (nested subcommands, flags, help,",
       "keywords": [
-        "cobra",
         "command",
-        "root",
+        "cobra",
         "greet",
+        "root",
+        "flag",
         "execute",
-        "flags",
         "main",
         "name"
       ]
@@ -60,10 +60,10 @@
         "json",
         "body",
         "server",
-        "string",
         "createitem",
         "type",
-        "decode"
+        "decode",
+        "func"
       ]
     },
     {
@@ -74,11 +74,11 @@
       "keywords": [
         "func",
         "pool",
-        "jobs",
+        "worker",
         "done",
         "queue",
         "return",
-        "workers",
+        "buffer",
         "sync"
       ]
     }
