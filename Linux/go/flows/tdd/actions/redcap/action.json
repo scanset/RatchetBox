@@ -1,0 +1,7 @@
+{
+  "$comment": "Cap the RED cycle: while under the attempt limit, loop back to tdd.test; once exhausted, give up to tdd.fail (an unsatisfiable red gate, e.g. a stub the test can never match).",
+  "id": "tdd.redcap", "kind": "action", "tool": "tdd_cap",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}", "name": "red", "max": "3" },
+  "on_success": "tdd.test", "on_failure": "tdd.fail"
+}

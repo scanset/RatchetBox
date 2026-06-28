@@ -1,0 +1,7 @@
+{
+  "$comment": "Cap the IMPL cycle (green/fuzz/harden failures): while under the attempt limit, loop back to tdd.impl with the oracle feedback; once exhausted, give up to tdd.fail.",
+  "id": "tdd.implcap", "kind": "action", "tool": "tdd_cap",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}", "name": "impl", "max": "3" },
+  "on_success": "tdd.impl", "on_failure": "tdd.fail"
+}

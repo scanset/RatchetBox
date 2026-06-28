@@ -1,0 +1,7 @@
+{
+  "$comment": "Clear the per-cycle repair counters at the start of the run (so caps are per-run).",
+  "id": "tdd.reset", "kind": "action", "tool": "tdd_cap",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}", "name": "reset" },
+  "on_success": "tdd.read", "on_failure": "tdd.fail"
+}

@@ -1,0 +1,18 @@
+{
+  "$comment": "HARDEN rung: go_quality (gofmt/vet/build/test -race/staticcheck/govulncheck). PASS -> done. FAIL -> loop back to tdd.impl with the report as harden_fb.",
+  "id": "tdd.harden",
+  "kind": "action",
+  "tool": "go_quality",
+  "inputs": [
+    {
+      "from": "$workspace",
+      "path": ".",
+      "as": "proj"
+    }
+  ],
+  "body": {
+    "proj": "{{ proj }}"
+  },
+  "on_success": "tdd.done",
+  "on_failure": "tdd.implcap"
+}

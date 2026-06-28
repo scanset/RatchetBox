@@ -687,6 +687,84 @@
       },
       "stdin": "pack",
       "timeout": 20
+    },
+    {
+      "name": "tdd_red",
+      "description": "RED oracle for the tdd flow: write the test file(s) (=== path.go === markers on stdin) into <proj> and prove the test compiles against the stub (go vet) AND fails (go test non-zero, stub panics). Exit 0 iff red achieved; rejects a test that passes against the stub (tests nothing).",
+      "command": [
+        "bash",
+        "tools/tdd_red.sh",
+        "{proj}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "description": "marker-separated test file(s)"
+          }
+        },
+        "required": [
+          "proj",
+          "code"
+        ]
+      },
+      "stdin": "code",
+      "timeout": 120
+    },
+    {
+      "name": "go_fuzz",
+      "description": "Property/fuzz rung: run every native fuzz target (FuzzXxx) in <proj> for a bounded time (env FUZZTIME, default 5s) to catch edge-case bugs example tests miss. Exit 1 on any crash; 0 if clean or no targets.",
+      "command": [
+        "bash",
+        "tools/go_fuzz.sh",
+        "{proj}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj"
+        ]
+      },
+      "timeout": 120
+    },
+    {
+      "name": "tdd_cap",
+      "description": "Bound a tdd repair cycle: `tdd_cap <proj> <name> <max>` increments a per-cycle counter (.tdd/<name>) and exits 0 while count<=max (keep looping) or 1 once exceeded (give up -> route to fail). `tdd_cap <proj> reset` clears counters at run start.",
+      "command": [
+        "bash",
+        "tools/tdd_cap.sh",
+        "{proj}",
+        "{name}",
+        "{max}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "max": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj",
+          "name"
+        ]
+      },
+      "timeout": 20
     }
   ]
 }

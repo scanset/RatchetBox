@@ -9,8 +9,17 @@ Rules:
   (and `cache` if it caches). Idiomatic-shape concerns -> `guidelines`. Builds-but-wrong risk -> `pitfalls`.
 - Output ONLY the JSON object {"selections":[{"kb": "...", "query": "..."}]}.
 
+If an ORACLE VERDICT appears below, your previous routing was REJECTED - fix exactly what it flagged:
+- `score=0` on a pick -> that KB is groundless; drop or replace it.
+- `holds [...]` for an unpicked KB -> that KB is relevant; ADD it (within the 3-pick budget, dropping a
+  weaker pick if needed) with a query for those terms.
+- `INVALID PICK` -> that name is not in the catalog; use an exact name.
+
 ## Task
 {{ task }}
+
+## Oracle verdict on the previous attempt (empty on the first pass)
+{{ feedback }}
 
 ## KB catalog (name: subject)
 {{ catalog }}

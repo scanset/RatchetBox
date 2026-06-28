@@ -1,0 +1,18 @@
+{
+  "$comment": "FUZZ rung: go_fuzz runs each FuzzXxx target briefly. A crash means a property failed on a generated input -> loop back to tdd.impl with the crash as fuzz_fb. No targets -> pass.",
+  "id": "tdd.fuzz",
+  "kind": "action",
+  "tool": "go_fuzz",
+  "inputs": [
+    {
+      "from": "$workspace",
+      "path": ".",
+      "as": "proj"
+    }
+  ],
+  "body": {
+    "proj": "{{ proj }}"
+  },
+  "on_success": "tdd.harden",
+  "on_failure": "tdd.implcap"
+}

@@ -1,0 +1,7 @@
+{
+  "$comment": "Write the stub files and verify they COMPILE (stage_files: go vet + go test -race; no tests yet, so test is a no-op pass). Stub fails to compile -> abort (signatures are malformed).",
+  "id": "tdd.stubwrite", "kind": "action", "tool": "stage_files",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" }, { "from": "tdd.stub", "path": ".", "as": "code" } ],
+  "body": { "proj": "{{ proj }}", "code": "{{ code }}" },
+  "on_success": "tdd.test", "on_failure": "tdd.fail"
+}

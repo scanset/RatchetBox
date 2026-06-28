@@ -1,0 +1,6 @@
+{
+  "$comment": "STUB rung (type-driven): emit ONLY signatures from the specs' api - every type + func with a panic body - plus a func main. No logic. Marker files the stage_files oracle then compiles.",
+  "id": "tdd.stub", "kind": "generate", "prompt": "./prompt.md",
+  "inputs": [ { "from": "tdd.read", "path": ".", "as": "specs" } ],
+  "on_success": "tdd.stubwrite", "on_failure": "tdd.fail"
+}

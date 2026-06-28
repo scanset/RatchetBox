@@ -17,3 +17,5 @@ desktop.ini
 .claude/
 **/ROADMAP.md
 cqrs-go-ref.md
+# scratch build workspaces (disposable)
+Linux/go/workspaces/

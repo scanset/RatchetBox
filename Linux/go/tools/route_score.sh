@@ -96,16 +96,21 @@ for p in picks:
 
 picked_terms = set().union(*(full[p] for p in picks if p in cat)) if picks else set()
 discrim = max(2, len(cat) // 3)
-missed = []
+MIN_CLUSTER = 2   # a KB is a missed branch only if a CLUSTER of >=2 uncovered terms points to it -
+                  # one incidental shared word (e.g. "stream" in a patterns doc) is noise, not relevance.
+holder_terms = {}
 for term in sorted(q):
     if term in picked_terms: continue
-    holders = [n for n in names if term in hi[n]]   # high-signal holders only (subject, not noise)
-    if holders and len(holders) <= discrim: missed.append((term, holders))
+    holders = [n for n in names if term in hi[n]]   # high-signal holders only (subject, not body noise)
+    if holders and len(holders) <= discrim:
+        for n in holders:
+            holder_terms.setdefault(n, set()).add(term)
+missed = {n: ts for n, ts in holder_terms.items() if len(ts) >= MIN_CLUSTER}
 
 if missed:
-    print("UNCOVERED (a relevant KB was not picked):")
-    for term, holders in missed:
-        print(f"  '{term}' is in {holders} but no picked KB")
+    print("UNCOVERED (relevant KB(s) not picked - a cluster of query terms points to each):")
+    for n, ts in sorted(missed.items()):
+        print(f"  {n} holds {sorted(ts)}")
 
 grounded = [p for p, s in scores.items() if s > 0]
 ok = bool(grounded) and not bad and not missed

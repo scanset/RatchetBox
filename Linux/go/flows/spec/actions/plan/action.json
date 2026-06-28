@@ -1,11 +1,12 @@
 {
-  "$comment": "Select the relevant KB(s) + a per-KB query for this spec-drafting task, grounded ONLY on the catalog summaries. output_schema forces the shape the route_score oracle reads and the generate's dynamic searches consume.",
+  "$comment": "Select the relevant KB(s) + a per-KB query for this spec-drafting task, grounded ONLY on the catalog summaries. output_schema forces the shape the route_score oracle reads and the generate's dynamic searches consume. On a gate FAILURE the flow loops back here; `feedback` carries the oracle's verdict (empty on the first pass) so the re-plan fixes exactly what was flagged.",
   "id": "spec.plan",
   "kind": "generate",
   "prompt": "./prompt.md",
   "inputs": [
     { "from": "$input", "path": ".", "as": "task" },
-    { "from": "spec.catalog", "path": ".", "as": "catalog" }
+    { "from": "spec.catalog", "path": ".", "as": "catalog" },
+    { "from": "spec.gate", "path": ".", "as": "feedback", "max_chars": 1500 }
   ],
   "output_schema": {
     "type": "object",

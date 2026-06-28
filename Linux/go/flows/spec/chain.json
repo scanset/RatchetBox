@@ -4,6 +4,6 @@
   "version": "1.1.0",
   "summary": "Draft well-formed Go build spec(s) from a description, grounded on catalog-selected, oracle-verified KBs - the front-end to compose.",
   "entry": "spec.catalog",
-  "budgets": { "max_steps": 14, "max_total_tokens": 24000, "max_wallclock_seconds": 700 },
+  "budgets": { "max_steps": 18, "max_total_tokens": 30000, "max_wallclock_seconds": 900 },
   "nodes": ["spec.catalog", "spec.plan", "spec.gate", "spec.generate", "spec.write", "spec.fix", "spec.rewrite", "spec.done", "spec.fail"]
 }

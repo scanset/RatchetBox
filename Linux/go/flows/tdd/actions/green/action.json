@@ -1,0 +1,24 @@
+{
+  "$comment": "GREEN oracle: stage_files writes the impl files and verifies the whole module (go vet + go test -race). PASS -> fuzz. FAIL -> loop back to tdd.impl with the failure as green_fb.",
+  "id": "tdd.green",
+  "kind": "action",
+  "tool": "stage_files",
+  "inputs": [
+    {
+      "from": "$workspace",
+      "path": ".",
+      "as": "proj"
+    },
+    {
+      "from": "tdd.impl",
+      "path": ".",
+      "as": "code"
+    }
+  ],
+  "body": {
+    "proj": "{{ proj }}",
+    "code": "{{ code }}"
+  },
+  "on_success": "tdd.fuzz",
+  "on_failure": "tdd.implcap"
+}

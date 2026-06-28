@@ -1,0 +1,24 @@
+{
+  "$comment": "RED oracle: tdd_red writes the test and proves it COMPILES against the stub but FAILS (stub panics). PASS -> implement. A test that doesn't compile, or that passes against the stub (tests nothing) -> loop back to tdd.test with the verdict.",
+  "id": "tdd.red",
+  "kind": "action",
+  "tool": "tdd_red",
+  "inputs": [
+    {
+      "from": "$workspace",
+      "path": ".",
+      "as": "proj"
+    },
+    {
+      "from": "tdd.test",
+      "path": ".",
+      "as": "code"
+    }
+  ],
+  "body": {
+    "proj": "{{ proj }}",
+    "code": "{{ code }}"
+  },
+  "on_success": "tdd.impl",
+  "on_failure": "tdd.redcap"
+}

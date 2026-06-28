@@ -1,0 +1,28 @@
+{
+  "$comment": "tdd: test-driven composition from specs - the assurance ladder (PLANS.md S1). read specs -> STUB (signatures only, panic bodies; oracle: compiles) -> TEST RED (author the test + a property/fuzz target from behavior; oracle tdd_red: compiles AND fails against the stub, so a trivial test is rejected) -> IMPL GREEN (fill bodies; oracle stage_files: go vet + go test -race pass) -> FUZZ (oracle go_fuzz: native FuzzXxx finds no crash) -> HARDEN (go_quality). Repairs are feedback cycles: red->test, green/fuzz/harden->impl, each re-generating with the oracle's output. Run: `ratchet flow . tdd --ws <proj>` after dropping specs in workspaces/<proj>/specs.",
+  "id": "tdd",
+  "version": "0.1.0",
+  "summary": "Compose a Go module test-first: stub -> red test (+ property/fuzz) -> green impl -> fuzz -> harden, each gated and repaired by a real oracle.",
+  "entry": "tdd.reset",
+  "budgets": {
+    "max_steps": 24,
+    "max_total_tokens": 90000,
+    "max_wallclock_seconds": 2400
+  },
+  "nodes": [
+    "tdd.reset",
+    "tdd.read",
+    "tdd.stub",
+    "tdd.stubwrite",
+    "tdd.test",
+    "tdd.red",
+    "tdd.redcap",
+    "tdd.impl",
+    "tdd.green",
+    "tdd.fuzz",
+    "tdd.harden",
+    "tdd.implcap",
+    "tdd.done",
+    "tdd.fail"
+  ]
+}
