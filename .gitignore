@@ -6,7 +6,7 @@ runs/
 # instantly; this rule keeps newly built caches (e.g. Linux/go) out of git.
 **/.index/
 
-# Built project artifacts under a ratchet's workspaces/ (project source is kept; binaries are not).
+# Built project artifacts under a ratchet's workspaces/ (project source is kept).
 **/workspaces/*/dist/
 **/workspaces/*/obj/
 
@@ -16,7 +16,6 @@ desktop.ini
 .DS_Store
 .claude/
 **/ROADMAP.md
-cqrs-go-ref.md
 # scratch build workspaces (disposable)
 
 # local-only findings (not pushed)
