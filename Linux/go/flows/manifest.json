@@ -84,6 +84,18 @@
       "summary": "Apply one change across several files at once, verified atomically over the whole module (go vet + go test -race), with rollback - for cross-cutting edits.",
       "entry": "coedit.read",
       "nodes": 7
+    },
+    {
+      "id": "find",
+      "summary": "Search a workspace's generated code by intent: rebuild the code index, BM25-rank the units against your query, return the best matches.",
+      "entry": "find.index",
+      "nodes": 4
+    },
+    {
+      "id": "evolve",
+      "summary": "Apply one spec layer as a transactional multi-file edit: regenerate every added/changed unit together, verify the whole module once (go vet + go test -race), roll back on failure.",
+      "entry": "evolve.sync",
+      "nodes": 9
     }
   ]
 }

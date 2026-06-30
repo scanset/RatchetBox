@@ -29,7 +29,13 @@ def spec_name(spec):
         return m.group(1), m.group(2)
     m = re.match(r'^"([^"]+)"$', spec)                          # plain path
     if m:
-        return m.group(1).split("/")[-1], m.group(1)
+        path = m.group(1)
+        # Third-party paths (first segment has a dot, e.g. github.com/...) have a package name that is NOT
+        # reliably derivable from the path - github.com/redis/go-redis/v9 is package `redis`, not `v9` or
+        # `go-redis`. Never strip those (return None => kept). Only stdlib (net/http, time) prunes by name.
+        if "." in path.split("/")[0]:
+            return None, path
+        return path.split("/")[-1], path
     return None, None
 
 def used(name, body):

@@ -1,0 +1,10 @@
+{
+  "$comment": "(Re)build the code-search corpus (.codeindex) from the workspace's current .go files - deterministic, always fresh, so search reflects the latest code.",
+  "id": "find.index",
+  "kind": "action",
+  "tool": "code_index",
+  "inputs": [ { "from": "$workspace", "path": ".", "as": "proj" } ],
+  "body": { "proj": "{{ proj }}" },
+  "on_success": "find.search",
+  "on_failure": "find.fail"
+}

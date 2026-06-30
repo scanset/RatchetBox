@@ -1,0 +1,13 @@
+{
+  "$comment": "Transactional whole-module oracle: write ALL regenerated files, then go vet + go test -race over the whole module; roll back EVERY touched file on failure -> one repair. This is the single gate for the layer (not per-unit), which is what makes a cross-cutting change correct.",
+  "id": "evolve.apply",
+  "kind": "action",
+  "tool": "stage_files",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "evolve.generate", "path": ".", "as": "code" }
+  ],
+  "body": { "proj": "{{ proj }}", "code": "{{ code }}" },
+  "on_success": "evolve.done",
+  "on_failure": "evolve.fix"
+}

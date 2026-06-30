@@ -19,7 +19,20 @@ code="$(printf '%s\n' "$code" | sed '/^[[:space:]]*```/d')"
 
 mkdir -p "$(dirname "$root/$path")"
 printf '%s\n' "$code" > "$root/$path"
-gofmt -w "$root/$path" 2>/dev/null
+# Deterministic post-processing (same as the tdd/coedit staging): stamp the two-level keyword tags, then
+# fix imports - so the model's mechanical slips never fail the gate. goimports ADDS missing imports AND
+# removes unused (and gofmts), resolving paths against go.mod from the module root; fall back to
+# prune_imports (remove-only) + gofmt when goimports is absent. Missing-import is the model's single most
+# common build-breaking slip, so adding (not just pruning) matters.
+bash tools/code_tags.sh "$proj" "$path" >/dev/null 2>&1 || true
+GOIMPORTS="$(command -v goimports 2>/dev/null || true)"
+[ -z "$GOIMPORTS" ] && [ -x "$(go env GOPATH)/bin/goimports" ] && GOIMPORTS="$(go env GOPATH)/bin/goimports"
+if [ -n "$GOIMPORTS" ]; then
+  (cd "$root" && "$GOIMPORTS" -w "$path" >/dev/null 2>&1) || gofmt -w "$root/$path" 2>/dev/null
+else
+  bash tools/prune_imports.sh "$root/$path" >/dev/null 2>&1 || true
+  gofmt -w "$root/$path" 2>/dev/null
+fi
 
 out="$(cd "$root" && GOFLAGS=-mod=mod go vet ./... 2>&1)"
 status=$?

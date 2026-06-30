@@ -114,6 +114,48 @@
       "timeout": 30
     },
     {
+      "name": "code_tags",
+      "description": "Stamp deterministic two-level keyword tags (// file-kw: header + // kw: per symbol) into a workspace's Go files - the fallback half of hybrid code tagging (model-authored tags preserved; missing ones derived from spec intent + identifiers). Idempotent. Arg: proj (workspace).",
+      "command": [
+        "bash",
+        "tools/code_tags.sh",
+        "{proj}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj"
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "code_index",
+      "description": "Build a COMPACT BM25/embedding corpus from the in-code keyword tags (// file-kw: and // kw:): one small record per file and per tagged symbol (keywords + signature + location, not full source) in workspaces/<proj>/.codeindex. Outputs the relative index path. Arg: proj (workspace).",
+      "command": [
+        "bash",
+        "tools/code_index.sh",
+        "{proj}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj"
+        ]
+      },
+      "timeout": 30
+    },
+    {
       "name": "read_module",
       "description": "Show a composed module's state for grounding: PROJECT.md, go.mod, and the .go file tree. Arg: proj (workspace name).",
       "command": [
@@ -765,6 +807,110 @@
         ]
       },
       "timeout": 20
+    },
+    {
+      "name": "spec_diff",
+      "description": "Derive the layered-spec increment: compare full snapshots spec/<from> and spec/<to> and emit a foreach worklist ('<targetpath> <specfile>') of every ADDED or CHANGED unit, in dependency order, so evolve regenerates only the delta. Args: proj, layers ('<from> <to>').",
+      "command": [
+        "bash",
+        "tools/spec_diff.sh",
+        "{proj}",
+        "{layers}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "layers": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj",
+          "layers"
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "sync_layer",
+      "description": "Check out a spec layer: copy spec/<layer>/*.spec into the working specs/ dir (cleared first) so compose/add_unit see the target layer. Args: proj, layers ('<layer>' or '<from> <to>'; the last token is the target).",
+      "command": [
+        "bash",
+        "tools/sync_layer.sh",
+        "{proj}",
+        "{layers}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "layers": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj",
+          "layers"
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "spec_changeset",
+      "description": "Human-readable release notes for a layer increment: added/changed/removed specs plus a unified diff of each change, derived from the two snapshots. Read-only. Args: proj, layers ('<from> <to>').",
+      "command": [
+        "bash",
+        "tools/spec_changeset.sh",
+        "{proj}",
+        "{layers}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "layers": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj",
+          "layers"
+        ]
+      },
+      "timeout": 30
+    },
+    {
+      "name": "evolve_ctx",
+      "description": "Assemble the generation context for an evolve (layer) pass: for every unit added/changed between spec/<from> and spec/<to>, its target path + new spec + current file contents. Args: proj, layers ('<from> <to>').",
+      "command": [
+        "bash",
+        "tools/evolve_ctx.sh",
+        "{proj}",
+        "{layers}"
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "proj": {
+            "type": "string"
+          },
+          "layers": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "proj",
+          "layers"
+        ]
+      },
+      "timeout": 30
     }
   ]
 }

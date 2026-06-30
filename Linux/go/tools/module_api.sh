@@ -13,7 +13,20 @@ module="$(awk '/^module /{print $2; exit}' "$root/go.mod" 2>/dev/null)"
 n=0
 while IFS= read -r f; do
   [ -e "$f" ] || continue
-  sigs="$(grep -nE '^(type |func )' "$f" 2>/dev/null)"
+  # Emit the full API surface a calling unit needs VERBATIM: func signatures, one-line types, AND the
+  # complete body of type blocks (struct fields + interface method signatures) and const groups. A bare
+  # `grep '^(type|func)'` hides interface methods and every constant, forcing the next unit to GUESS them
+  # (wrong const name, wrong interface signature) - the multi-unit coherence trap. Bind, do not guess.
+  sigs="$(awk '
+    inblock { print; if ($0 == close_tok) inblock=0; next }
+    /^func / { print; next }
+    /^type [A-Za-z].*\{[ \t]*$/ { print; inblock=1; close_tok="}"; next }
+    /^type / { print; next }
+    /^const \(/ { print; inblock=1; close_tok=")"; next }
+    /^const / { print; next }
+    /^var \(/ { print; inblock=1; close_tok=")"; next }
+    /^var [A-Z]/ { print; next }
+  ' "$f" 2>/dev/null)"
   [ -z "$sigs" ] && continue
   rel="${f#"$root"/}"
   dir="$(dirname "$rel")"

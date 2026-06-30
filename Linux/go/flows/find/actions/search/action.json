@@ -1,0 +1,14 @@
+{
+  "$comment": "BM25-search the code corpus for the operator's direction ($input). find.index outputs the RELATIVE .codeindex path on stdout (because $workspace is absolute and inst.Resolve needs a relative dir); we bind it as idxdir and use it as the search target - resolved by inst.Resolve with no cache key, so it always reflects the corpus just rebuilt. idxdir/q are bound BEFORE the search binding so they render first. pack_refs surfaces the ranked records as the flow's output.",
+  "id": "find.search",
+  "kind": "action",
+  "tool": "pack_refs",
+  "inputs": [
+    { "from": "$input", "path": ".", "as": "q" },
+    { "from": "find.index", "path": ".", "as": "idxdir" },
+    { "search": "{{ idxdir }}", "query": "{{ q }}", "k": 3, "as": "hits", "max_chars": 5000 }
+  ],
+  "body": { "pack": "<<<code matches for: {{ q }}>>>\n{{ hits }}" },
+  "on_success": "find.done",
+  "on_failure": "find.fail"
+}

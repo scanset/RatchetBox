@@ -1,0 +1,9 @@
+{
+  "$comment": "find: RAG over the workspace's OWN generated Go code. (Re)build the .codeindex corpus from the current code, then BM25-search it for the operator's direction and surface the ranked unit(s). Reuses the engine's generic search binding - the code corpus is searched exactly like a KB, no engine change. Run: ratchet flow . find --ws <proj> \"<what you are looking for>\".",
+  "id": "find",
+  "version": "1.0.0",
+  "summary": "Search a workspace's generated code by intent: rebuild the code index, BM25-rank the units against your query, return the best matches.",
+  "entry": "find.index",
+  "budgets": { "max_steps": 6, "max_total_tokens": 4000, "max_wallclock_seconds": 120 },
+  "nodes": ["find.index", "find.search", "find.done", "find.fail"]
+}

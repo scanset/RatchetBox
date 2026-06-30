@@ -1,0 +1,13 @@
+{
+  "$comment": "Assemble the changed set for this layer: for every unit ADDED or CHANGED between spec/<from> and spec/<to>, its target path + NEW spec + CURRENT file. This is the whole edit, listed as ONE set, because a change layer is a cross-cutting edit regenerated together. $input carries \"<from> <to>\".",
+  "id": "evolve.ctx",
+  "kind": "action",
+  "tool": "evolve_ctx",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "$input", "path": ".", "as": "layers" }
+  ],
+  "body": { "proj": "{{ proj }}", "layers": "{{ layers }}" },
+  "on_success": "evolve.api",
+  "on_failure": "evolve.fail"
+}

@@ -1,0 +1,1 @@
+{ "id": "evolve.fail", "kind": "exit", "outcome": "aborted: a changed unit did not regenerate/verify after one repair (whole module rolled back)" }

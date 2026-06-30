@@ -1,0 +1,13 @@
+{
+  "$comment": "Check out the target layer: copy spec/<to>/*.spec into specs/ so the workspace's working spec set reflects the layer being applied. The last token of $input is the target layer.",
+  "id": "evolve.sync",
+  "kind": "action",
+  "tool": "sync_layer",
+  "inputs": [
+    { "from": "$workspace", "path": ".", "as": "proj" },
+    { "from": "$input", "path": ".", "as": "layers" }
+  ],
+  "body": { "proj": "{{ proj }}", "layers": "{{ layers }}" },
+  "on_success": "evolve.ctx",
+  "on_failure": "evolve.fail"
+}

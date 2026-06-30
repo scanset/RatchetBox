@@ -1,0 +1,9 @@
+{
+  "$comment": "evolve: apply ONE spec layer to an already-built module as a TRANSACTIONAL cross-cutting edit. A change layer is NOT append-only growth (that is compose/add_unit) - it changes existing units and their callers TOGETHER, so it must regenerate all changed units at once and verify the whole module ONCE, rolling back on failure (the coedit/stage_files pattern). Steps: sync_layer checks out spec/<to> into specs/; evolve_ctx assembles the changed set (each unit's NEW spec + its CURRENT file, derived from the spec_diff between spec/<from> and spec/<to>); module_api gives the exact surface of the unchanged units; the model regenerates EVERY changed/added file as one marker payload; stage_files writes them all and verifies go vet + go test -race over the whole module, rolling back everything if it fails; one bounded repair. Input: \"<from> <to>\" (e.g. \"L0 L1\"); --ws <proj>. Bootstrap L0 first: `/do sync_layer <proj> L0` then `/flow compose --ws <proj>`.",
+  "id": "evolve",
+  "version": "2.0.0",
+  "summary": "Apply one spec layer as a transactional multi-file edit: regenerate every added/changed unit together, verify the whole module once (go vet + go test -race), roll back on failure.",
+  "entry": "evolve.sync",
+  "budgets": { "max_steps": 14, "max_total_tokens": 60000, "max_wallclock_seconds": 1800 },
+  "nodes": ["evolve.sync", "evolve.ctx", "evolve.api", "evolve.generate", "evolve.apply", "evolve.fix", "evolve.reapply", "evolve.done", "evolve.fail"]
+}

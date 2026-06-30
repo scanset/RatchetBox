@@ -42,8 +42,34 @@ print(" ".join(paths))
 [ -z "$written" ] && { echo "no files parsed from the payload (need === path === markers)"; exit 1; }
 echo "staged: $written"
 
-# Strip unused imports the model left behind (goimports-lite) from the just-staged files before verifying.
-for p in $written; do bash tools/prune_imports.sh "$root/$p" >/dev/null 2>&1 || true; done
+# Stamp two-level keyword tags (// file-kw: header + // kw: per symbol) into the staged code - the
+# deterministic FALLBACK of the hybrid scheme: model-authored tags are preserved (idempotent skip), and
+# anything the model omitted gets a derived tag, so every unit/symbol is searchable. Before import-fixing
+# so the inserted comments are formatted with the rest.
+bash tools/code_tags.sh "$proj" $written >/dev/null 2>&1 || true
+
+# Fix imports DETERMINISTICALLY. The model routinely uses a stdlib package without importing it (or
+# leaves an unused import) - a mechanical slip, not a reasoning error, and the single most common reason
+# a correct change failed the build oracle. goimports ADDS the missing imports AND removes unused ones
+# (and gofmts), resolving third-party paths against go.mod when run from the module root. Fall back to
+# prune_imports (remove-only) + gofmt when goimports is not installed.
+GOIMPORTS="$(command -v goimports 2>/dev/null || true)"
+[ -z "$GOIMPORTS" ] && [ -x "$(go env GOPATH)/bin/goimports" ] && GOIMPORTS="$(go env GOPATH)/bin/goimports"
+for p in $written; do
+  if [ -n "$GOIMPORTS" ]; then
+    (cd "$root" && "$GOIMPORTS" -w "$p" >/dev/null 2>&1) || gofmt -w "$root/$p" >/dev/null 2>&1 || true
+  else
+    bash tools/prune_imports.sh "$root/$p" >/dev/null 2>&1 || true
+    gofmt -w "$root/$p" >/dev/null 2>&1 || true
+  fi
+done
+
+# A package-main module with no func main cannot `go build` (the harden gate links a command). A pure
+# library lives in package main under the single-package rule, so synthesize a trivial entry if none
+# exists - harmless, keeps every build gate uniform with the green stage's go-vet check.
+if grep -lq '^package main' "$root"/*.go 2>/dev/null && ! grep -hqE '^func main\(' "$root"/*.go 2>/dev/null; then
+  printf 'package main\n\nfunc main() {}\n' > "$root/main.go"
+fi
 
 RACE=""
 if [ "$(go env CGO_ENABLED 2>/dev/null)" != "0" ] && { command -v gcc >/dev/null 2>&1 || command -v clang >/dev/null 2>&1 || command -v cc >/dev/null 2>&1; }; then RACE="-race"; fi

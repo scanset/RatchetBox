@@ -1,0 +1,15 @@
+{
+  "$comment": "Regenerate EVERY changed/added unit as one marker payload (=== path === per file), grounded on each unit's new spec + current file (ctx) and the module's existing API. stage_files writes + verifies them atomically.",
+  "id": "evolve.generate",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "evolve.ctx", "path": ".", "as": "units", "max_chars": 14000 },
+    { "from": "evolve.api", "path": ".", "as": "api", "max_chars": 4000 },
+    { "search": "stdlib", "query": "{{ units }}", "k": 1, "as": "stdlib_refs", "max_chars": 2000 },
+    { "search": "pitfalls", "query": "{{ units }}", "k": 1, "as": "pitfall_refs", "max_chars": 1500 },
+    { "search": "concurrency", "query": "{{ units }}", "k": 1, "as": "concurrency_refs", "max_chars": 1500 }
+  ],
+  "on_success": "evolve.apply",
+  "on_failure": "evolve.fail"
+}

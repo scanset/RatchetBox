@@ -15,7 +15,12 @@ code="$(cat)"
 code="$(printf '%s\n' "$code" | sed '/^[[:space:]]*```/d')"
 mkdir -p "$(dirname "$root/$path")"
 printf '%s\n' "$code" > "$root/$path"
-gofmt -w "$root/$path" 2>/dev/null
+# Fix imports deterministically (add missing + remove unused) via goimports, gofmt fallback - the model's
+# most common build-breaking slip is using a stdlib package it forgot to import.
+GOIMPORTS="$(command -v goimports 2>/dev/null || true)"
+[ -z "$GOIMPORTS" ] && [ -x "$(go env GOPATH)/bin/goimports" ] && GOIMPORTS="$(go env GOPATH)/bin/goimports"
+if [ -n "$GOIMPORTS" ]; then (cd "$root" && "$GOIMPORTS" -w "$path" >/dev/null 2>&1) || gofmt -w "$root/$path" 2>/dev/null
+else gofmt -w "$root/$path" 2>/dev/null; fi
 
 RACE=""
 if [ "$(go env CGO_ENABLED 2>/dev/null)" != "0" ] && { command -v gcc >/dev/null 2>&1 || command -v clang >/dev/null 2>&1 || command -v cc >/dev/null 2>&1; }; then RACE="-race"; fi

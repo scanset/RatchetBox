@@ -1,0 +1,14 @@
+{
+  "$comment": "Bounded repair: regenerate the whole changed set given the module-level vet/test errors + the previous attempt + the original ctx. One fix, then reapply.",
+  "id": "evolve.fix",
+  "kind": "generate",
+  "prompt": "./prompt.md",
+  "inputs": [
+    { "from": "evolve.ctx", "path": ".", "as": "units", "max_chars": 14000 },
+    { "from": "evolve.api", "path": ".", "as": "api", "max_chars": 4000 },
+    { "from": "evolve.generate", "path": ".", "as": "prev", "max_chars": 9000 },
+    { "from": "evolve.apply", "path": ".", "as": "errors", "max_chars": 3000 }
+  ],
+  "on_success": "evolve.reapply",
+  "on_failure": "evolve.fail"
+}
